@@ -3,11 +3,28 @@
 \begin{itemize}
 \item diagrama de classes
 \item implementació distribucions $\pi$
-\item detall sobre mutacions binomials (cas 0)
+  \begin{itemize}
+  \item uniforme
+  \item geometric
+  \item powerlaw
+  \item broken stick
+  \end{itemize}
+\item mutacions binomials (que pasa quan s'han de produir 0 mutacions)
 \item Accumulator (reduir error numeric)
-\item algoritme longest connected component?
-\item algoritme graf aleatori (donada probabilitat -> donat nombre de
-  connexions)
+\item algoritme largest connected component
+\item algoritme graf aleatori
+  \begin{itemize}
+  \item donada probabilitat de vertex
+    \begin{itemize}
+    \item generar numero de arestes seguint distribucio binomial
+    \item generar graf donat numero d'arestes
+    \end{itemize}
+  \item donat numero d'arestes $e$
+    \begin{itemize}
+    \item per a cada significat, triar una forma a l'atzar
+    \item afegir $max(0, e-m)$ arestes evitant afegir la mateixa més d'un cop
+    \end{itemize}
+  \end{itemize}
 \end{itemize}
 \section{algoritme optimització}
 \begin{itemize}
@@ -17,13 +34,14 @@
   recalcular-los
 \item incloure acabar abans si ha arribat al minim
 \item incloure comptar edats paraules
+\item copiar de report.pdf
 \end{itemize}
 \section{problemes}
 \begin{itemize}
 \item error numeric de calcul dinamic
 \item graf inicial complet tarda massa
 \item strong stop condition
-\item distribucio geometrica en segon model
+\item distribucio geometrica en segon model (en general, quan $\pi$ te probabilitats massa properes a 0)
 \end{itemize}
 
 %%% Local Variables:

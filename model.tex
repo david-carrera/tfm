@@ -2,7 +2,7 @@
 \section{mates}
 \subsection{graf bipartit}
 \begin{itemize}
-\item explicació matematica de graf bipartit
+\item part més matematica de graf bipartit
 \item parts comunes als dos models: $A$, $S$, $R$, graus dels nodes $\mu$ i
   $\omega$
 \end{itemize}
@@ -23,6 +23,14 @@
 \item cost calcul omega estatic
 \item cost calcul omega dinamic
 \item calcul estatic enfront dinàmic
+\item cost computacional estatic
+  \begin{itemize}
+  \item depen del numero d'arestes
+  \end{itemize}
+\item cost computacional dinamic
+  \begin{itemize}
+  \item (mutant $(i,j$) depen del numero de veins de $i$ i $j$
+  \end{itemize}
 \end{itemize}
 \subsection{segon model}
 \begin{itemize}
@@ -30,6 +38,19 @@
 \item cost calcul omega estatic
 \item cost calcul omega dinamic
 \item calcul estatic enfront dinàmic
+\item cost computacional estatic
+  \begin{itemize}
+  \item depend del numero d'arestes
+  \item dos iteracions
+    \begin{itemize}
+    \item la primera per a calcular totes les variables, excepte $\chi$ que necessita $\omega_\phi$ estigui calculada
+    \item la segona per a calcular $\chi$ a partir de $\omega_\phi$ i $H(S)$ a partir de $\chi$
+    \end{itemize}
+  \end{itemize}
+\item cost computacional dinamic
+  \begin{itemize}
+  \item (mutant $(i,j$) depen del numero de veins de $i$ i del numero de veins que $i$ té en commú amb altres paraules (per al calcul de $\chi$)
+  \end{itemize}
 \end{itemize}
 
 
