@@ -1,0 +1,35 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{biblatex}
+
+\addbibresource{biblio.bib}
+\graphicspath{{figures/}}
+
+\input{macros}
+
+\begin{document}
+
+\input{cover}
+\input{abstract}
+\tableofcontents
+\input{introduction}
+\input{model}
+\input{methods}
+\input{results}
+\input{discussion}
+\printbibliography
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
