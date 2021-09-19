@@ -2,15 +2,12 @@
 \section{implementacio programa}
 \begin{itemize}
 \item diagrama de classes
-\item implementació distribucions $\pi$
-  \begin{itemize}
-  \item uniforme
-  \item geometric
-  \item powerlaw
-  \item broken stick
-  \end{itemize}
 \item mutacions binomials (que pasa quan s'han de produir 0 mutacions)
-\item Accumulator (reduir error numeric)
+\item els trucs per evitar acumular error
+  \begin{itemize}
+  \item Accumulator
+  \item recalcular en static en certs punts
+  \end{itemize}
 \item algoritme largest connected component
 \item algoritme graf aleatori
   \begin{itemize}
@@ -25,8 +22,16 @@
     \item afegir $max(0, e-m)$ arestes evitant afegir la mateixa més d'un cop
     \end{itemize}
   \end{itemize}
+\item implementació distribucions $\pi$
+  \begin{itemize}
+  \item uniforme
+  \item geometric
+  \item powerlaw
+  \item broken stick
+  \end{itemize}
 \end{itemize}
 \section{algoritme optimització}
+paraules clau: metode markov chain monte carlo temperatura zero
 \begin{itemize}
 \item estatic
 \item dinamic
@@ -36,9 +41,29 @@
 \item incloure comptar edats paraules
 \item copiar de report.pdf
 \end{itemize}
+\section{parallelització}
+\begin{itemize}
+\item no hi ha parallelitzacio en el programa en si
+  \begin{itemize}
+  \item evita complexitat
+  \item font de possibles errors
+  \end{itemize}
+\item programa dissenyat de forma que parallelitzacio es facil
+  \begin{itemize}
+  \item fitxer de configuració: usuari pot separar la tasca en varis fitxers i
+    executar el programa n vegades, deixant que el SO s'encarregui de la
+    complexitat de la parelelitzacio
+  \item eines com GNU Parallel o SLURM (clusters) arrays
+  \end{itemize}
+\end{itemize}
+\section{verificació}
+\begin{itemize}
+\item estàtic es facil
+\item dinamic no tant
+\end{itemize}
 \section{problemes}
 \begin{itemize}
-\item error numeric de calcul dinamic
+\item evitar arrossegar error numeric en el calcul dinamic
 \item graf inicial complet tarda massa
 \item strong stop condition
 \item distribucio geometrica en segon model (en general, quan $\pi$ te probabilitats massa properes a 0)
