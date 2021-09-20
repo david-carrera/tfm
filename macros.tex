@@ -1,3 +1,23 @@
+% make some text red
+\newcommand{\redtxt}[1]{\textcolor{red}{#1}}
+
+% make an entire chunk of text red
+\newenvironment{redenv}{%
+  \color{red}%
+}
+
+% easy set notation
+\newcommand{\set}[1]{\{\,#1\,\}}
+\newcommand{\Set}[2]{\{\,#1\mid#2\,\}}
+
+% big O notation
+\newcommand{\bigO}[1]{\mathcal{O}(#1)}
+
+\newcommand{\nbym}{$n{\times}m$}
+
+% simply the names for the two model instead of "first model" and "second model"
+\newcommand{\firstmodel}{proportional model}
+\newcommand{\secondmodel}{\emph{a priori} model}
 
 %%% Local Variables:
 %%% mode: latex

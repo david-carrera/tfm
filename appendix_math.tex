@@ -1,6 +1,135 @@
-\chapter{math}
+\chapter{Formulae}
+\label{cha:app_formulae}
 
-derivacions llargues i pagines i pagines de mates van aqui
+\redtxt{derivacions llargues i pagines i pagines de mates van aqui}
+
+\section{Simplification of the equations of entropies}
+\label{sec:app_formulae_trick}
+
+Equation \eqref{eq:definition-trick} is used in several parts of the thesis to simplify the expressions of entropies.
+The derivation is short, but it is not added into the main text of the thesis for the sake of clarity and focus.
+
+\begin{align*}
+              -\sum_i & \frac{x_i}{T} \log\frac{x_i}{T} \\
+  -\frac{1}{T} \sum_i & x_i \log x_i - x_i \log T \\
+  -\frac{1}{T} \sum_i & x_i \log x_i + \log(T) \frac{1}{T} \sum_i x_i \\
+\end{align*}
+at this point we can apply
+\begin{equation*}
+  \sum_i x_i = T
+\end{equation*}
+and obtain
+\begin{align*}
+  \log T - \frac{1}{T} \sum_i & x_i \log x_i\\
+\end{align*}
+
+\section{Derivation of the joint entropy in the \secondmodel}
+\label{sec:app_formulae_join-entropy_second-model}
+
+In Section \ref{sec:model_math_second-model} the derivation of the joint entropy is left as just the high level reasoning of which formulas may be used to obtain its expression.
+Here, the full derivation of both approaches is given.
+
+The first approach consists of applying Equation \eqref{eq:definition-join-prob_second-model} to the information theory definition of $H(S,R)$ (Equation \eqref{eq:definition-HSR}),
+\begin{align*}
+  H(S,R) =& - \sum_{i=1}^n \sum_{j=1}^m p(s_i, r_j) \log \left[ p(s_i, r_j) \right] \\
+         =& - \sum_{i=1}^n \sum_{j=1}^m \frac{a_{i,j} (1 - \delta_{\omega_j,0}) \mu_i^\phi \pi(r_j)}{\rho \omega_{\phi,j}} \log \left[ \frac{a_{i,j} (1 - \delta_{\omega_j,0}) \mu_i^\phi \pi(r_j)}{\rho \omega_{\phi,j}} \right] \\
+         =& - \frac{1}{\rho} \sum_{i=1}^n \sum_{j=1}^m \frac{a_{i,j} (1 - \delta_{\omega_j,0}) \mu_i^\phi \pi(r_j)}{\omega_{\phi,j}} \log \left[ \frac{\mu_i^\phi \pi(r_j)}{\rho \omega_{\phi,j}} \right] \\
+         =& - \frac{1}{\rho} \sum_{j=1}^m \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\omega_{\phi,j}} \Bigg[ \phi \sum_{i=1}^n a_{i,j} \mu_i^\phi \log \mu_i \\
+          & + \log \pi(r_j) \sum_{i=1}^n a_{i,j} \mu_i^\phi - \log(\rho) \sum_{i=1}^n a_{i,j} \mu_i^\phi \\
+          & - \log(\omega_{\phi,j}) \sum_{i=1}^n a_{i,j} \mu_i^\phi \Bigg].
+\end{align*}
+Applying Equation \eqref{eq:definition-nu} we arrive at Equation \eqref{eq:definition-HSR_second-model}.
+
+The second approach consists on using other less complex expressions we have available and building up from them using the definitions
+\begin{align}
+  \label{eq:definition-HSR_appendix}
+  H(S,R) &= H(S|R) + H(R), \\
+  \label{eq:definition-HSgR_appendix}
+  H(S|R) &= \sum_{j=1}^m H(S|r_j)p(r_j), \\
+  \label{eq:definition-HSgrj_appendix}
+  H(S|r_j) &= -\sum_{i=1}^n p(s_i|r_j) \log p(s_i|r_j).
+\end{align}
+
+Starting from Equation \eqref{eq:definition-HSgrj_appendix} and applying Equation \eqref{eq:definition-cond-prob_second-model} we obtain
+\begin{align*}
+  H(S|r_j) =& -\sum_{i=1}^n \frac{a_{i,j} \mu_i^\phi \pi(r_j)}{\rho \omega_{\phi,j}} \log \left( \frac{a_{i,j} \mu_i^\phi \pi(r_j)}{\rho \omega_{\phi,j}} \right) \\
+           =& \log \omega_{\phi,j} - \frac{1}{\omega_{\phi,j}} \sum_{i=1}^n a_{i,j} \mu_i^\phi \log(a_{i,j} \mu_i^\phi) \\
+           =& \log \omega_{\phi,j} - \frac{\phi}{\omega_{\phi,j}} \sum_{i=1}^n a_{i,j} \mu_i^\phi \log(\mu_i)
+\end{align*}
+and after applying Equation \eqref{eq:definition-nu}
+\begin{equation}
+  \label{eq:definition-HSgrj_appendix-step}
+  H(S|r_j) = \log \omega_{\phi,j} - \frac{\phi \nu_j}{\omega_{\phi,j}}.
+\end{equation}
+
+Applying Equations \eqref{eq:definition-HSgrj_appendix-step} and \eqref{eq:definition-prj_second-model} to Equation \eqref{eq:definition-HSgR_appendix} we reach
+\begin{align}
+  H(S|R) =& \sum_{j=1}^m \left(\log \omega_{\phi,j} - \frac{\phi \nu_j}{\omega_{\phi,j}}\right) \frac{(1 - \delta_{w_j,0}) \pi(r_j)}{\rho} \nonumber \\
+  \label{eq:definition-HSgR_appendix-step}
+       =& \frac{1}{\rho} \sum_{j=1}^m (1 - \delta_{w_j,0}) \pi(r_j) \left[ \log(\omega_{\phi,j}) - \frac{\phi \nu_j}{\omega_{\phi,j}} \right].
+\end{align}
+
+The last step consists of applying Equations \eqref{eq:definition-HSgR_appendix-step} and \eqref{eq:definition-HR_second-model} to Equation \eqref{eq:definition-HSR_appendix}, obtaining Equation \eqref{eq:definition-HSR_second-model} again
+\begin{align*}
+  H(S,R) &= \frac{1}{\rho} \sum_{j=1}^m (1 - \delta_{w_j,0}) \pi(r_j) \left[ \log(\omega_{\phi,j}) - \frac{\phi \nu_j}{\omega_{\phi,j}} \right] \\
+       &+ \log \rho - \frac{1}{\rho} \sum_{j=1}^m (1 - \delta_{w_j,0}) \pi(r_j) \log \pi(r_j) \\
+       &= \log \rho - \frac{1}{\rho} \sum_{j=1}^m (1 - \delta_{w_j,0}) \pi(r_j) \left[ \frac{\phi \nu_j}{\omega_{\phi,j}} + \log \frac{\pi(r_j)}{\omega_{\phi,j}} \right].
+\end{align*}
+
+\section{Proof that $\sum_{i=1}^n \mu_i^\phi \chi_i = \rho$}
+\label{sec:app_formulae_proof-sum-HS_second-model}
+
+In order to use Equation \eqref{eq:definition-trick} in order to simplify the derivation of Equation \eqref{eq:definition-HS_second-model}, it must hold that $\sum_{i=1}^n \mu_i^\phi \chi_i = \rho$.
+Here it is shown that this is the case.
+
+Starting from the equality, we can expand both sides
+\begin{align*}
+\sum_{i=1}^n \mu_i^\phi \chi_i =& \rho \\
+\sum_{i=1}^n \mu_i^\phi \sum_{j=1}^m \frac{a_{ij} (1 - \delta_{\omega_j,0}) \pi(r_j)}{\omega_{\phi,j}} =& \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j) \\
+\sum_{j=1}^m \left( \sum_{i=1}^n a_{ij} \mu_i^\phi \right) \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\omega_{\phi,j}} =& \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j), \\
+\end{align*}
+applying Equation \eqref{eq:definition-omegaphi} we obtain
+\begin{equation*}
+  \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j)
+\end{equation*}
+on both sides.
+
+Recall the definition of $p(s_i)$ in Equation \eqref{eq:definition-psi_second-model} to see that
+\begin{equation*}
+  \sum_{i=1}^n p(s_i) = 1
+\end{equation*}
+immediately follows.
+
+\section{Dynamic Equations for the \secondmodel{}}
+\label{sec:app_formulae_dynamic-equations_second-model}
+
+The full derivation of the dynamic equations for the \secondmodel{} is given in this section.
+The equations themselves as well as other definitions used here are already given in Section \ref{sec:model_math_second-model}.
+
+In this section, the derivation is logical rather than mathematical, consisting of explanations behind the logic of the equations.
+
+$\rho$ (see Equation \eqref{eq:definition-rho}) only changes when, as a result of the mutation, the meaning $r_j$ either was connected and becomes disconnected or was disconnected and becomes connected, resulting in Equation \eqref{eq:definition-rho_dynamic}.
+
+$\nu_l$ is very similar to $\omega_{\phi,l}$ (compare Equations \eqref{eq:definition-nu} and \eqref{eq:definition-omegaphi}).
+Equation \eqref{eq:definition-nu_dynamic} shows how $\nu_l$ changes in the same cases and in the same way as $\omega_{\phi,l}$ (Equation \eqref{eq:definition-wphik_dynamic}).
+
+$\chi_k$ depends on  $\omega_{\phi,l}$ such that $l \in \Gamma_S(k)$ (see Equation \eqref{eq:definition-chi_second-model}).
+For $\chi_i$, the entire value has to be recalculated, as every $\omega_{\phi,l}$ for $l \in \Gamma_S(k)$ will have changed (Equation \eqref{eq:definition-wphik_dynamic}).
+It is more efficient (and reduces the amount of floating point error) to calculate $\chi_i$ statically than to subtract every $\omega_{\phi,l}$ and then add every $\omega'_{\phi,l}$.
+For all other values of $\chi_k$ ($k \neq i$), the affected $\omega_{\phi,l}$ are the intersection of the set of neighbors of $i$ plus the meaning $r_j$ and the set of neighbors of $k$. This is the set $A_{i,j}(k)$ defined in Equation \eqref{eq:definition-A_second-model}. With this reasoning we reach the formula for the dynamic recalculation of $\chi_k$, Equation \eqref{eq:definition-chi_dynamic}.
+
+$X(R)$ (Equation \eqref{eq:definition-XR_second-model}) changes in a very similar way to $\rho$ (Equation \eqref{eq:definition-rho}), as they both depend on the same variable in the same way: only when the meaning $r_j$ becomes connected or disconnected does $X(R)$ change, resulting in Equation \eqref{eq:definition-rho_dynamic}.
+
+$X(S,R)$ (Equation \eqref{eq:definition-XSR_second-model}) will change when a $x(r_l)$ (Equation \eqref{eq:definition-xrj_second-model}) changes.
+Both $\omega_{\phi,l}$ and $\nu_l$ change for $l \in \Gamma_S(i) \cup \{j\}$ (Equations \eqref{eq:definition-wphik_dynamic} and \eqref{eq:definition-nu_dynamic}).
+So these are the components $x(s_l)$ of $H(S,R)$ that will change.
+For the special case of $l=j$ we should not subtract the old value when $r_j$ has become connected as a result of the mutation (as that component was not present), and we should not add the new value when $r_j$ has become disconnected (as that component should not be present).
+Or in other words, only subtract the old value if $r_j$ was connected before the mutation (this serves to either update it or to remove it) and only add the new value if $r_j$ is connected after the mutation (this serves to either update it or to add it).
+The resulting expression for $X'(S,R)$ is in Equation \eqref{eq:definition-XSR_second-model_dynamic}.
+
+$X(S)$ (Equation \eqref{eq:definition-XS_second-model}) will change when $x(s_k)$ (Equation \eqref{eq:definition-xsi_second-model}) changes, which depends on $\chi_k$ (Equation \eqref{eq:definition-chi_dynamic}).
+$\chi_k$ is updated for every $k$ such that $|A_k| \neq \emptyset$ and $\chi_i$ is always updated, which is the definition of the $B_{i,j}(k)$ set (Equation \eqref{eq:definition-B_second-model}).
+Using $B_{i,j}(k)$ we obtain the expression for $X'(S)$ in Equation \eqref{eq:definition-XS_second-model_dynamic}.
 
 %%% Local Variables:
 %%% mode: latex
