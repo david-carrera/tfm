@@ -5,7 +5,7 @@ auto
 *.blg
 *.log
 *.out
-*.pdf
+tfm.pdf
 *.run.xml
 *.synctex.gz
 *.toc
