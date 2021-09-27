@@ -30,38 +30,9 @@ These concepts are then extended for either the \firstmodel{} or the \secondmode
 \subsection{Common concepts}
 \label{sec:model_math_graph}
 
-In this section, mathematical definitions and notation common to both models is given.
-They will be used throughout the remainder of the thesis.
+Here a few more common concepts that were not discussed in Chapter \ref{cha:introduction} are introduced.
 
-Both models studied in this thesis are based on the idea of a bipartite graph $G_{n,m}$.
-Bipartite graphs are comprised of two sets of elements and edges can only appear between an element of one set and an element of the other.
-
-Our two sets are $S$ and $R$.
-$S$ is a set of size $n$ containing all words.
-The notation $s_i$ is used to refer to some element $i$ of the set $S$.
-$R$ is a set of size $m$ containing all meanings.
-The notation $r_j$ is used to refer to some element $j$ of the set $R$.
-
-The bipartite graph is represented using the adjacency matrix $A_{n,m}$ (or simply $A$) in most cases.
-$A_{n,m}$ is a \nbym{} binary matrix representing whether an edge exists or not in the graph.
-Mathematically, each element of the matrix $A$ is defined as
-\begin{equation*}
-  %\label{eq:definition-aij}
-  a_{i,j} =
-  \begin{cases}
-    1 & \text{if there exists an edge between $s_i \in S$ and $r_j \in R$} \\
-    0 & \text{otherwise.}
-  \end{cases}
-\end{equation*}
-
-In some cases it is more convenient to represent the bipartite graph as the set $E$ of all edges,
-\begin{equation*}
-  %\label{eq:definition-E}
-  E = \Set{(s_i,r_j)}{\text{there exists an edge between $s_i \in S$ and $r_j \in R$}}.
-\end{equation*}
-For brevity, the tuple $(s_i, r_j)$ is sometimes replaced by the simpler form $(i,j)$.
-
-A notation is defined for the degree of the vertices in the graph.
+As a reminder, the notation defined for the degree of the vertices in the graph is repeated.
 The word $s_i$ has degree $\mu_i$, while the meaning $r_j$ has degree $\omega_j$.
 Mathematically, $\mu$ and $\omega$ are defined
 \begin{equation}
@@ -77,18 +48,6 @@ and
 There is an additional parameter of the models, $\phi$, which is not directly related to the bipartite graph.
 This parameter appears in both models and it is used to ``emphasize'' the effect of the vertex degrees in the calculations.
 As explained in previous sections, this parameter is a new addition to the models originally presented in \cite{Ferrer2005a} and \cite{Ferrer2003a}.
-
-Figure \ref{fig:graph-example-base} displays an example of a simple $G_{3,3}$ graph.
-A graphical representation is included, as well as the corresponding values of the mathematical concepts discussed in this section up to here.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{graph_example_base}
-  \caption{%
-    A $G_{3,3}$ bipartite graph with the corresponding adjacency matrix $A$, set of edges $E$ and vertex degrees $\mu$ and $\omega$ for each vertex.
-  }
-  \label{fig:graph-example-base}
-\end{figure}
 
 With the parameter $\phi$, the definitions of $\mu$ and $\omega$ can be generalized.
 $\mu_\phi$ and $\omega_\phi$ are defined as
@@ -107,17 +66,12 @@ In other words, $\mu_{0,i} = \mu_i$ and $\omega_{0,j} = \omega_j$
 \subsection{The \firstmodel{}}
 \label{sec:model_math_first-model}
 
-This model is defined by the joint probability of a word $s_i$ and a meaning $r_j$.
-This probability must be proportional to the product of the degrees of $s_i$ and $r_j$ and it must be zero if there is no edge between $s_i$ and $r_j$.
-Mathematically,
-\begin{equation*}
-  %\label{eq:psirj-proportional-mui-wj}
-  p(s_i, r_j) \propto a_{i,j} (\mu_i \omega_j)^\phi,
-\end{equation*}
-where the parameter $\phi$ is used to control the effect of the vertex degrees.
-As previously noted, the original model from \cite{Ferrer2005a} is equivalent to this one but with $\phi=0$ and so, the vertex degrees have no effect in the joint probability. \redtxt{no ho tinc gaire clar... desde on ``comencen'' les equacions del primer model?}
+Here the concepts outlined in Section \ref{sec:introduction_model_first-model} are worked out into actual probabilities and information theoretic equations.
 
-From this definition, equations for the marginal probabilities are derived, which in turn are used to obtain the information theory expressions in the cost function $\Omega$ (Equation \eqref{eq:definition-Omega}).
+This model is defined by the joint probability of a word $s_i$ and a meaning $r_j$ seen in Equation \ref{eq:psirj-proportional-mui-wj}.
+As seen in Section \ref{sec:introduction_model_first-model}, this probability must be proportional to the product of the degrees of $s_i$ and $r_j$.
+
+From this definition equations for the marginal probabilities are derived, which in turn are used to obtain the information theory expressions in the cost function $\Omega$ (Equation \eqref{eq:definition-Omega}).
 From these expressions, dynamic equations are derived to obtain the change experienced by the entropies after a single mutation has occurred on the adjacency matrix $A$.
 
 \subsubsection{Joint Probability}
@@ -349,25 +303,18 @@ These follow immediately from the formulas given in this section and can be easi
 \subsection{The \secondmodel{}}
 \label{sec:model_math_second-model}
 
-This model was introduced in \cite{Ferrer2003a} with meaning probabilities being constant and disconnected meanings being disallowed.
-Here we present a generalization of the previous model.
-In this model, the probability of a meaning $r_j$ depends on an \emph{a priori} probability $\pi(r_j)$, instead of depending directly on the structure of the bipartite graph.
-In \cite{Ferrer2003a} disconnected meanings were disallowed and $\pi(r_j) = \frac{1}{m}$.
+Here the equations and concepts form \ref{sec:introduction_model_second-model} are worked out into probabilities and information theoretic equations.
 
-Here, disconnected meanings are allowed and $\pi(r_j)$ can be any distribution of probabilities.
-Zero values of $\pi(r_j)$ are disallowed, however, as meanings that would never occur are not the target of communication.
-As expected,
-\begin{equation}
-  \label{eq:sum-pirj-equals-1}
-  \sum_{j=1}^m \pi(r_j) = 1.
-\end{equation}
+In this model, $p(r_j)$ depends in an \emph{a priori} probability $\pi(r_j)$ while $p(s_i | r_j)$ is defined in terms of $\mu_i^\phi.$
 
-The probability of a meaning is defined in a way to ensure that
+From the definition of probability,
 \begin{equation}
   \label{eq:sum-prj-equals-1}
-  \sum_{j=1}^m p(r_j) = 1
+  \sum_{j=1}^m p(r_j) = 1,
 \end{equation}
-even when there are disconnected meanings whose probability should be zero,
+even when there are disconnected meanings whose probability should be zero.
+
+From Equation \ref{eq:prj-proportional-pirj} and \ref{eq:sum-prj-equals-1},
 \begin{equation}
   \label{eq:definition-prj_second-model}
   p(r_j) = \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\rho}
@@ -378,16 +325,9 @@ where
   \rho &= \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j) \\
        &= 1 - \sum_{j=1}^m \delta_{\omega_j,0} \pi(r_j). \nonumber
 \end{align}
-It is immediate to see that Equation \eqref{eq:sum-prj-equals-1} holds.
 
-\subsubsection{Joint probability}
+The conditional probability of choosing a word given a meaning is proportional to the number of meanings associated with that word or zero if that meaning is not associated to the word.
 
-\redtxt{referencia a introduccio on es citi \cite{Ferrer2018a}, posar aquesta part abans del titol joint probability?}
-The conditional probability of choosing a word given a meaning is proportional to the number of meanings associated with that word or zero if that meaning is not associated to the word,
-\begin{equation}
-  \label{eq:prop-cond-prob_second-model}
-  p(s_i | r_j) \propto a_{i,j} \mu_i^\phi.
-\end{equation}
 Applying
 \begin{equation*}
   \sum_{i=1}^n p(s_i | r_j) = 1

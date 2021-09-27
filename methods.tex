@@ -1,8 +1,8 @@
 \chapter{Methods}
 \label{cha:methods}
 
-This chapter centers on the implementation of the models defined in Chapter \ref{cha:model} and the optimization method outlined in Section \ref{???}.
-Section \ref{sec:methods_model-implementation} focuses on the implementation of the models in a C++ program, including a class hierarchy diagram, several important algorithms, various methods used to avoid floating point error and the different distributions of $\pi$ (see Section \ref{sec:model_math_second-model}) that were implemented.
+This chapter centers on the implementation of the models defined in Chapter \ref{cha:model} and the optimization method outlined in Section \ref{sec:introduction_model_optimization}.
+Section \ref{sec:methods_model-implementation} focuses on the implementation of the models in a \CC{} program, including a class hierarchy diagram, several important algorithms, various methods used to avoid floating point error and the different distributions of $\pi$ (see Section \ref{sec:model_math_second-model}) that were implemented.
 Section \ref{sec:methods_optimization} deals with the optimization algorithm, how it changes for the static or dynamic cases and several optimizations that allow for faster runtime and more precise results.
 On Section \ref{sec:methods_parallelization} the approach taken to parallelization is outlined and justified.
 Section \ref{sec:methods_verification} deals with the verification of the code.
@@ -24,7 +24,7 @@ The diagram in Figure \ref{fig:class-diagram} shows the classes implementing the
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{class_diagram}
-  \caption{Diagram showing the hierarchy of the classes implementing the two models in their dynamic and static variants in the C++ program.}
+  \caption{Diagram showing the hierarchy of the classes implementing the two models in their dynamic and static variants in the \CC{} program.}
   \label{fig:class-diagram}
 \end{figure}
 
@@ -47,7 +47,7 @@ Note that all Algorithm \ref{alg:gnmp} actually does is compute a value of $e$ t
 \end{algorithm}
 
 \begin{algorithm}
-  \caption{$G_{n,m,e}$ algorithm to generate a random \nbym{} graph given the number of edges $e$.} \label{alg:gnmp}
+  \caption{$G_{n,m,e}$ algorithm to generate a random \nbym{} graph given the number of edges $e$.} \label{alg:gnme}
   \begin{algorithmic}[1]
     \Procedure{$G$}{$n,m,e$}
       \If{disconnected meanings disallowed}
@@ -130,7 +130,7 @@ The optimization stops early if the global minimum for the cost function is reac
 
 The parameter $\lambda$ is given as a parameter.
 It controls the weight of the two forces that contribute to the cost function.
-See Section \ref{???-introduction}.
+See Section \ref{sec:introduction_model_optimization}.
 
 The number of mutations done on each step depends on the parameters and may be either constant or follow a binomial distribution.
 In the case of a binomial distribution, it is possible that zero mutations may be effectuated.

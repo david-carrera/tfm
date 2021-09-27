@@ -1,7 +1,21 @@
 %% La memòria d’un TFM ha de començar sempre amb un resum del treball
 %% (abstract) de 1000 paraules.
 \begin{abstract}
-aaa
+Quantitative linguistics study human language using statistical methods.
+Its aim is to build general theory from the statistical laws observed in a wide variety of languages.
+As part of the scientific method, this theory should be able to make novel predictions.
+This thesis is based on a family of models of human language \redtxt{(\cite{Ferrer2007a} and generalized in \cite{Ferrer2018a})}.
+These models have shown to reproduce language laws, such as Zipf's law.
+They have also been used to make predictions, such as predicting the biases present in child word learning.
+This family of models is based on the optimization of information theoretic measures in a bipartite graph.
+Two specific models are studied here, the \firstmodel{} and the \secondmodel{}.
+The mathematics behind the models are derived and implemented in code.
+Further mathematical work is also presented, which is used in order to speed up the optimization process: instead of statically recalculating every measure in each step, the effect of the changes done in the step is calculated dynamically.
+This introduces further problems, such as numerical error from floating point operations, which is also addressed.
+An open source tool \redtxt{nom?} has been developed in \CC{}.
+This tool implements the family of models, as well as an optimization algorithm consisting of a Markov chain Monte Carlo method at zero temperature.
+This tool is shown to be both powerful and generic enough to replicate findings from previously studied models in this family.
+This thesis presents both the new tool which can hopefully be used by researchers to further investigate this family of models, as well as novel findings obtained through the use of this tool, such as a consistent relationship between word age and frequency.
 \end{abstract}
 
 %%% Local Variables:
