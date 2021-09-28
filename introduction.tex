@@ -8,8 +8,8 @@ One of the most well known such laws is Zipf's law, which states that
   p(i) \sim i^{-\alpha}
 \end{equation}
 where $i$ is a word's rank.
-Generally, $\alpha \approx 1$ \cite{Zipf1949a}.
-This is the case not only for English but for every tested human language \cite{Mehri2017}.
+Generally, $\alpha \approx 1$. \cite{Zipf1949a}
+This is the case not only for English but for every tested human language. \cite{Mehri2017}
 Figure \ref{fig:zipf_languages_wiki} shows this relationship for the first 10 million words of Wikipedia dumps in 30 different languages.
 This relationship also holds for artifical languages like Esperanto.
 There have been many efforts to understand why this and other empiric laws occur consistently in human language.
@@ -24,7 +24,7 @@ There have been many efforts to understand why this and other empiric laws occur
   \label{fig:zipf_languages_wiki}
 \end{figure}
 
-This thesis focuses on a family of models \cite{Ferrer2007a} introduced initially to shed light into the origins of Zipf's law \cite{Ferrer2005a} \cite{Ferrer2003a}.
+This thesis focuses on a family of models \cite{Ferrer2007a} introduced initially to shed light into the origins of Zipf's law. \cite{Ferrer2005a} \cite{Ferrer2003a}
 The focus of this thesis are two models from this family, which were generalized with the addition of a new parameter $\phi$. \cite{Ferrer2018a}
 They are referred to as the ``\firstmodel{}'' and the ``\secondmodel{}'' throughout.
 The key difference between these two models is whether they consider meanings to follow a probability distribution \emph{internal} or \emph{external} to the model.
@@ -70,7 +70,7 @@ This thesis opens with its formulation in Equation \eqref{eq:zipf_law} due to it
 A word's frequency is inversely proportional to its rank when ordered by frequency.
 The negative exponent $\alpha$ is typically around 1. \cite{Zipf1949a}
 
-This is one of the most well known laws in quantitative linguistics and previous models were already seen to follow it \cite{Ferrer2003a} \cite{Ferrer2005a}.
+This is one of the most well known laws in quantitative linguistics and previous models were already seen to follow it. \cite{Ferrer2003a} \cite{Ferrer2005a}
 
 \subsubsection{Zipf's meaning-frequency and meaning distribution laws}
 
@@ -159,20 +159,22 @@ The two models are further fleshed out in following sections.
 
 \begin{table}
   \centering
-  \begin{tabular}{p{2.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
-    \toprule
-                             & Random Typing & Simon's Model        & \Firstmodel{} ($\phi=0$) & \Secondmodel{} ($\phi=0$) & \Firstmodel{} ($\phi\neq 0$) & \Secondmodel{} ($\phi\neq 0$) \\
-    \midrule
-    Rank-frequency law       &      Yes      &      Yes             &             Yes          &           Yes             &           Yes            &           Yes             \\
-    \addlinespace
-    Meaning distribution law &      No       &      No              &             No           &           No              &           No             &           No              \\
-    \addlinespace
-    Age-frequency law        &      No       &    Unknown           &             Yes          &           Yes             &           Yes            &           Yes             \\
-    \addlinespace
-    Vocabulary learning bias &      No       &      No              &  Yes \cite{Ferrer2017a}  &         Unknown           &  Yes \cite{Carrera2021a} &         Unknown           \\
-    \bottomrule
-  \end{tabular}
-  \caption{
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{p{2.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
+      \toprule
+                               & Random Typing & Simon's Model        & \Firstmodel{} ($\phi=0$) & \Secondmodel{} ($\phi=0$) & \Firstmodel{} ($\phi\neq 0$) & \Secondmodel{} ($\phi\neq 0$) \\
+      \midrule
+      Rank-frequency law       &      Yes      &      Yes             &             Yes          &           Yes             &           Yes                &           Yes                 \\
+      \addlinespace
+      Meaning distribution law &      No       &      No              &             No           &           No              &           No                 &           No                  \\
+      \addlinespace
+      Age-frequency law        &      No       &    Unknown           &             Yes          &           Yes             &           Yes                &           Yes                 \\
+      \addlinespace
+      Vocabulary learning bias &      No       &      No              &  Yes \cite{Ferrer2017a}  &         Unknown           &  Yes \cite{Carrera2021a}     &         Unknown               \\
+      \bottomrule
+    \end{tabular}
+  \end{adjustbox}
+\caption{
     A summary table comparing various models of human language.
     Columns show various models of human language: Random Typing and Simon's model.
     Then the two models studied in this thesis: \firstm{} and \secondmodel{}.
@@ -200,7 +202,7 @@ Another goal is the creation of an open source program which can be used to test
 
 This is a short introduction to the models presented in this thesis.
 In this section, mathematical definitions and notation common to both models is given.
-They will be used throughout the remainder of the thesis and specially throughout Chapter \ref{cha:methods} where a full explanation of both models can be found.
+They will be used throughout the remainder of the thesis and specially throughout Chapter \ref{cha:methods} where a full explanation of both models is given.
 
 Section \ref{sec:introduction_model_graph} presents the bipartite graphs that form the \emph{skeleton} of these models.
 Section \ref{sec:introduction_model_info-theory} presents the information theoretic aspects, common to both models.
@@ -238,7 +240,7 @@ In some cases it is more convenient to represent the bipartite graph as the set 
   %\label{eq:definition-E}
   E = \Set{(s_i,r_j)}{\text{there exists an edge between $s_i \in S$ and $r_j \in R$}}.
 \end{equation*}
-For brevity, the pair $(s_i, r_j)$ is sometimes replaced by the simpler form $(i,j)$.
+For brevity, the pair $(s_i, r_j)$ is often represented as $(i,j)$.
 
 The degree of the word $i$ is given as $\mu_i$, while the degree of a meaning $j$ is given as $\omega_j$.
 
@@ -258,7 +260,7 @@ A graphical representation is included, as well as the corresponding values of t
 \label{sec:introduction_model_info-theory}
 
 Information theory measures are used to compute the cost function of the optimization process.
-Here we go through a short overview of information theory formulas.
+Here we go through a short overview of information theory formulas. They can be found in \cite{Cover1999}.
 
 The general formula for the entropy of a set $X$ is
 \begin{equation}
@@ -301,7 +303,7 @@ The diagram on Figure \ref{fig:relationships-entropies} shows these relationship
   \label{fig:relationships-entropies}
 \end{figure}
 
-Based on Equation \ref{eq:definition-entropy-generic}, we define the entropies of words and meanings, $H(S)$ and $H(R)$ respectively, as
+Based on Equation \eqref{eq:definition-entropy-generic}, we define the entropies of words and meanings, $H(S)$ and $H(R)$ respectively, as
 \begin{equation}
   \label{eq:definition-HS}
   H(S) = \sum_{i=1}^n p(s_i) \log p(s_i)
@@ -311,7 +313,7 @@ and
   \label{eq:definition-HR}
   H(R) = \sum_{j=1}^m p(r_j) \log p(r_j).
 \end{equation}
-We also define the joint entropy of words and meanings, from Equation \ref{eq:definition-joint-entropy-generic}, as
+We also define the joint entropy of words and meanings, from Equation \eqref{eq:definition-joint-entropy-generic}, as
 \begin{equation}
   \label{eq:definition-HSR}
   H(S,R) = \sum_{i=1}^n \sum_{j=1}^m p(s_i, r_j) \log p(s_i, r_j).
@@ -320,14 +322,10 @@ We also define the joint entropy of words and meanings, from Equation \ref{eq:de
 \subsection{The $\phi$ parameter}
 \label{sec:introduction_model_phi}
 
-\redtxt{(we're making more general versions of previous model which now depend
-  on more stuff but can be brought back to previous models by setting phi to
-  0)}
-
 The $\phi$ parameter, which has already appeared up to this point, is used to generalize the older versions of the two main models studied.
 
 In \cite{Ferrer2005a} and \cite{Ferrer2003a} these two models were introduced.
-Later, the $\phi$ parameter is added to generalize the model and hopefully be able to predict more linguistic laws \cite{Ferrer2018a}.
+Later, the $\phi$ parameter is added to generalize the model and hopefully be able to predict more linguistic laws. \cite{Ferrer2018a}
 
 As is presented in the following sections, when $\phi=0$, the older models are retrieved from the newer ones.
 
@@ -341,9 +339,9 @@ Mathematically,
   \label{eq:psirj-proportional-mui-wj}
   p(s_i, r_j) \propto a_{i,j} (\mu_i \omega_j)^\phi.
 \end{equation*}
-When $\phi=0$ we recover a previous simpler model \cite{Ferrer2005a}.
+When $\phi=0$ we recover a previous simpler model. \cite{Ferrer2005a}
 
-The actual joint probability is derived from Equation \ref{eq:psirj-proportional-mui-wj}, and from it the marginal probabilities of words and meanings are also derived.
+The actual joint probability is derived from Equation \eqref{eq:psirj-proportional-mui-wj}, and from it the marginal probabilities of words and meanings are also derived.
 Ultimately this leads to the information theoretic equations seen in Section \ref{sec:introduction_model_info-theory}.
 
 \subsection{The \secondmodel{}}
@@ -354,7 +352,7 @@ Here we present a generalization of the previous model.
 In this model, the probability of a meaning $r_j$ is given \emph{a priori} as $\pi(r_j)$.
 It is possible for a meaning to be disconnected from any words, in which case $p(r_j) = 0$.
 In \cite{Ferrer2003a} disconnected meanings were disallowed and $\pi(r_j) = \frac{1}{m}$.
-Additionally, $\phi=0$ in Equation \ref{eq:prop-cond-prob_second-model}.
+Additionally, $\phi=0$ in Equation \eqref{eq:prop-cond-prob_second-model}.
 Here $\pi(r_j)$ can follow any probability distribution and disconnected meanings are allowed.
 Zero values of $\pi(r_j)$ are disallowed, however, as meanings that could never occur are not the target of communication.
 
@@ -408,7 +406,7 @@ Otherwise they are undone and another set is attempted.
 \subsection{Dynamic and static equations}
 \label{sec:introduction_model_dynamic-static}
 
-As is seen later on, in Chapter \ref{cha:model}, two sets of equations are derived for the information theoretic equations necessary to calculate $\Omega$ (Equation \ref{eq:definition-Omega}).
+As is seen later on, in Chapter \ref{cha:model}, two sets of equations are derived for the information theoretic equations necessary to calculate $\Omega$ (Equation \eqref{eq:definition-Omega}).
 
 A set of static equations recalculate everything from scratch.
 The set of dynamic equations calculate the changes done only after a mutation to $A$ takes place.
@@ -419,6 +417,8 @@ Dynamically accounting for the differences brought about for these changes is mu
 
 Dynamic calculation, however, brings its own set of problems, such as the increase in mathematical complexity and the introduction of greater floating point error.
 Section \ref{sec:introduction_challenges_dynamic} goes over this in more detail while Section \ref{sec:methods_model-implementation} covers the measures taken in order to deal with these problems.
+
+Table \ref{tab:summary-computational} in Chapter \ref{cha:model} shows the computational costs of the two models for specific cases that are implemented in the \CC{} open source program.
 
 \section{Goals}
 \label{sec:introduction_goals}
@@ -439,7 +439,8 @@ With the model introduced, more specific goals are stated. See also the overall 
 \item
   Find out whether local minima exist.
   It is not clear whether there exists local minima for the case $\phi \neq 0$.
-  The previous models where $\phi = 0$ have been analyzed mathematically \cite{Salge2015} \cite{Prokopenko2010}.
+  The previous models where $\phi = 0$ have been analyzed mathematically.
+ \cite{Salge2015} \cite{Prokopenko2010}
   The case $\phi \neq 0$ is more complex and would be very hard to analyze mathematically to this level.
   It is possible that the optimization stops at a point where the function could still be minimized further but it is hard to find the set of mutations that minimize it.
   Or it could be that the function does reach a local minima.
@@ -451,10 +452,10 @@ With the model introduced, more specific goals are stated. See also the overall 
 Several hypothesis are stated here.
 
 As seen in section \ref{sec:introduction_background} and in \cite{Ferrer2018a}, there is a relationship between the exponents of the Zipf's word-frequency and meaning-frequency laws.
-See Equation \ref{eq:relation-exponents}.
+See Equation \eqref{eq:relation-exponents}.
 The main hypothesis of the thesis is that linguistic laws appear due to an optimization process.
 It is under this assumption that the entire model works and the results are obtained.
-In the model we also neglect any effects of social interaction, which are the basis of other approaches to investigating human language such as the naming game \cite{Baronchelli2006}.
+In the model we also neglect any effects of social interaction, which are the basis of other approaches to investigating human language such as the naming game. \cite{Baronchelli2006}
 Another hypothesis is that the optimization process does not necessarily arrive at a local minimum.
 
 \section{Challenges}

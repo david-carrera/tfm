@@ -1,6 +1,54 @@
-\chapter{Codi}
+\chapter{Code}
+\label{cha:code}
+
+\section{repo}
 \begin{itemize}
 \item afegir repositori amb el codi
+\end{itemize}
+
+\section{Program parameters}
+\label{sec:app_code_program-parameters}
+
+Here all the parameters that can be specified to the tool created as part of this thesis are explained.
+
+\begin{itemize}
+\item
+  $n$ and $m$, the size of the two sets in the bipartite graph
+\item
+  $\phi$ the parameter that was added to generalize the older models
+\item
+  Whether or not to use constant \emph{a priori} probabilities for the meanings.
+  Using them implies using the \secondmodel{}, not using them means using the \firstmodel{}.
+\item
+  Whether unlinked objects are allowed or not.
+\item
+  The $\pi$ parameter, the distribution of the \emph{a priori} probabilities, can be specified in a number of ways if these probabilities are indeed being used.
+  In addition to those specified in Section \ref{sec:methods_model-implementation}, it is allowed to manually specify an arbitrary probability distribution.
+\item
+  Which $\lambda$ parameters to test, the program will generate data for all the specified $\lambda$ paramters.
+ They can be specified either as a range or manually one by one.
+\item
+  The number of realizations to be done.
+  For each value of $\lambda$, that many optimization processes will be carried out and the results averaged.
+\item
+  The initial graph that the optimization starts from.
+  This can be a $G_{n,m,p}$ or $G_{n,m,e}$ random bipartite graph (see Section \ref{sec:methods_model-implementation}), a complete graph or a one to one bijection.
+  In that last case, only the first $\min(n,m)$ words and meanings are connected.
+\item
+  Whether to use the static or dynamic equations.
+\item
+  The number of mutations.
+  Either a constant number of or random binomial mutations with a given probability.
+\item
+  The stop condition.
+  Either of the weak or strong conditions, as well as the option of manually specifying a number.
+  It is always the number of failures to improve $\Omega$.
+\item
+  A random seed can be manually specified or left random (even if random, the seed used is always logged).
+  Whether to emit or not certain results.
+  By default the program emits several csv files corresponding to the information theoretical plots as a function of lambda and the statistics for every value of lambda computed.
+  It also outputs every generated graph in every realization.
+  Any other measure could be obtained from these graphs.
 \end{itemize}
 
 %%% Local Variables:

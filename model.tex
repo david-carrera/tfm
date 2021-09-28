@@ -9,16 +9,16 @@ As a reminder of the previous chapter a very brief definition of the two models 
 Both models are quite similar, they represent a way to connect words with meanings.
 Both meanings and words are given probabilities of being used, from which information theoretic measures are derived, which are ultimately used to obtain a cost function.
 The high level differentiating trait is the way in which the probability of a meaning is obtained.
-In the first studied model (\firstmodel{}), the probabilities of both words and meanings are proportional to the number of connections.
-In the second model (\secondmodel{}), the probabilities of meanings come from a distribution of \emph{a priori} probabilities.
+In the first studied model (\firstmodel{}), the probabilities of both words and meanings are \emph{internal} to the model, they only depend on the structure of the bipartite graph.
+In the second model (\secondmodel{}), the probabilities of meanings are \emph{external} to the model, they come from a distribution of \emph{a priori} probabilities.
 
 The remainder of this chapter is divided into two sections.
 Section \ref{sec:model_math} deals with the mathematical definitions of the models and it is more theoretical in nature.
 Section \ref{sec:model_compute} outlines the computational aspects of the two models and it is more practical and implementation oriented.
 This chapter does not deal with any actual details of the implementation of the model.
-These details can be found in Chapter \ref{cha:methods}.
+These details are given in Chapter \ref{cha:methods}.
 
-Note that Chapter \ref{cha:introduction} offers a high level revision of the graph theory and information theory concepts that will appear during the rest of this chapter.
+Section \ref{sec:introduction_model} from Chapter \ref{cha:introduction} introduces the  the graph theory and information theory concepts that will appear during the rest of this chapter.
 
 \section{Mathematical aspect}
 \label{sec:model_math}
@@ -34,7 +34,7 @@ Here a few more common concepts that were not discussed in Chapter \ref{cha:intr
 
 As a reminder, the notation defined for the degree of the vertices in the graph is repeated.
 The word $s_i$ has degree $\mu_i$, while the meaning $r_j$ has degree $\omega_j$.
-Mathematically, $\mu$ and $\omega$ are defined
+$\mu$ and $\omega$ are defined as
 \begin{equation}
   \label{eq:definition-mu}
   \mu_i = \sum_{j=1}^m a_{i,j}
@@ -68,7 +68,7 @@ In other words, $\mu_{0,i} = \mu_i$ and $\omega_{0,j} = \omega_j$
 
 Here the concepts outlined in Section \ref{sec:introduction_model_first-model} are worked out into actual probabilities and information theoretic equations.
 
-This model is defined by the joint probability of a word $s_i$ and a meaning $r_j$ seen in Equation \ref{eq:psirj-proportional-mui-wj}.
+This model is defined by the joint probability of a word $s_i$ and a meaning $r_j$ seen in Equation \eqref{eq:psirj-proportional-mui-wj}.
 As seen in Section \ref{sec:introduction_model_first-model}, this probability must be proportional to the product of the degrees of $s_i$ and $r_j$.
 
 From this definition equations for the marginal probabilities are derived, which in turn are used to obtain the information theory expressions in the cost function $\Omega$ (Equation \eqref{eq:definition-Omega}).
@@ -95,6 +95,7 @@ or equivalently
   \label{eq:definition-Mphi}
   M_\phi = \sum_{(i,j) \in E}^n (\mu_i \omega_j)^\phi.
 \end{equation}
+Notably, when $\phi=0$, $M_\phi$ is simply $M$ and as follows from Equation \eqref{eq:definition-Mphi}, it's the total number of edges in the graph.
 
 \subsubsection{Marginal Probabilities}
 
@@ -120,24 +121,27 @@ Symmetrically applying Equation \eqref{eq:marginal-from-joint} to obtain $p(r_j)
 
 \subsubsection{Entropies}
 
-$H(S,R)$ is obtained by applying the joint probability found in Equation \eqref{eq:definition-psirj_first-model} to Equation \eqref{eq:definition-HSR},
+$H(S,R)$ is obtained by applying the joint probability given in Equation \eqref{eq:definition-psirj_first-model} to Equation \eqref{eq:definition-HSR},
 \begin{equation}
   \label{eq:step-HSR}
   H(S,R) = -\sum_{i=1}^n \sum_{j=1}^m \frac{1}{M_\phi} a_{i,j} (\mu_i \omega_j)^\phi \log \left( a_{i,j} (\mu_i \omega_j)^\phi \right).
 \end{equation}
 
-This expression can be refined taking advantage of the equality
-\begin{equation}
-  \label{eq:definition-trick}
-  -\sum_i \frac{x_i}{T} \log\frac{x_i}{T} = \log T - \frac{1}{T} \sum_i x_i \log x_i
-\end{equation}
-which holds as long as
-\begin{equation*}
-  T = \sum_i x_i.
-\end{equation*}
-The full derivation of Equation \eqref{eq:definition-trick} can be found in Appendix \ref{sec:app_formulae_trick}.
+\begin{property}{}{definition-trick}
+  This expression can be refined taking advantage of the equality
+  \begin{equation*}
+    -\sum_i \frac{x_i}{T} \log\frac{x_i}{T} = \log T - \frac{1}{T} \sum_i x_i \log x_i.
+  \end{equation*}
+  This equality holds as long as
+  \begin{equation*}
+    T = \sum_i x_i.
+  \end{equation*}
+  While is quite simple to prove that this is true, the derivation is given in
+  Appendix \ref{sec:app_formulae_trick}.
 
-Applying Equation \eqref{eq:definition-trick} to Equation \eqref{eq:step-HSR} we obtain
+\end{property}
+
+Applying Property \ref{th:definition-trick} to Equation \eqref{eq:step-HSR} we obtain
 \begin{equation*}
   H(S,R) = \log M_\phi - \frac{\phi}{M_\phi} \sum_{i=1}^n \sum_{j=1}^m a_{i,j} \left( (\mu_i \omega_j)^\phi \log a_{i,j} \mu_i \omega_j \right)
 \end{equation*}
@@ -152,7 +156,7 @@ The marginal word entropy is found applying the marginal probability in Equation
 \begin{equation*}
   H(S) = -\sum_{i=1}^n \frac{\mu_i \mu_{\phi,i}}{M_\phi} \log \frac{\mu_i \mu_{\phi,i}}{M_\phi}.
 \end{equation*}
-Equation \eqref{eq:definition-trick} can be applied immediately, obtaining
+Property \ref{th:definition-trick} can be applied immediately, obtaining
 \begin{equation}
   \label{eq:definition-HS_first-model}
   H(S) = \log M_\phi - \frac{1}{M_\phi} \sum_{i=1}^n \mu_i^\phi \mu_{\phi,i} \log \mu_i^\phi \mu_{\phi,i}.
@@ -160,7 +164,7 @@ Equation \eqref{eq:definition-trick} can be applied immediately, obtaining
 The convention $0 \log 0 = 0$ is applied here for disconnected words (where $\mu_i = 0$).
 
 The marginal meaning entropy is found symmetrically, the marginal probability (Equation \eqref{eq:definition-prj_first-model}) is applied to the definition of $H(R)$ (Equation \eqref{eq:definition-HR}).
-With Equation \eqref{eq:definition-trick}, we obtain
+With Property \eqref{th:definition-trick}, we obtain
 \begin{equation}
   \label{eq:definition-HR_first-model}
   H(R) = \log M_\phi - \frac{1}{M_\phi} \sum_{j=1}^m \omega_j^\phi \omega_{\phi,j} \log \omega_j^\phi \omega_{\phi,j}.
@@ -169,7 +173,7 @@ also using the convention $0 \log 0 = 0$ for disconnected meanings ($\omega_j=0$
 
 \subsubsection{Dynamic Equations}
 
-The full derivation of the dynamic equations can be found in \cite{Carrera2021a}.
+The full derivation of the dynamic equations is given in \cite{Carrera2021a}.
 Here only the final expressions of the dynamic equations are given.
 
 Starting with compact expressions of the entropies (Equations \eqref{eq:definition-HSR_first-model}, \eqref{eq:definition-HS_first-model} and \eqref{eq:definition-HR_first-model})
@@ -190,7 +194,7 @@ with
   \label{eq:definition-XR_first-model_dynamic}
   X(R) &= \sum_{j=1}^m x(r_j) \\
   \label{eq:definition-Xsirj_first-model_dynamic}
-  x(s_i, r_J) &= (\mu_i\omega_j)^\phi \log \mu_i\omega_j \\
+  x(s_i, r_j) &= (\mu_i\omega_j)^\phi \log \mu_i\omega_j \\
   \label{eq:definition-Xsi_first-model_dynamic}
   x(s_i) &= \mu_i^\phi \mu_{\phi,i} \log \mu_i^\phi \mu_{\phi,i} \\
   \label{eq:definition-Xrj_first-model_dynamic}
@@ -241,26 +245,26 @@ Likewise, for any $l$ such that $1 \leq l \leq m$, we have that
 \end{equation}
 These variables can be applied to Equations \eqref{eq:definition-Xsirj_first-model_dynamic}, \eqref{eq:definition-Xsi_first-model_dynamic} and \eqref{eq:definition-Xrj_first-model_dynamic} directly to obtain their values.
 
-We define the set $N_{i,j}$ \redtxt{(originalment $E(i,j)$ però ja es fa servir $E$ com el conjunt d'arestes del graf)} as the set of all edges connecting$s_i$ and $r_j$ with their neighbors.
+We define the set $E_{i,j}$ as the set of all edges connecting $s_i$ and $r_j$ with their neighbors.
 That is,
 \begin{equation}
   \label{eq:definition-Nij}
-  N_{i,j} = \Set{(i,l)}{l \in \Gamma_S(i)} \cup \Set{(k,j)}{k \in \Gamma_R(j)}
+  E_{i,j} = \Set{(i,l)}{l \in \Gamma_S(i)} \cup \Set{(k,j)}{k \in \Gamma_R(j)}
 \end{equation}
 
 With these definitions, we can now obtain the expressions of $X'(S,R)$ from $X(S,R)$ and of $M'_\phi$ from $M_\phi$.
 \begin{equation*}
 \begin{split}
-  M'_{\phi} = M_\phi &- \left[ \sum_{(k,l) \in N_{i,j}}(\mu_k \omega_l)^\phi \right]   - a_{ij} (\mu_i \omega_j)^\phi \\
-                     &+ \left[ \sum_{(k,l) \in N_{i,j}}(\mu'_k \omega'_l)^\phi \right] + (1 - a_{ij}) (\mu'_i \omega'_j)^\phi.
+  M'_{\phi} = M_\phi &- \left[ \sum_{(k,l) \in E_{i,j}}(\mu_k \omega_l)^\phi \right]   - a_{ij} (\mu_i \omega_j)^\phi \\
+                     &+ \left[ \sum_{(k,l) \in E_{i,j}}(\mu'_k \omega'_l)^\phi \right] + (1 - a_{ij}) (\mu'_i \omega'_j)^\phi.
 \end{split}
 \end{equation*}
 Similarly, the new value of $X(S,R)$ will be
 \begin{equation}
   \label{eq:definition-XSR_first-model_dynamic}
 \begin{split}
-  X'(S,R) = X(S,R) &- \left[ \sum_{(k,l) \in N_{i,j}}x(s_k, r_l) \right] - a_{ij} x(s_i, r_j) \\
-                   &+ \left[ \sum_{(k,l) \in N_{i,j}}x'(s_k, r_l)\right] + (1 - a_{ij}) x'(s_i, r_j).
+  X'(S,R) = X(S,R) &- \left[ \sum_{(k,l) \in E_{i,j}}x(s_k, r_l) \right] - a_{ij} x(s_i, r_j) \\
+                   &+ \left[ \sum_{(k,l) \in E_{i,j}}x'(s_k, r_l)\right] + (1 - a_{ij}) x'(s_i, r_j).
 \end{split}
 \end{equation}
 
@@ -275,7 +279,7 @@ and
   X'(R) = X(R) - \left[ \sum_{l \in \Gamma_{S}(i)} x(r_l) \right] - a_{ij} x(r_j) + \left[ \sum_{l \in \Gamma_{S}(i)} x'(r_l) \right] + (1 - a_{ij}) x'(r_j).
 \end{equation}
 
-Again, the full derivation of these equations can be found in \cite{Carrera2021a} and it is not included here to avoid repeating the same ideas.
+Again, the full derivation of these equations is given in \cite{Carrera2021a} and it is not included here to avoid repeating the same ideas.
 
 The values of $H(S)$, $H(R)$ and $H(S,R)$ can be obtained by applying Equations \eqref{eq:definition-XSR_first-model_dynamic}, \eqref{eq:definition-XS_first-model_dynamic} and \eqref{eq:definition-XR_first-model_dynamic} to the definitions in Equations \eqref{eq:definition-HSR_first-model_compact}, \eqref{eq:definition-HS_first-model_compact} and \eqref{eq:definition-HR_first-model_compact} respectively.
 
@@ -284,16 +288,17 @@ The values of $H(S)$, $H(R)$ and $H(S,R)$ can be obtained by applying Equations 
 
 For verification purposes (see Section \ref{sec:methods_verification}), the values of the entropies along with their invariants are also given here.
 
-These follow immediately from the formulas given in this section and can be easily verified.
+\paragraph{Extreme cases} These cases can be easily derived from Equations \eqref{eq:definition-HSR_first-model}, \eqref{eq:definition-HS_first-model} and \eqref{eq:definition-HR_first-model} ($H(S,R)$, $H(S)$ and $H(R)$ respectively) by assuming the corresponding condition and applying elementary algebra.
 
-\paragraph{Extreme cases}
 \begin{itemize}
 \item For a single edge, $H(S), H(R), H(S,R) = 0$.
 \item For a complete graph, $H(S) = \log n, H(R) = \log m, H(S,R) = \log nm $
 \item For a one-to-one mapping of signals into meanings with $n=m$, $H(S), H(R), H(S,R) = \log n$
 \end{itemize}
 
-\paragraph{Invariants}
+\paragraph{Invariants} These invariants follow from basic information theory.
+\cite{Cover1999}
+
 \begin{itemize}
 \item $0 \leq H(S) \leq \log n$
 \item $0 \leq H(R) \leq \log m$
@@ -314,7 +319,7 @@ From the definition of probability,
 \end{equation}
 even when there are disconnected meanings whose probability should be zero.
 
-From Equation \ref{eq:prj-proportional-pirj} and \ref{eq:sum-prj-equals-1},
+From Equation \eqref{eq:prj-proportional-pirj} and \ref{eq:sum-prj-equals-1},
 \begin{equation}
   \label{eq:definition-prj_second-model}
   p(r_j) = \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\rho}
@@ -371,7 +376,7 @@ Applying the definition of $H(R)$ (Equation \eqref{eq:definition-HR}) to $p(s_j)
 \begin{equation*}
   H(R) = - \sum_{j=1}^m \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\rho} \log \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\rho}.
 \end{equation*}
-Equation \eqref{eq:definition-trick} can be applied immediately to simplify $H(R)$
+Property \ref{th:definition-trick} can be applied immediately to simplify $H(R)$
 \begin{equation*}
   H(R) = \log \rho - \frac{1}{\rho} \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j) \log (1-\delta_{\omega_j,0}) \pi(r_j).
 \end{equation*}
@@ -417,7 +422,17 @@ $H(S)$ is derived quite easily by applying Equation \eqref{eq:definition-psi_sec
 \begin{equation*}
   H(S) = -\sum_{i=1}^n \frac{\mu_i^\phi \chi_i}{\rho} \log \frac{\mu_i^\phi \chi_i}{\rho}
 \end{equation*}
-In Appendix \ref{sec:app_formulae_proof-sum-HS_second-model} it is shown that $\sum_{i=1}^n \mu_i^\phi \chi_i = \rho$, thus \eqref{eq:definition-trick} can be applied here, obtaining
+
+\begin{property}{}{sum-mui-chii-equals-rho}
+  It is quite simple to see that
+  \begin{equation*}
+    \sum_{i=1}^n \mu_i^\phi \chi_i = \rho,
+  \end{equation*}
+  however this might not be immediately obvious as it has not appeared at any point until now.
+  Appendix \ref{sec:app_formulae_proof-sum-HS_second-model} shows that this property indeeed holds.
+\end{property}
+
+Following Property \ref{th:sum-mui-chii-equals-rho}, Property \ref{th:definition-trick} can be applied here, obtaining
 \begin{equation}
   \label{eq:definition-HS_second-model}
   H(S) = \log \rho - \frac{1}{\rho} \sum_{i=1}^n \mu_i^\phi \chi_i \log \mu_i^\phi \chi_i
@@ -425,7 +440,7 @@ In Appendix \ref{sec:app_formulae_proof-sum-HS_second-model} it is shown that $\
 
 \subsubsection{Dynamic Equations}
 
-The full derivation of the dynamic equations can be found in Appendix \ref{sec:app_formulae_dynamic-equations_second-model}.
+The full derivation of the dynamic equations is given in Appendix \ref{sec:app_formulae_dynamic-equations_second-model}.
 Here only the final expressions of the dynamic equations are given. Recall Section \ref{sec:model_math_first-model} for many useful definitions. In all dynamic equations, a mutation on $a_{i,j}$ is assumed.
 
 Compact expressions of the entropies (Equations \eqref{eq:definition-HR_second-model}, \eqref{eq:definition-HSR_second-model} and \eqref{eq:definition-HS_second-model})
@@ -505,7 +520,7 @@ and
   X'(S) = X(S) - \sum_{o \in B_{i,j}(k)} x(r_o) + \sum_{o \in B_{i,j}(k)} x'(r_k)
 \end{equation}
 
-Again, the full derivation and logic behind these equations can be found in Appendix \ref{sec:app_formulae_dynamic-equations_second-model}.
+Again, the full derivation and logic behind these equations is given in Appendix \ref{sec:app_formulae_dynamic-equations_second-model}.
 It is not included here for brevity, as it is a long not immediately obvious derivation.
 
 \subsubsection{Extreme cases and invariants}
@@ -513,16 +528,17 @@ It is not included here for brevity, as it is a long not immediately obvious der
 
 For verification purposes (see Section \ref{sec:methods_verification}), the values of the entropies along with their invariants are also given here.
 
-These follow immediately from the formulas given in this section and can be easily verified.
+\paragraph{Extreme cases} These cases can be easily derived from Equations \eqref{eq:definition-HSR_second-model}, \eqref{eq:definition-HS_second-model} and \eqref{eq:definition-HR_second-model} ($H(S,R)$, $H(S)$ and $H(R)$ respectively) by assuming the corresponding condition and applying elementary algebra.
 
-\paragraph{Extreme cases}
 \begin{itemize}
 \item For a single edge, $H(S), H(R), H(S,R) = 0$.
 \item For a complete graph, $H(S) = \log n, H(R) = H_\pi(R), H(S,R) = H_\pi(R) + \log n$
 \item For a one-to-one mapping of signals into meanings with $n=m$, $H(S), H(R), H(S,R) = H_\pi(R)$
 \end{itemize}
 
-\paragraph{Invariants}
+\paragraph{Invariants} These invariants follow from basic information theory.
+\cite{Cover1999}
+
 \begin{itemize}
 \item $0 \leq H(S) \leq \log n$
 \item $0 \leq H(R) \leq H_\pi(R)$
@@ -535,7 +551,9 @@ These follow immediately from the formulas given in this section and can be easi
 This section covers the computational side of the model.
 This side is based on the mathematics covered in Section \ref{sec:model_math}.
 Both models are seen separately, Section \ref{sec:model_compute_first-model} covers the \firstmodel{} while Section \ref{sec:model_compute_second-model} covers the \secondmodel{}.
- Both sections cover the computational cost of computing the variables of the model, both completely (static calculation) and the change after a mutation to $a_{i,j}$ (dynamic calculation) as well as the changes that take place by treating the case $\phi=0$ separately.
+Both sections cover the computational cost of computing the variables of the model, both completely (static calculation) and the change after a mutation to $a_{i,j}$ (dynamic calculation) as well as the changes that take place by treating the case $\phi=0$ separately.
+
+A summary table comparing the computational costs of each of the models and the particular cases here is given at the end as Table \ref{tab:summary-computational}.
 
 \subsection{The \firstmodel{}}
 \label{sec:model_compute_first-model}
@@ -550,13 +568,13 @@ The joint entropy $H(S,R)$ (Equation \eqref{eq:definition-HSR_first-model}) and 
 $\mu_\phi$ and $\omega_\phi$ are updated on every iteration as well.
 $H(S)$ (Equation \eqref{eq:definition-HS_first-model}) is only updated when $\mu_{\phi,i}$ for a particular word $s_i$ has been fully recalculated.
 $H(R)$ (Equation \eqref{eq:definition-HR_first-model}) is updated in the same way as $H(S)$, whenever $\omega_{\phi,j}$ for a particular meaning $r_j$ has been fully recalculated.
-The cost of the static calculation of entropies is $\bigO{|E|}$.
+The cost of the static calculation of entropies is $\bigO{M}$.
 
 \subsubsection{Dynamic}
 
 In the case of the dynamic calculation of entropies, the algorithmic cost is dominated by the computation of $X'(S)$, $X'(R)$ and $X'(S,R)$ (Equations \eqref{eq:definition-XSR_first-model_dynamic}, \eqref{eq:definition-XS_first-model_dynamic} and \eqref{eq:definition-XR_first-model_dynamic}).
 It can be seen immediately that looping over all the neighbors of $s_i$ and $r_j$ is necessary in order to update all entropies.
-The cost of the dynamic calculation of entropies is then $\bigO{\max(|\Gamma_S(i)|, |\Gamma_R(j)|)}$.
+The cost of the dynamic calculation of entropies is then $\bigO{\max(\mu_i,\omega_j)}$.
 
 \subsubsection{The case $\phi=0$}
 
@@ -576,7 +594,7 @@ Similarly to $X'(S)$, $X'(R)$ (Equation \eqref{eq:definition-XR_first-model_dyna
   X'(R) = X(R) - \omega_j \log \omega_j + \omega'_j \log \omega'_j
 \end{equation}
 
-In the case $\phi=0$, $M_\phi$ (Equation \eqref{eq:definition-Mphi}) becomes $|E|$, the number of edges in the graph.
+In the case $\phi=0$, $M_\phi$ (Equation \eqref{eq:definition-Mphi}) becomes $M$, the number of edges in the graph.
 
 As can be seen from equations \eqref{eq:definition-XS_first-model_dynamic-phi0} and \eqref{eq:definition-XR_first-model_dynamic-phi0}, the cost of the dynamic calculation is greatly reduced when $\phi=0$, becoming $\bigO{1}$.
 
@@ -600,7 +618,7 @@ The computation of $\chi_i$ (Equation \eqref{eq:definition-chi_second-model}) fo
 This is the reason for running two separate loops, fully calculating $\omega_\phi$ in one run so that $\chi$ may be calculated in the other.
 $H(S)$ (Equation \eqref{eq:definition-HS_second-model}) is updated only on the iterations where $\chi_i$ has been completely calculated for a single word $s_i$.
 
-The cost of the static calculation of entropies is the same as in the \firstmodel, $\bigO{|E|}$.
+The cost of the static calculation of entropies is the same as in the \firstmodel, $\bigO{M}$.
 
 \subsubsection{Dynamic}
 
@@ -609,7 +627,7 @@ These three values iterate on three different sets: $\Gamma_S(i)$, $A_{i,j}$ and
 It is clear from the definition of set $A_{i,j}$ is lesser or similar (one more element) in size to the set $\Gamma_S(i)$, but $\Gamma_S(i)$ will usually be bigger.
 The size of the set $B_{i,j}$ depends on the structure of the graph.
 
-The cost of the dynamic calculation of entropies is then $\bigO{\max(|\Gamma_S(i)|, B_{i,j})}$
+The cost of the dynamic calculation of entropies is then $\bigO{\max(\mu_i,|B_{i,j}|)}$
 
 \subsubsection{The case $\phi=0$}
 
@@ -649,6 +667,27 @@ with (see Equation \eqref{eq:definition-xsi_second-model})
   \label{eq:definition-xsi_second-model_dynamic-phi0}
   x(s_i) = \chi_i \log \chi_i.
 \end{equation}
+
+$X(S)$ and $\chi$ need to iterate the neighbors of $s_i$, and so the computational complexity is $\bigO{\mu_i}$.
+
+\begin{table}
+  \centering
+  %\begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{lcc}
+      \toprule
+                             & \Firstmodel{} & \Secondmodel{} \\
+      \midrule
+      Static                 & $\bigO{M}$                    & $\bigO{M}$                   \\
+      Dynamic ($\phi\neq 0$) & $\bigO{\max(\mu_i,\omega_j)}$ & $\bigO{\max(\mu_i,|B_{i,j}|)}$ \\
+      Dynamic ($\phi=0$)     & $\bigO{1}$                   & $\bigO{\mu_i}$                \\
+      \bottomrule
+    \end{tabular}
+  %\end{adjustbox}
+  \caption{Summary table of the computational cost of each model and for particular cases.}
+  \label{tab:summary-computational}
+\end{table}
+
+
 
 %%% Local Variables:
 %%% mode: latex

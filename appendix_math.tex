@@ -3,10 +3,12 @@
 
 \redtxt{derivacions llargues i pagines i pagines de mates van aqui}
 
-\section{Simplification of the equations of entropies}
+\section{Properties}
+
+\subsection{Simplification of the equations of entropies}
 \label{sec:app_formulae_trick}
 
-Equation \eqref{eq:definition-trick} is used in several parts of the thesis to simplify the expressions of entropies.
+Property \ref{th:definition-trick} is used in several parts of the thesis to simplify the expressions of entropies.
 The derivation is short, but it is not added into the main text of the thesis for the sake of clarity and focus.
 
 \begin{align*}
@@ -22,6 +24,30 @@ and obtain
 \begin{align*}
   \log T - \frac{1}{T} \sum_i & x_i \log x_i\\
 \end{align*}
+
+\subsection{Proof that $\sum_{i=1}^n \mu_i^\phi \chi_i = \rho$}
+\label{sec:app_formulae_proof-sum-HS_second-model}
+
+In order to use Property \ref{th:definition-trick} to simplify the derivation of Equation \eqref{eq:definition-HS_second-model}, Property \ref{th:sum-mui-chii-equals-rho} must hold
+Here it is shown that this is the case.
+
+Starting from the equality, we can expand both sides
+\begin{align*}
+\sum_{i=1}^n \mu_i^\phi \chi_i =& \rho \\
+\sum_{i=1}^n \mu_i^\phi \sum_{j=1}^m \frac{a_{ij} (1 - \delta_{\omega_j,0}) \pi(r_j)}{\omega_{\phi,j}} =& \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j) \\
+\sum_{j=1}^m \left( \sum_{i=1}^n a_{ij} \mu_i^\phi \right) \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\omega_{\phi,j}} =& \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j), \\
+\end{align*}
+applying Equation \eqref{eq:definition-omegaphi} we obtain
+\begin{equation*}
+  \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j)
+\end{equation*}
+on both sides.
+
+Recall the definition of $p(s_i)$ in Equation \eqref{eq:definition-psi_second-model} to see that
+\begin{equation*}
+  \sum_{i=1}^n p(s_i) = 1
+\end{equation*}
+immediately follows.
 
 \section{Derivation of the joint entropy in the \secondmodel}
 \label{sec:app_formulae_join-entropy_second-model}
@@ -75,30 +101,6 @@ The last step consists of applying Equations \eqref{eq:definition-HSgR_appendix-
        &+ \log \rho - \frac{1}{\rho} \sum_{j=1}^m (1 - \delta_{w_j,0}) \pi(r_j) \log \pi(r_j) \\
        &= \log \rho - \frac{1}{\rho} \sum_{j=1}^m (1 - \delta_{w_j,0}) \pi(r_j) \left[ \frac{\phi \nu_j}{\omega_{\phi,j}} + \log \frac{\pi(r_j)}{\omega_{\phi,j}} \right].
 \end{align*}
-
-\section{Proof that $\sum_{i=1}^n \mu_i^\phi \chi_i = \rho$}
-\label{sec:app_formulae_proof-sum-HS_second-model}
-
-In order to use Equation \eqref{eq:definition-trick} in order to simplify the derivation of Equation \eqref{eq:definition-HS_second-model}, it must hold that $\sum_{i=1}^n \mu_i^\phi \chi_i = \rho$.
-Here it is shown that this is the case.
-
-Starting from the equality, we can expand both sides
-\begin{align*}
-\sum_{i=1}^n \mu_i^\phi \chi_i =& \rho \\
-\sum_{i=1}^n \mu_i^\phi \sum_{j=1}^m \frac{a_{ij} (1 - \delta_{\omega_j,0}) \pi(r_j)}{\omega_{\phi,j}} =& \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j) \\
-\sum_{j=1}^m \left( \sum_{i=1}^n a_{ij} \mu_i^\phi \right) \frac{(1 - \delta_{\omega_j,0}) \pi(r_j)}{\omega_{\phi,j}} =& \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j), \\
-\end{align*}
-applying Equation \eqref{eq:definition-omegaphi} we obtain
-\begin{equation*}
-  \sum_{j=1}^m (1 - \delta_{\omega_j,0}) \pi(r_j)
-\end{equation*}
-on both sides.
-
-Recall the definition of $p(s_i)$ in Equation \eqref{eq:definition-psi_second-model} to see that
-\begin{equation*}
-  \sum_{i=1}^n p(s_i) = 1
-\end{equation*}
-immediately follows.
 
 \section{Dynamic Equations for the \secondmodel{}}
 \label{sec:app_formulae_dynamic-equations_second-model}

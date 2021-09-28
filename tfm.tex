@@ -13,9 +13,15 @@
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 \usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{adjustbox}
+
+\tcbuselibrary{theorems}
 
 \addbibresource{biblio.bib}
 \graphicspath{{figures/}}
+
+\newtcbtheorem{property}{Property}{}{th}
 
 \input{macros}
 
@@ -38,6 +44,9 @@
 \printbibliography
 
 \end{document}
+
+% TODO BEFORE FINALIZING:
+% -- found -> given
 
 %%% Local Variables:
 %%% mode: latex
