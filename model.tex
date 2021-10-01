@@ -1,6 +1,8 @@
 \chapter{Model}
 \label{cha:model}
 
+\redtxt{TODO: reasoning of global optimum that is used to stop early}
+
 This chapter covers the details about the two models previously introduced in Chapter \ref{cha:introduction}, where a high level introduction to both the \firstmodel{} and the \secondmodel{} was given.
 It follows a top down approach.
 General concepts from both types of model are outlined first and the specific details from each model are given afterwards.
@@ -669,25 +671,6 @@ with (see Equation \eqref{eq:definition-xsi_second-model})
 \end{equation}
 
 $X(S)$ and $\chi$ need to iterate the neighbors of $s_i$, and so the computational complexity is $\bigO{\mu_i}$.
-
-\begin{table}
-  \centering
-  %\begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{lcc}
-      \toprule
-                             & \Firstmodel{} & \Secondmodel{} \\
-      \midrule
-      Static                 & $\bigO{M}$                    & $\bigO{M}$                   \\
-      Dynamic ($\phi\neq 0$) & $\bigO{\max(\mu_i,\omega_j)}$ & $\bigO{\max(\mu_i,|B_{i,j}|)}$ \\
-      Dynamic ($\phi=0$)     & $\bigO{1}$                   & $\bigO{\mu_i}$                \\
-      \bottomrule
-    \end{tabular}
-  %\end{adjustbox}
-  \caption{Summary table of the computational cost of each model and for particular cases.}
-  \label{tab:summary-computational}
-\end{table}
-
-
 
 %%% Local Variables:
 %%% mode: latex

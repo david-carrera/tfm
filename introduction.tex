@@ -1,6 +1,8 @@
 \chapter{Introduction}
 \label{cha:introduction}
 
+% general intro
+
 Human languages obey many regularities which have been studied and formalized into laws.
 One of the most well known such laws is Zipf's law, which states that
 \begin{equation}
@@ -24,85 +26,63 @@ There have been many efforts to understand why this and other empiric laws occur
   \label{fig:zipf_languages_wiki}
 \end{figure}
 
+% models and what their mean
+
 This thesis focuses on a family of models \cite{Ferrer2007a} introduced initially to shed light into the origins of Zipf's law. \cite{Ferrer2005a} \cite{Ferrer2003a}
+The family of models aims to explain language laws such as Zipf's law from the association of words and meanings.
 The focus of this thesis are two models from this family, which were generalized with the addition of a new parameter $\phi$. \cite{Ferrer2018a}
 They are referred to as the ``\firstmodel{}'' and the ``\secondmodel{}'' throughout.
 The key difference between these two models is whether they consider meanings to follow a probability distribution \emph{internal} or \emph{external} to the model.
+In the \firstmodel{} the probability of a meaning is determined entirely by the connections between words and meanings.
+The \secondmodel{} determines the probability of a meaning in great part from an external \emph{a priori} probability distribution.
+This \emph{a priori} probability can be considered the probability that the element referred to by the meaning is found in nature.
+As an example, if elephants are rare but dogs are plentiful, the meaning ``elephant'' should be rarer than the meaning ``dog''.
 
-It has been argued \cite{Ferrer2003a} \cite{Zipf1949a} that human language is result of attempting to minimize the effort of both the speaker and the hearer. Something that Zipf referred to as the \emph{principle of least effort}. These models follow this principle and are based on the minimization of a cost function, which is calculated in terms of information theoretic measures.
+% other language laws and models that explain them
 
-The motivation for this thesis is that these models could describe other language laws.
-Zipf's law for word frequencies is quite well known but there are other patterns in human language.
-One such pattern is the meaning-frequency law, also first reported by Zipf in his book. \cite{Zipf1949a}
-Another is the relationship between the age of a word and its frequency, also studied by Zipf. \cite{Zipf1949a}
-The consistent appearance of this law in 
+In previous work \cite{Ferrer2003a} \cite{Ferrer2005a} Zipf's law of word frequencies has been predicted by the two models that are the focus of this thesis.
+Just a few paragraphs ago this document opened with its formulation in Equation \eqref{eq:zipf_law}, the relationship between a word's frequency and frequency rank follows a power law.
+But there exist other models that can explain language laws.
+A popular explanation for Zipf's law of word frequencies is the random typing model.\cite{Miller1963a}
+As a short summary, this model states that if characters are typed in sequence with a random chance of typing in a word separator then Zipf's law is reproduced.
+There are a few issues with Miller's model, such as the assumption that words are independent from each other.
+Random typing is often offered as a null hypothesis to the theory that Zipf's law comes from the \emph{principle of least effort} but even that has been called into question as it can also be considered a form of optimal coding. \cite{Ferrer2020a}
 
-In order to study these patterns in the model, a \CC{} program is implemented as part of this thesis.
-This program is flexible and powerful enough to replicate previous results \cite{Ferrer2003a} \cite{Ferrer2005a} and also capable of generating results for newer versions of these models.
-This program is one of the major contributions of this thesis.
-It is released under an open source license with the hope that it can help others study these models and similar ones.
-
-The rest of this chapter is divided as follows.
-Section \ref{sec:introduction_background} revises the state of the art.
-Previous articles about this family of models along with their responses and critiques, until the more current models are reached.
-Section \ref{sec:introduction_general-goals} outlines the set of goals of this thesis without entering into detail about the models.
-Section \ref{sec:introduction_model} introduces the family of models and the two models that are studied in detail.
-Having introduced the model, section \ref{sec:introduction_goals} goes into more detail about the objectives of the thesis and section \ref{sec:introduction_hypothesis} covers the hypothesis.
-Section \ref{sec:introduction_challenges} explains the main challenges that from this work.
-Finally, Section \ref{sec:introduction_outline} outlines the rest of the thesis.
-
-\section{Background}
-\label{sec:introduction_background}
-
-This section covers the ``state of the art'' or background of the thesis.
-Section \ref{sec:introduction_background_linguistic-laws} explains some of the linguistic laws that have been found in more detail.
-Section \ref{sec:introduction_background_similar} explores similar approximations to general problems and other models that have been proposed to explain Zipf's law, comparing them to these models.
-
-\subsection{Linguistic laws}
-\label{sec:introduction_background_linguistic-laws}
-
-Here some space is dedicated to describe the linguistic laws that are studied in the model in more detail.
-
-\subsubsection{Zipf's word-frequency law}
-
-This law is well known as Zipf's law.
-This thesis opens with its formulation in Equation \eqref{eq:zipf_law} due to its importance.
-A word's frequency is inversely proportional to its rank when ordered by frequency.
-The negative exponent $\alpha$ is typically around 1. \cite{Zipf1949a}
-
-This is one of the most well known laws in quantitative linguistics and previous models were already seen to follow it. \cite{Ferrer2003a} \cite{Ferrer2005a}
-
-\subsubsection{Zipf's meaning-frequency and meaning distribution laws}
-
-Zipf's meaning-frequency law is less well known.
-The law states the dependency between the number of meanings of a word $\mu$ and its frequency $f$, \cite{Zipf1949a}
+But Zipf's law for word frequencies is not the only linguistic law.
+Zipf's meaning frequency law is not as popular as the word frequency law.
+It states that the relationship between the number of meanings of a word, $\mu$, and its frequency, $f$, is \cite{Zipf1949a}
 \begin{equation*}
   \mu \propto f^\delta.
 \end{equation*}
-Zipf derived the meaning-frequency law from his famous law of word-frequency, Equation \eqref{eq:zipf_law} and from his law of meaning distribution,
+Zipf derived the meaning-frequency law from his law of word-frequency, Equation \eqref{eq:zipf_law} and from his law of meaning distribution,
 \begin{equation*}
   \mu \propto i^{-\gamma}
 \end{equation*}
-where $i$ is the rank of the word and $\gamma \approx 1/2$
+where $i$ is the rank of the word.
 
 As with the constant $\alpha$, $\delta$ and $\gamma$ can be estimated using a regression method from data.
 
-Zipf argued, and it has been proven \cite{Ferrer2016a} that
+Zipf inferred $\delta \approx 1/2$ from $\gamma \approx 1/2$ and $\alpha = 1$.
+Later on, others \cite{Ferrer2016a} have shown the relationship
 \begin{equation}
   \label{eq:relation-exponents}
   \delta = \frac{\gamma}{\alpha}.
 \end{equation}
+between these exponents.
 
-\subsubsection{Zipf's Age-frequency law}
+Miller's random typing model is not able to predict this other linguistic law as the meanings of the words are not taken into account.
+It is also impossible for it to predict other more complex phenomena such as the vocabulary learning bias in children.
+There are very good arguments \cite{Ferrer2018a} in favor of this family of models being able to predict this law and at least the \firstmodel{} has been able to predict vocabulary learning biases.
+Both the case $\phi=0$ \cite{Ferrer2017a} and for the more generic formulation with any value of $\phi$ \cite{Carrera2021a}.
 
-Zipf argued in his book \cite{Zipf1949a} that older words (words that have existed in a language for a longer amount of time) would be more frequent.
+In his book \cite{Zipf1949a} Zipf argued also that older words (words that have existed in a language for a longer amount of time) would be more frequent.
 This was tested empirically, as seen in Figure \ref{fig:zipf_word_ages}.
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{zipf_word_ages}
   \caption{
-    Age of a word as a function of its frequency.
+    Age of a word as a function of its frequency from Zipf's famous book. \cite{Zipf1949a}
     The right side of the $y$ axis indicates the historical period or century when a word was introduced and the left side the percentage of words.
     Each of the colors and patterns of the columns in the graph correspond with a time period.
     As indicated in the $x$ axis, the first five columns refer to the most common words by rank, while the next columns refer to the words with the specified frequency of occurrence.
@@ -110,49 +90,12 @@ This was tested empirically, as seen in Figure \ref{fig:zipf_word_ages}.
   \label{fig:zipf_word_ages}
 \end{figure}
 
-\subsection{Similar research}
-\label{sec:introduction_background_similar}
+While this relationship between word frequencies and word ages could also not be predicted by random typing, there is another alternative model that can predict it.
 
-This section goes over other problems that have been solved similarly and other models that have attempted to explain Zipf's law.
-A summary table between these alternative models and the models presented in this thesis is also shown.
-
-\subsubsection{Similar approximations to general problems}
-
-There has been research which can be related to the work done in this thesis.
-
-Terry Regier argued \cite{Regier2007a} that color naming in human language corresponded with optimal partitions of the color space.
-This is similar to the models presented here which, inspired by Zipf's \emph{principle of least effort}, consider language to be the result of optimizing speaker and hearer effort.
-Regier's research showed that, indeed, color naming in many human languages was closely related to the optimal partitions of the color space.
-The idea of language being ``optimal'' is not new.
-
-In shortest path calculation algorithms, when a change takes place it is common to adjust the result based on the change instead of recalculating the entire process.
-These changes offer speed ups of several orders of magnitude. \cite{Buriol2003a}
-This is similar to the static vs dynamic approach (Section \ref{sec:introduction_model_dynamic-static}).
-In this case, the dynamic algorithm offers a significant speedup that justifies issues such as the increase in mathematical complexity.
-
-\subsubsection{Other models that explain Zipf's Law}
-
-One of the most common explanations for Zipf's law is the random typing model.\cite{Miller1963a}
-As a short summary, this model states that if characters are typed in sequence with a random chance of typing in a word separator then Zipf's law is reproduced.
-
-While it is true that the Miller's random typing shows behavior similar to Zipf's law, it is also a shallow explanation that misses many important details.
-To name a few issues, Miller's model assumes that words are independent from each other.
-However, in human language, words are very much dependent on each other.
-Random typing is often offered as a null hypothesis to the theory that Zipf's law comes from the \emph{principle of least effort}.
-However, it has been shown \cite{Ferrer2020a} that random typing is an optimal coding process, which would make it not suitable as a null hypothesis either.
-
-The random typing model would also not be able to explain other linguistic laws, such as the relationship between word age and frequency or the meaning distribution law, as it does not take into account the meanings nor the ages of words.
-It could also not make more complex predictions, such as the vocabulary learning biases observed in children.
-
-Another model which is used to explain the occurrences of power laws in nature is Simon's model.\cite{Simon1955}
-This model argues that these power laws appear as a result of the way the system is formed.
-In the case of language, constant addition of new words and addition of new instances of already existing words at a rate proportional to the number of instances of a word.
-
-This model is not as widely known as the random typing model.
-However, it is also not as powerful as the models presented in this thesis.
-Like the random typing model, Simon's model cannot explain the meaning distribution law as it does not take meaning into account.
-It also lacks the complexity to make predictions such as the vocabulary learning biases of children.
-However, it could perhaps explain or at least try to predict the age frequency law, as the ages of words could be tracked.
+Simon's model \cite{Simon1955} model argues that power laws appear as a result of the way the system is formed.
+In the case of language, constant addition of new words and addition of new instances of already existing words at a rate proportional to the number of instances of a word
+Here, time is a factor. And intuitively it seems that older words would indeed be more frequent.
+However, Simon's model cannot explain the meaning distribution law as it does not take meaning into account and lacks the complexity to make predictions such as the vocabulary learning biases of children.
 
 Table \ref{tab:comparison_models} shows a comparison between the two models seen here (random typing and Simon's model) and the two models that this thesis presents.
 The two models are further fleshed out in following sections.
@@ -168,13 +111,15 @@ The two models are further fleshed out in following sections.
       \addlinespace
       Meaning distribution law &      No       &      No              &             No           &           No              &           No                 &           No                  \\
       \addlinespace
-      Age-frequency law        &      No       &    Unknown           &             Yes          &           Yes             &           Yes                &           Yes                 \\
+      Age-frequency law        &      No       &      Yes             &             Yes          &           Yes             &           Yes                &           Yes                 \\
       \addlinespace
       Vocabulary learning bias &      No       &      No              &  Yes \cite{Ferrer2017a}  &         Unknown           &  Yes \cite{Carrera2021a}     &         Unknown               \\
       \bottomrule
     \end{tabular}
   \end{adjustbox}
-\caption{
+  \caption{
+    \redtxt{TODO: Finish up this table once results section is finished}
+    \redtxt{TODO: Simon's model find a source for age frequency law?}
     A summary table comparing various models of human language.
     Columns show various models of human language: Random Typing and Simon's model.
     Then the two models studied in this thesis: \firstm{} and \secondmodel{}.
@@ -185,17 +130,31 @@ The two models are further fleshed out in following sections.
   \label{tab:comparison_models}
 \end{table}
 
-\section{General goals}
-\label{sec:introduction_general-goals}
+% models and optimization
 
-Before introducing the models, this is a summary of the more general goals of this thesis.
-Section \ref{sec:introduction_goals} offers a more specific set of goals within the context of the models now properly introduced.
+Unlike Miller's and Simon's models, these models are based on the argument that human language is result of attempting to minimize the effort of both the speaker and the hearer. \cite{Ferrer2003a} \cite{Zipf1949a} Something that Zipf referred to as the \emph{principle of least effort}. That is why these models are based on the minimization of a cost function, which is calculated in terms of information theoretic measures.
 
-The thesis aims to reproduce and verify the results of the previous models.
-As the newer models are generic, they should also be able to reproduce the older models.
-The new models should also be able to produce new results, which might be able to predict new linguistic laws that the older models could not.
+This approach to optimization in human languages is not new.
+Terry Regier argued \cite{Regier2007a} that color naming in human language corresponded with optimal partitions of the color space.
+Regier's research showed that, indeed, color naming in many human languages was closely related to the optimal partitions of the color space.
+The idea of language being ``optimal'' is not new.
 
-Another goal is the creation of an open source program which can be used to test and replicate the results obtained.
+From the computational point of view, an important aspect of the optimization process is the evaluation of the cost function.
+The cost function can be evaluated \emph{statically}, recalculating it completely from scratch each time a change (or mutation) is made to the underlying graph.
+However, it is possible to calculate only the changes that take place due to this mutation.
+In this way the calculation is computationally less complex.
+This is not a new approach, in shortest path calculation algorithms, when a change takes place it is common to adjust the result based on the change instead of recalculating the entire process. \cite{Buriol2003a}
+The dynamic approach offers a significant speedup that justifies the issues that arise as a consequence, such as the increase in mathematical complexity and introduction of greater numerical error.
+
+% the program exists ok
+
+The tool developed to study these models is released under an open source license.
+It is released with the hope that it will be useful to replicate these results, and also that it can be used to study similar models.
+
+% outro
+
+Now follows an introduction to the model.
+It is not as in depth as what can be found in following chapters, but it does give the basic mathematical points of the models.
 
 \section{Introduction to the model}
 \label{sec:introduction_model}
@@ -398,7 +357,7 @@ where $0 \leq \lambda \leq 1$ is used to indicate the weight given to each of th
 When $\lambda=0$, the minimization of $H(S)$ is completely favored while when $\lambda=1$ the maximization of $I(S,R)$ is.
 When $\lambda=1/2$, they are equally favored.
 
-The optimization process follows a Markov chain Monte Carlo method at zero temperature.
+The optimization process follows a Markov Chain Monte Carlo method at zero temperature.
 It consists of making mutations to $A$, chancing $a_{i,j}$ from 1 to 0 or from 0 to 1.
 If a set of mutations results in a decrease of $\Omega$, they are kept.
 Otherwise they are undone and another set is attempted.
@@ -411,40 +370,87 @@ As is seen later on, in Chapter \ref{cha:model}, two sets of equations are deriv
 A set of static equations recalculate everything from scratch.
 The set of dynamic equations calculate the changes done only after a mutation to $A$ takes place.
 
-As seen in Section \ref{sec:introduction_background_similar} this dynamic recalculation can be more efficient.
+As seen previously this dynamic recalculation can be more efficient.
 In the case of this thesis, small changes are continuously done to the graph, making several mutations to $A$ then reevaluating $\Omega$.
 Dynamically accounting for the differences brought about for these changes is much more efficient than recalculating every single measure each time.
 
 Dynamic calculation, however, brings its own set of problems, such as the increase in mathematical complexity and the introduction of greater floating point error.
-Section \ref{sec:introduction_challenges_dynamic} goes over this in more detail while Section \ref{sec:methods_model-implementation} covers the measures taken in order to deal with these problems.
+Section \ref{sec:introduction_goals} goes over this in more detail while Section \ref{sec:methods_model-implementation} covers the measures taken in order to deal with these problems.
 
-Table \ref{tab:summary-computational} in Chapter \ref{cha:model} shows the computational costs of the two models for specific cases that are implemented in the \CC{} open source program.
+Table \ref{tab:summary-computational} shows the computational costs of the two models for specific cases that are implemented in the \CC{} open source program.
+The justification can be found in Section \ref{sec:model_compute}.
+
+\begin{table}
+  \centering
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{lcc}
+      \toprule
+                             & \Firstmodel{} & \Secondmodel{} \\
+      \midrule
+      Static                 & $\bigO{M}$                    & $\bigO{M}$                   \\
+      Dynamic ($\phi\neq 0$) & $\bigO{\max(\mu_i,\omega_j)}$ & $\bigO{\max(\mu_i,|B_{i,j}|)}$ \\
+      Dynamic ($\phi=0$)     & $\bigO{1}$                   & $\bigO{\mu_i}$                \\
+      \bottomrule
+    \end{tabular}
+  \end{adjustbox}
+    \caption{
+      Summary table of the computational cost of each model and for particular cases.
+      The columns indicate which of the two models and the rows the specific case for that model (static, dynamic general case for any value of $\phi$ and dynamic for the specific case of $\phi=0$ where simplifications are possible).
+      The \firstmodel{} with $\phi=0$ originates from \cite{Ferrer2005a}.
+      The \secondmodel{} with $\phi=0$ from \cite{Ferrer2003a}.
+      The generalization where $\phi \neq 0$ for the family of models was introduced in \cite{Ferrer2018a} but without any simulation results.
+      Each cell shows the computational complexity of updating the value of the cost function after mutating $a_{ij}$ (that is, the word $s_i$ and the meaning $r_j$ become connected from being disconnected or become disconnected from being connected).
+      $M$ is the number of connections in the model.
+      $\mu_i$ is the number of neighbors of the word ($s_i$) and $\omega_j$ the number of neighbors of the meaning ($r_j$).
+      $|B_{i,j}|$ is the number of words that have at least one neighbor in common with $s_i$ including $r_j$.
+    }
+  \label{tab:summary-computational}
+\end{table}
 
 \section{Goals}
 \label{sec:introduction_goals}
 
-With the model introduced, more specific goals are stated. See also the overall goals in section \ref{sec:introduction_general-goals}.
+Here the goals of the thesis are explained.
 
-\begin{itemize}
-\item
-  To create an open source tool implementing the general models.
-  \begin{itemize}
-  \item
-    This tool should be both powerful and flexible, allowing to replicate previous results for the case $\phi=0$.
-  \item
-    It should also be efficient and fast enough that results with relatively large graphs can be obtained in a reasonable time. This means using dynamic equations.
-  \item
-    It should be relatively easy to use such that anyone who wishes to test these models by themselves can do it.
-  \end{itemize}
-\item
-  Find out whether local minima exist.
-  It is not clear whether there exists local minima for the case $\phi \neq 0$.
-  The previous models where $\phi = 0$ have been analyzed mathematically.
- \cite{Salge2015} \cite{Prokopenko2010}
-  The case $\phi \neq 0$ is more complex and would be very hard to analyze mathematically to this level.
-  It is possible that the optimization stops at a point where the function could still be minimized further but it is hard to find the set of mutations that minimize it.
-  Or it could be that the function does reach a local minima.
-\end{itemize}
+Older models \cite{Ferrer2003a} \cite{Ferrer2005a} where $\phi=0$ can already make predictions.
+Can these more generic models predict anything new? And can they still make the predictions  that the older models could?
+These older less general models already predicted Zipf's word frequency law.
+It would seem that the newer models should be able to make new predictions, such as the law of meaning frequency \cite{Ferrer2018a}.
+And perhaps other laws, such as the age frequency law.
+And of course, can they still predict the word frequency law?
+So one of the goals is to investigate the linguistic laws predicted by the model, to see if the more general version can still make the same prediction as the previous models.
+And also to investigate whether it can make new predictions about other linguistic laws.
+
+The computational aspect of the model should also be taken into account.
+The optimization process is key to the model, and it needs a stop condition.
+However, it is not obvious to know what the right stop condition is.
+The process might not reach a minimum due to not making enough attempts to continue minimizing the cost function before stopping.
+And due to the size of the search space it is unfeasible to exhaustively search every possible neighboring state.
+While the previous models with $\phi=0$ were analyzed mathematically \cite{Salge2015} \cite{Prokopenko2010}, when $\phi \neq 0$ they become more complex.
+Another goal is to investigate whether the model reaches the local minimum.
+
+Perhaps the main computational challenge is the recalculation of the cost function.
+It must be as efficient as possible, but it must also be precise to not compromise the results.
+To try to reduce the computational complexity of each step of the optimization process while keeping the results precise and relatively free of numerical error.
+This implies not only the derivation of all the mathematics necessary to calculate the cost functions of the models, but also additional mathematical work to derive dynamic equations allowing for only a small part of the cost function to be recalculated.
+
+However, dynamic equations introduce more numerical error from the fact that they imply subtracting ``old'' values and adding ``new'' ones.
+Addition and subtraction operations can easily add numerical error to floating point operations.
+If not dealt with, this error can accumulate and change the results.
+An important goal, then, is to minimize numerical error originated by floating point operations without compromising efficiency.
+
+Verification is also a very important point.
+The mathematics of the model are complex, specially the dynamic version.
+A single mistake can invalidate all the results obtained.
+This is why the implementation must be tested thoroughly.
+
+There is an engineering component.
+The implementation and documentation of an open source tool allowing for the replication of the obtained results and also to further study these models.
+
+This ties into another of the goals.
+Science must be reproducible.
+Previous work \cite{Ferrer2003a} \cite{Ferrer2005a} on this model suffered from a lack of reproducibility.
+The results of this thesis should be completely open and easily reproducible.
 
 \section{Hypothesis}
 \label{sec:introduction_hypothesis}
@@ -453,76 +459,41 @@ Several hypothesis are stated here.
 
 As seen in section \ref{sec:introduction_background} and in \cite{Ferrer2018a}, there is a relationship between the exponents of the Zipf's word-frequency and meaning-frequency laws.
 See Equation \eqref{eq:relation-exponents}.
-The main hypothesis of the thesis is that linguistic laws appear due to an optimization process.
-It is under this assumption that the entire model works and the results are obtained.
-In the model we also neglect any effects of social interaction, which are the basis of other approaches to investigating human language such as the naming game. \cite{Baronchelli2006}
-Another hypothesis is that the optimization process does not necessarily arrive at a local minimum.
 
-\section{Challenges}
-\label{sec:introduction_challenges}
+The main hypothesis of the thesis is that linguistic laws appear due to an optimization process in the association of words and meanings.
+In the model any effects of social interaction are neglected, which are the basis of other approaches to investigating human language such as the naming game. \cite{Baronchelli2006}
 
-The main challenges presented by this thesis are outlined here.
-They are divided into three categories: challenges relating to quantitative linguistics in Section \ref{sec:introduction_challenges_quant-lin}, computational challenges in Section \ref{sec:introduction_challenges_computational} and the challenges brought by the use of a dynamic calculation technique, in section \ref{sec:introduction_challenges_dynamic}.
+One of the questions that we seek to answer is whether local minima exist, as argued in \cite{Ferrer2017a}.
 
-\subsection{Quantitative linguistics}
-\label{sec:introduction_challenges_quant-lin}
-
-The challenges relating to quantitative linguistics come from the fact that current models already can make some predictions.
-Can these new models predict anything new? Can they still make the predictions that the old models already could?
-Specifically, the $\phi=0$ models presented in \cite{Ferrer2005a} and \cite{Ferrer2003a} already showed the appearance of Zipf's law of word frequencies.
-Can the new models with $\phi \neq 1$ (and more specifically $\phi=1$) make any new predictions such as the law of meaning frequency, or the one relating word ages and frequencies?
-Can they still predict Zipf's law?
-
-\subsection{Computational}
-\label{sec:introduction_challenges_computational}
-
-The computational challenges relate to the implementation of the model.
-
-Verification is a very important step.
-The mathematics are complex, specially in the dynamic case, and a single mistake can invalidate all the results.
-Therefore, the implementation must be verified thoroughly and completely.
-
-The stop condition of the optimization process is also difficult to properly implement.
-The algorithm should stop once it can be reasonably sure that a minimum has been reached.
-However, due to the size search space, it is unfeasible to check every possible set of mutations.
-
-An important challenge is recalculating $\Omega$ efficiently enough that results with relatively big $n$ and $m$ can be executed in a reasonable time.
-The calculation of $\Omega$ directly influences the runtime of the program.
-In order to speed it up, dynamic calculations are used.
-Dynamic calculation, however, presents its own set of challenges.
-
-\subsection{Dynamic calculation}
-\label{sec:introduction_challenges_dynamic}
-
-Dynamic calculation is much more mathematically complex than static calculation.
-This complexity makes the likelihood of a bug being introduced much more likely.
-Therefore the verification process must be even more thorough.
-
-In addition to complexity, dynamic calculation implies many addition and subtraction operations.
-These operations introduce greater floating point error than others (such as multiplication and division).
-If the floating point error accumulates, it can change the result into a different one from the static method.
-Dynamic and static approaches should lead to identical results.
+It is also hypothesized that when $\phi=1$ the models should be able to reproduce Zipf's meaning-frequency law, as seen in \cite{Ferrer2018a}.
 
 \section{Outline of the thesis}
 \label{sec:introduction_outline}
 
 The rest of the thesis is organized as follows:
 
-Chapter \ref{cha:model} gives more detail of the models, and all the mathematical detail concerning the models (although long derivations or simple proofs that are otherwise unrelated are left for Appendix \ref{cha:app_formulae}).
-It is during this chapter that all the mathematics that are eventually implemented into the open source tool are showcased.
-The computational aspects are also seen here, showing the computational complexity of implementing these formulas.
-This chapter starts from the initial concepts seen in Section \ref{sec:introduction_model}.
+In Chapter \ref{cha:model} the mathematical and computational aspects of the models are covered in detail.
+From the basic assumptions outlined in Section \ref{sec:introduction_model} the formulas for marginal and joint probabilities of words and meanings are derived and, from them, the information theoretic measures needed to compute the cost function.
+The dynamic equations are then derived from the static ones. The extreme cases (when there is only one connection between a word and a meaning or when every word is connected to every meaning, etc) are given as well as the invariants, the maximum and minimum possible values that the information theoretic measures can achieve.
+These steps are repeated for both the \firstm{} and \secondmodel{}.
+Along the way several properties are given, which are elaborated on in the Appendix along with some derivations that might be excessively long.
+For the computational aspect, the computational complexity of the static and dynamic versions of the computation of the cost function are shown.
+For the dynamic version a distinction is made between the general case and the case when $\phi=0$.
+Again, the complexity is shown for both the \firstm{} and \secondmodel{}.
+Table \ref{tab:summary-computational} summarizes the complexity for the various methods of calculating the cost function in both models.
 
-Chapter \ref{cha:methods} goes into the implementation of the model.
-It includes full descriptions of various implementation details, of the optimization algorithm, the decisions regarding parallelization of the code and the approach to verification.
-It also covers some challenges unique to the implementation of the model and how they were resolved.
+Chapter \ref{cha:model} goes into the more tangible details of the implementation of the model beyond just mathematics: the implementation decisions and various algorithms, a diagram of the class hierarchy of the implementation (Figure \ref{fig:class-diagram}), the algorithms for the generation of the initial random graphs, the strategies used to deal with numerical error from floating point arithmetic are all outlined and the methods used to obtain several probability distributions for $\phi$ are all shown.
+The optimization algorithm is covered in more detail including the choices for a stop condition.
+The choices regarding parallelization of the algorithms and why it was decided to not make the algorithms parallel.
+Details about the verification of the model are given, including all the strategies used to ensure that the dynamic and static implementations were equivalent.
+The chapter closes with the problems encountered and how they were dealt with, both the numerical precision problems and the rest of problems encountered.
 
-Chapter \ref{cha:results} introduces the results obtained from the open source tool.
-It includes the figures from the previous models \cite{Ferrer2005a} and \cite{Ferrer2003a} implemented with $\phi=0$.
-It also includes new data obtained by setting $\phi=1$.
+Chapter \ref{cha:results} presents the results obtained.
+Results from previously published papers \cite{Ferrer2005a} \cite{Ferrer2003a} are replicated.
+This both deals with the reproducibility issues in those works and serves as a benchmark to verify that the model is consistent with previous results.
+New data\redtxt{\ldots TODO: omplir quan estigui la part acabada}
 
-Finally, Chapter \ref{cha:discussion} discusses the obtained results and their relation to certain linguistic laws that have been seen in this introduction.
-Future work is also discussed in this chapter, including alternative optimization methods.
+Chapter \ref{cha:discussion}\redtxt{\ldots TODO: omplir quan estigui la part acabada}
 
 %%% Local Variables:
 %%% mode: latex
