@@ -12,8 +12,10 @@ Section \ref{sec:results_new} presents results from the newer family of models i
 In this section a replication of previous results is presented.
 This allows to verify the model and its implementation against previous experiments.
 
-However, in some cases there was limited information in the original papers about the parameter used in the experiments.
+However, in some cases there was limited information in the original papers about the parameters used in the experiments.
+This concerned details regarding the initial graphs and the specifics of the optimization process.
 In other cases, there were errors in previous papers.
+This was due to undetected programming errors.
 In both cases, determining the correct parameter becomes a matter of trial and error.
 
 The $\phi$ parameter was not considered in either of the papers replicated in this section, and so it is set to 0.
@@ -25,34 +27,32 @@ Section \ref{sec:results_verification_second} replicates the results from \cite{
 \label{sec:results_verification_first}
 
 \begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,height=.4\textheight,keepaspectratio]{fig2_2005_old}
-  \includegraphics[width=\textwidth,height=.4\textheight,keepaspectratio]{figure2_article_EPJ_B_2005}
+  \addjankysubfigure{a)}{\includegraphics[width=\textwidth,height=.4\textheight,keepaspectratio]{fig2_2005_old}}
+  \addjankysubfigure{b)}{\includegraphics[width=\textwidth,height=.4\textheight,keepaspectratio]{figure2_article_EPJ_B_2005}}
   \caption{
-    Above: Figure 2 from \cite{Ferrer2005a}.\\
-    Below: Recreation of that same figure using the open source tool created for this thesis.\\
     The mutual information $I(S,R)$ is in the $y$ axis and the $\lambda$ parameter on the $x$ axis.
     Graphs of different sizes are shown, $n=m=100$, $n=m=200$, $n=m=300$, $n=m=400$.
     Averages over 30 realizations.
-    $\phi=0$, the initial graph is $G_{n,m,1/n}$, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.
+    $\phi=0$, the initial graph is $G_{n,m,1/n}$, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.\\
+    Subfigure a corresponds with Figure 2 from \cite{Ferrer2005a}.\\
+    Subfigure b is the recreation of that same figure.
   }
   \label{fig:fig2_2005}
 \end{figure}
 
 \begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{fig3_2005_old}
-  \includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{figure3_article_EPJ_B_2005}
+  \addjankysubfigure{a)}{\includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{fig3_2005_old}}
+  \addjankysubfigure{b)}{\includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{figure3_article_EPJ_B_2005}}
   \caption{
-    Above: Figure 3 from \cite{Ferrer2005a}.\\
-    Below: Recreation of that same figure using the open source tool created for this thesis.\\
     $P(i)$, the probability of the $i$th most frequent signal, obtained from minimum energy configurations for systems of sizes $n=m=100$ (A), $n=m=200$ (B), $n=m=300$ (C), $n=m=400$ (D).
     Four series are shown in each plot, $\lambda=0.49$ (circles), $\lambda=\lambda^*$ (squares) and $\lambda=0.5$ (diamonds) and the ideal curve for $\alpha^*$.
     Averages over 30 realizations.
     When $\lambda=\lambda^*$, $\alpha^* = 1.54$ for $n=m=100$, $\alpha^* = 1.51$ for $n=m=200$, $\alpha^* = 1.5$ for $n=m=300$ and $\alpha^* = 1.49$ for $n=m=400$.
     It was chosen that $\lambda^* = 0.4986$ for $n=m=100$, $\lambda^* = 0.4987$ for $n=m=200$, $\lambda^* = 0.4987$ for $n=m=300$, and $\lambda^* = 0.4986$ for $n=m=400$.
     Averages over 30 realizations.
-    $\phi=0$, the initial graph is $G_{n,m,1/n}$, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.
+    $\phi=0$, the initial graph is $G_{n,m,1/n}$, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.\\
+    Subfigure a corresponds with Figure 3 from \cite{Ferrer2005a}.\\
+    Subfigure b is the recreation of that same figure.
   }
   \label{fig:fig3_2005}
 \end{figure}
@@ -63,417 +63,106 @@ Figure \ref{fig:fig3_2005} shows both the original Figure 3 from \cite{Ferrer200
 The initial graph was not specified in \cite{Ferrer2005a} and a $G_{n,m,1/n}$ ($n=m$) graph is used in the replication.
 The paper also does not specify how to stop the optimization process and so the weak stop condition (Section \ref{sec:methods_optimization}) is used.
 
+Subfigures a and b from Figure \ref{fig:fig2_2005} are nearly identical.
+In Figure \ref{fig:fig3_2005}, subfigures a and b are also qualitatively very similar.
+Although some of the points can be seen to be not quite in the same place.
+
 \subsection{Results from the \secondmodel{} (2003)}
 \label{sec:results_verification_second}
 
 \begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{fig2_2003_old}
-  \includegraphics[width=\textwidth]{figure2_article_PNAS_2003_binom1.75}
+  \addjankysubfigure{a)}{\includegraphics[width=\textwidth]{fig2_2003_old}}
+  \addjankysubfigure{b)}{\includegraphics[width=\textwidth]{figure2_article_PNAS_2003_binom1.75}}
   \caption{
-    Above: Figure 2 from \cite{Ferrer2003a}\\
-    Below: Recreation of that same figure using the open source tool created for this thesis.\\
     In A, $I(S,R)$ is the mutual information obtained for values of $\lambda$ between 0 and 1.
     In B, $L$ is the lexicon size obtained for values of $\lambda$ between 0 and 1.
     An abrupt change is seen for $\lambda \approx 0.41$ in both A and B.
     Averages over 30 replicas.
-    $n=m=150$, $\phi=0$, unlinked objects are not allowed, $\pi$ follows a uniform distribution, 
+    $n=m=150$, $\phi=0$, unlinked objects are not allowed, $\pi$ follows a uniform distribution.\\
+    Subfigure a corresponds with Figure 2 from \cite{Ferrer2003a}\\
+    Subfigure b is the recreation of that same figure using the open source tool created for this thesis.
   }
   \label{fig:fig2_2003}
 \end{figure}
 
 \begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{fig3_2003_old}
-  \includegraphics[width=\textwidth]{figure3_article_PNAS_2003_binom1.75}
+  \addjankysubfigure{a)}{\includegraphics[width=\textwidth]{fig3_2003_old}}
+  \addjankysubfigure{b)}{\includegraphics[width=\textwidth]{figure3_article_PNAS_2003_binom1.75}}
   \caption{
-    Above: Figure 3 from \cite{Ferrer2003a}\\
-    Below: Recreation of that same figure using the open source tool created for this thesis.
-    \\
     Normalized signal frequency $P(k)$ versus rank $k$.
     The dashed lines show the distribution obtained when from a $G_{n,m,e^*}$ graph where $e^*$ is the number of connections in these optimal configurations.
     In both cases the distribution of B is still consistent with human language, $\alpha=1$.
-    Averages over 30 replicas, $n=m=150$, the initial graph is $G_{n,m,10/n}$, the number of mutations on each iteration follows a binomial distribution with average 1.75, the optimization stops after $2*n*m$ mutations that do not improve the cost function.
+    Averages over 30 replicas, $n=m=150$, the initial graph is $G_{n,m,10/n}$, the number of mutations on each iteration follows a binomial distribution with average 1.75, the optimization stops after $2*n*m$ mutations that do not improve the cost function.\\
+    Above: Figure 3 from \cite{Ferrer2003a}\\
+    Below: Recreation of that same figure using the open source tool created for this thesis.
   }
   \label{fig:fig3_2003}
 \end{figure}
 
 Figure \ref{fig:fig2_2003} shows both the original Figure 2 from \cite{Ferrer2003a} and the recreation of this figure using the new tool.
-Figure \ref{fig:fig3_2003} shows the original Figure3 from \cite{Ferrer2003a} and a recreation using the new tool.
+Figure \ref{fig:fig3_2003} shows the original Figure 3 from \cite{Ferrer2003a} and a recreation using the new tool.
 
 The initial graph was specified as a $G_{n,m,\rho}$ but the value of $\rho$ was not given in the paper, a $G_{n,m,10/n}$ graph was used (that is, a value of $\rho=\frac{10}{n}$).
 It is specified that the number of mutations done on each iteration of the optimization algorithm follows a binomial distribution.
 However it was later found that, due to a bug in the generator of binomial numbers, the number of mutations must have been lower.
-Several values were tried for the average number of binomial mutations, with 1.75 giving the best results.
+Several values were tried for the average number of binomial mutations, with 1.75 giving the results most similar to the previous model's.
+
+Qualitatively, it seems that the two subfigures in Figure \ref{fig:fig2_2003} are very similar.
+Some of the points in A do not form exactly the same shape, however, and it seems that not as many points appear inside the phase transition.
+As for Figure \ref{fig:fig3_2003}, subfigures A and C are quite similar (although the dashed line appears to overlap the data in subfigure b more than it did in a).
+Subfigure B is not as similar.
+However, the slope of the curve is also 1.0 as indicated by the solid line.
+
+\redtxt{TODO: arreglar figura que no queda be i potser canviar A i B perque no entrin en conflicte amb els que ja hi ha a les figures?}
 
 \section{Results for current models}
 \label{sec:results_new}
 
-\subsection{Information Theoretic}
-
-\subsubsection{first model, $\phi=0$}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
+Here new results obtained from the model are presented.
+Firstly, and as a way to for an intuition of the kinds of graphs that these models generate, Section \ref{sec:results_new_graph} presents the optimal graphs for different initial conditions for both models.
+Section \ref{sec:results_new_other} shows the rest of the obtained results.
+This section focuses first on plots of the values obtained for the information theoretical measures of the optimal graphs for various value of $\lambda$ in the cost function.
+As a reminder, $\lambda$ controls the weight of either the entropy or the mutual information in the cost function.
+Statistical measures for select values of $\lambda$ are then shown.
+These measures show how various linguistic laws appear in the results.
+Several kinds of initial graphs are shown throughout this section.
 
 \begin{itemize}
-\item initial: random \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-\item initial: single \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
-\item initial: one-to-one \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+\item Random: The initial graph is a $G_{n,m,3/n/m}$ random graph.
+\item Single link: The initial graph contains a single link between a word and a meaning.
+\item One-to-one: The initial graph is a bijection connecting words and meanings one to one
+\item Complete: The initial graph is a complete bipartite graph where every word connects to every meaning and every meaning to every word.
 \end{itemize}
 
-\subsubsection{first model, $\phi=1$}
+All results in this section perform two mutations on each iteration of the optimization algorithm, which stops with the \emph{weak} stop condition.
+See Section \ref{sec:methods_optimization} for more information on the optimization process.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
+\subsection{Graph visualization}
+\label{sec:results_new_graph}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
+Here various graphs are plotted.
+These plots all correspond to graphs of size $n=m=60$ and $\phi=1$.
+Unlinked meanings are also allowed in all graphs.
+It is interesting to see the different shapes the graph takes for different values of $\lambda$.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
+For the first model, four graphs are shown.
 
 \begin{itemize}
-\item initial: random \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-\item initial: single \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
-\item initial: one-to-one \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+\item Random initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked}.
+\item Single link initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}.
+\item One-to-one initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}.
+\item Complete initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}.
 \end{itemize}
 
-\subsubsection{second model, $\phi=0$}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_disallowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_disallowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked}
-\end{figure}
-
-all $\pi$ uniform
+For the second model, the \emph{a priori} probability $\pi$ follows a uniform distribution.
+Four additional graphs are shown.
 
 \begin{itemize}
-\item allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-  \item initial: single \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
-  \item initial: one-to-one \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-  \end{itemize}
-\item do not allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_disallowUnlinked}
-  \item initial: single \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_disallowUnlinked}
-  \item initial: one-to-one \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked}
-  \end{itemize}
+\item Random initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}
+\item Single link initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}
+\item One-to-one initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}
+\item Complete initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}
 \end{itemize}
-
-\subsubsection{second model, $\phi=1$}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_disallowUnlinked}
-  \caption{a}
-  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_disallowUnlinked}
-  \caption{this happens for $\phi=1$ but not for $\phi=0$}
-  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_disallowUnlinked}
-\end{figure}
-
-all $\pi$ uniform
-
-\begin{itemize}
-\item allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-  \item initial: single \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
-  \item initial: one-to-one \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-  \end{itemize}
-\item do not allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked}
-  \item initial: single \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_disallowUnlinked}
-  \item initial: one-to-one \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_disallowUnlinked}
-  \end{itemize}
-\end{itemize}
-
-\subsection{Inside selected lambda}
-
-\subsubsection{first model, $\phi=0$}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
-  \label{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
-  \caption{a}
-  \label{fig:insideLambda_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-  \caption{a}
-  \label{fig:insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
-
-\begin{itemize}
-\item initial: random \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-\item initial: single \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
-\item initial: one-to-one \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-\end{itemize}
-
-\subsubsection{first model, $\phi=1$}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
-  \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
-  \caption{a}
-  \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-  \caption{a}
-  \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
-
-\begin{itemize}
-\item initial: random \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-\item initial: single \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
-\item initial: one-to-one \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-\end{itemize}
-
-\subsubsection{second model, $\phi=0$}
-
-all $\pi$ uniform
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_disallowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_singleLink_disallowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked}
-\end{figure}
-
-\begin{itemize}
-\item allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-  \item initial: single \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
-  \item initial: one-to-one \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
-  \end{itemize}
-\item do not allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_disallowUnlinked}
-  \item initial: single \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_disallowUnlinked}
-  \item initial: one-to-one \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked}
-  \end{itemize}
-\end{itemize}
-
-\subsubsection{second model, $\phi=1$}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_singleLink_disallowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_disallowUnlinked}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_oneToOne_disallowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_disallowUnlinked}
-\end{figure}
-
-all $\pi$ uniform
-
-\begin{itemize}
-\item allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
-  \item initial: single \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
-  \item initial: one-to-one \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
-  \end{itemize}
-\item do not allow disconnect meanings
-  \begin{itemize}
-  \item initial: random \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked}
-  \item initial: single \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_disallowUnlinked}
-  \item initial: one-to-one \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_disallowUnlinked}
-  \end{itemize}
-\end{itemize}
-
-\subsection{Graph visualization (smaller graphs)}
 
 \begin{figure}
   \centering
@@ -531,26 +220,208 @@ all $\pi$ uniform
   \label{fig:graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}
 \end{figure}
 
-all $\phi=1$
 
-\subsubsection{first model}
+\subsection{Information theoretic and statistical measures}
+\label{sec:results_new_other}
 
-\begin{itemize}
-\item initial: random \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked}
-\item initial: single \ref{fig:graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}
-\item initial: one-to-one \ref{fig:graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}
-\item initial: complete \ref{fig:graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}
-\end{itemize}
+This section shows the data obtained from executing simulations with various sets of parameters.
+All simulations are run with a graph size of $n=m=400$.
+Every experiment in this section is the result of averaging at least 20 realizations.
+Most experiments consist of 100 realizations.
+Some had to be reduced to 20 realizations due to the total running time and are marked as such.
+Results for $\phi=0$ and $\phi=1$ are shown.
+Three different initial conditions are tested: random bipartite graph, single link and one-to-one.
+For the \secondmodel{} only results for $\pi$ following a uniform probability distribution are shown.
 
-\subsubsection{second model}
+For the \firstmodel{} with $\phi=0$, Figures \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
+They correspond to the random graph, single link and one-to-one initial graphs respectively.
+Figures \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of select values of $\lambda$.
+They correspond respectively to the same initial conditions.
 
-\begin{itemize}
-\item initial: random \ref{fig:graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}
-\item initial: single \ref{fig:graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}
-\item initial: one-to-one \ref{fig:graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}
-\item initial: complete \ref{fig:graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}
-\end{itemize}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{a}
+  \label{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
+  \caption{a}
+  \label{fig:insideLambda_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+  \caption{a}
+  \label{fig:insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+For the same model but $\phi=1$, Figures  \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked} and  \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
+They correspond to the same initial conditions: random graph, single link and one-to-one initial graphs respectively.
+Figures \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked} and  \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of select values of $\lambda$.
+They also correspond to the same initial conditions respectively.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{a}
+  \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
+  \caption{a}
+  \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+  \caption{a}
+  \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+For the \secondmodel{} with $\phi=0$ Figures  \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked} and  \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
+They correspond to the same initial graph configurations as seen before respectively.
+Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
+Figures \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of select values of $\lambda$.
+They correspond respectively to the same initial conditions.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{a}
+  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked.pdf}
+  \caption{a}
+  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked.pdf}
+  \caption{a}
+  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+For the \secondmodel{} and $\phi=0$ Figures \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph configurations seen before respectively.
+Appendix \ref{sec:app_figures_second-model} also shows the same figures but with disconnected meanings disallowed.
+Figures \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} also show statistical measures of select values of $\lambda$.
+They correspond to the same initial conditions.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,draft]{informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked.pdf}
+  \caption{a}
+  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+  \caption{a}
+  \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked.pdf}
+  \caption{a}
+  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked.pdf}
+  \caption{a}
+  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked.pdf}
+  \caption{a}
+  \label{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
 
 %%% Local Variables:
 %%% mode: latex

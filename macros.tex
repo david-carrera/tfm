@@ -26,6 +26,17 @@
 \newcommand{\Secondmodel}{External model}
 \newcommand{\secondm}{external}
 
+% add a subfigure to a figure with given counter on the top left
+\newcommand{\addjankysubfigure}[2]{%
+  \begin{minipage}{\linewidth}
+    \large
+    \raggedright
+    #1\\
+    \centering
+    #2
+  \end{minipage}%
+}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "tfm"
