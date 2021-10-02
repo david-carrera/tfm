@@ -92,7 +92,7 @@ Although some of the points can be seen to be not quite in the same place.
     Normalized signal frequency $P(k)$ versus rank $k$.
     The dashed lines show the distribution obtained when from a $G_{n,m,e^*}$ graph where $e^*$ is the number of connections in these optimal configurations.
     In both cases the distribution of B is still consistent with human language, $\alpha=1$.
-    Averages over 30 replicas, $n=m=150$, the initial graph is $G_{n,m,10/n}$, the number of mutations on each iteration follows a binomial distribution with average 1.75, the optimization stops after $2*n*m$ mutations that do not improve the cost function.\\
+    Averages over 30 replicas, $n=m=150$, the initial graph is $G_{n,m,10/n}$, the number of mutations on each iteration follows a binomial distribution with average 1.75, the optimization stops after $2nm$ mutations that do not improve the cost function.\\
     Above: Figure 3 from \cite{Ferrer2003a}\\
     Below: Recreation of that same figure using the open source tool created for this thesis.
   }
@@ -318,7 +318,7 @@ They correspond to the random graph, single link and one-to-one initial graphs r
   \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
 
-Figures \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one initial conditions respectively) show statistical measures of select values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the fitting of the curve to a power law for a single select value of $\lambda$ and Tables \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the values of the regression exponent and factor.
+Figures \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one initial conditions respectively) show statistical measures of select values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the fitting of the curve to a power law for a single select value of $\lambda$ and Tables \ref{tab:fitting_insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the values of the regression exponent and factor.
 The single link initial condition is not plotted for select values of $\lambda$ as it fails to evolve beyond the single link state.
 
 \begin{figure}
@@ -379,38 +379,45 @@ Appendix \ref{sec:app_figures_second-model} shows the same figures but with disc
 \end{figure}
 
 
-Figures \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one initial conditions respectively) show statistical measures of select values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the fitting of the curve to a power law for a single select value of $\lambda$ and Tables \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the values of the regression exponent and factor.
-The single link initial condition is not plotted for select values of $\lambda$ as it fails to evolve beyond the single link state.
-
-
-Figures \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of select values of $\lambda$.
-They correspond respectively to the same initial conditions.
+Figures \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) show statistical measures of select values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the fitting of the curve to a power law for a single select value of $\lambda$ and Tables \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the values of the regression exponent and factor.
+As with others, the single link initial condition is not plotted for select values of $\lambda$ as it fails to evolve beyond the single link state.
+Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
-  \caption{a}
+  \caption{0.4942}
   \label{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
+  \includegraphics[width=\textwidth]{insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked.pdf}
+  \caption{0.4970}
+  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth,draft]{insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked.pdf}
-  \caption{a}
-  \label{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+  \includegraphics[width=\textwidth]{fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \caption{0.4942}
+  \label{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{figure}
 
-For the \secondmodel{} and $\phi=1$ Figures \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph configurations seen before respectively.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+  \caption{0.4970}
+  \label{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+\end{figure}
+
+\input{tables/fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+
+\input{tables/fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+
+For the \secondmodel{} and $\phi=1$ Figures \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
+They correspond to the random graph, single link and one-to-one initial graphs respectively.
 Appendix \ref{sec:app_figures_second-model} also shows the same figures but with disconnected meanings disallowed.
-Figures \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} also show statistical measures of select values of $\lambda$.
-They correspond to the same initial conditions.
 
 \begin{figure}
   \centering
@@ -432,6 +439,15 @@ They correspond to the same initial conditions.
   \caption{a}
   \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
+
+Figures \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) show statistical measures of select values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the fitting of the curve to a power law for a single select value of $\lambda$ and Tables \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} (random and one-to-one respectively) showing the values of the regression exponent and factor.
+As with others, the single link initial condition is not plotted for select values of $\lambda$ as it fails to evolve beyond the single link state.
+Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
+
+
+
+Figures \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} also show statistical measures of select values of $\lambda$.
+They correspond to the same initial conditions.
 
 \begin{figure}
   \centering
