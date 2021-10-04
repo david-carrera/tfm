@@ -1,42 +1,169 @@
 \chapter{Discussion}
 \label{cha:discussion}
-Aquesta part és important, ha de quedar clara. Parlar tambe sobre limitacions: quins resultats son contundents i quins febles.
 
-Analisi critic, interpretar, lligar amb context de coneixements: relacio paraula edat frequencia i altres models de zipf com es relacion amb ells, com ho expliquen. Distincio entre model que explica i model que descriu. No hi ha explicació sense teoria. Teoria es una serie de principis. No tots els models son explicacions pk no poden fer prediccions. E.g., random typing no diu res de significats no pot explicar aprenentatge en nens.
-\section{mates (linguistica quantitativa)}
-\subsection{zipf law en regressio lineal del log-log?}
-\begin{itemize}
-\item mirar grafiques dels dos models, variants
-\end{itemize}
-\subsection{relacio edat-frequencia}
-\begin{itemize}
-\item grafiques mostren que paraules mes antigues son mes frequents
-\item correspon amb zipf (llibre)
-\end{itemize}
-\section{computacional}
-\begin{itemize}
-\item lligar amb biosemiotics
-\end{itemize}
-\subsection{minim local}
-\begin{itemize}
-\item el llei zipf minim local? stop condition
-\item fins a quin punt recuperar lleis depen de parametres?
-\end{itemize}
-\section{future work}
-\subsection{altres metodes d'optimitzacio}
-\begin{itemize}
-\item simulated annealing (non zero temperature)
-\item gradient descent (make $\Omega$ derivable)
-\end{itemize}
-\subsection{altres valors de phi}
-hem fet 1 i 0 per altres, 0.5, 1.5...
-\subsection{vocabulary nens segon model}
-biosemiotics ha fet primer model nomes
-\subsection{evitar error numeric encara mes}
-\begin{itemize}
-\item subcalculs del metode dinamic que es podrien fer estatics
-\item ja es fa un valor de $\chi$
-\end{itemize}
+This chapter discusses the results obtained in Chapter \ref{cha:results}.
+Section \ref{sec:discussion_math} covers the quantitative linguistics side of the results, relating them with language laws and previous research.
+A model should be able to make predictions.
+Whether this models have been able to make predictions will be discussed.
+Section \ref{sec:discussion_comp} discusses the results relating to the computational side.
+It focuses specially on the optimization aspects of the model and the local minima of the cost function that may or may not be found by this approach.
+Finally, Section \ref{sec:discussion_future-work} talks about possible future work that might stem from this thesis.
+
+\section{Quantitative linguistics discussion}
+\label{sec:discussion_math}
+
+Chapter \ref{cha:introduction} already explained several models that have been used to try to explain linguistic laws, such as the random typing model or Simon's model.
+However, a distinction must be made between a model that simply describes a phenomenon and one that aims to explain it.
+There is no explanation without theory, and theory is a series of principles.
+Not all models can give explanations, because they cannot make predictions.
+
+While other models can describe Zipf's law or other power laws, they cannot make predictions beyond that.
+One could not use Simon's model to explain how children learn new words while these models can be used to try to make this kind of prediction. \cite{Ferrer2017a} \cite{Carrera2021a}
+
+Here, based on the presented results, we discuss whether these models can explain certain language laws, and how strong this result actually is.
+
+Looking at the effect of the initial conditions, in all cases the single link initial condition failed to evolve.
+For $\lambda \leq 0.5$ it remained a single link, while for $\lambda > 0.5$ it became a one to one bijection between words and meanings. See Figures \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked}, \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}, \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}. It can be seen how there is no intermediate stage in the phase change at $\lambda \approx 0.5$.
+
+From a language evolution point of view, it is possible that human language follows a different cost function, one for which a single link initial condition wouldn't fail to become a human language.
+However, borrowing the concepts of C.S. Peirce \cite{Atkin2010a}, it can be speculated that languages first developed as random iconic relationships (that is, words were similar to their meaning, for instance the utterance ``bark'' being similar to a dog's barking sound) and as the language evolved (optimized) symbolic relationships began to appear.
+
+\subsection{Zipf's word frequency laws}
+\label{sec:discussion_math_word-freq}
+
+Zipf's law of word frequency can be observed in some form in both the \firstmodel{} and the \secondmodel{}.
+Figures \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked} show that a power law appears in the frequency-rank relationship plot, subfigure (a).
+However, \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} does not show a power law.
+Instead a single word dominates while the rest are kept at a low frequency.
+
+Previous results had already noted that a power law appeared for the \firstm{} and \secondmodel{} for $\phi=0$ \cite{Ferrer2005a} \cite{Ferrer2003a}.
+And while these figures show that a power law appears for a select value of $\lambda$ this does not mean that they cannot appear for others.
+Additionally, these figures now show that Zipf's law also appears for an initial condition other than a random bipartite graph.
+This makes the previously found prediction even stronger.
+
+As for the values of the power law parameters, they are also similar to the ones found previously.
+In \cite{Ferrer2005a} a value of $\alpha \approx 1.5$ is given, which is replicated here in Table \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}.
+Interestingly, when the initial condition is a one to one graph, $\alpha \approx 4$ (Table \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}) which is a much higher value.
+Seeing that in real human language $\alpha \approx 1$, this does not quite predict human language.
+A power law is found, but the parameters are not the ones one would expect for human language.
+
+In \cite{Ferrer2003a}, a power law with $\alpha \approx 1$ was found for the \secondmodel{} when $\lambda=0.41$.
+Here, values of lambda closer to 0.5 were examined and a power law was still found.
+However, the exponent was once again much larger than 1 for both the random bipartite graph and the one to one connections as initial conditions (Tables \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}).
+\redtxt{This raises a question, is it possible to find a power law with $\alpha \approx 1$ in the \firstmodel{} for other values of $\lambda$? (posar a future work)}
+
+When $\phi=1$ is added to the \secondmodel{}, $\alpha \approx 2.7$ and $\alpha \approx 3.9$ for the random and one to one initial conditions respectively. Again, far from the human language value of 1.
+
+It's also worth noting that the curves shown follow a power law to certain degrees of similarity.
+Figure \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}, for instance, is not perfectly straight in the log-log scale.
+While Figure \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} follows a line almost perfectly until the last tail of lower rank probabilities which drops drastically.
+
+In summary, while power laws have been found, Zipf's law with a value of $\alpha=1$ is not found.
+
+\subsection{Zipf's meaning frequency law}
+\label{sec:discussion_math_meaning-freq}
+
+The $\phi$ parameter was added to the model to try and predict Zipf's meaning frequency law. \cite{Ferrer2018a}
+The relationship between the exponent of the relationship between word frequency and word frequency rank ($f \propto i^{-\alpha}$), the exponent of the relationship between number of meanings and word frequency ($\mu \propto f^\delta$) and the exponent of the relationship between number of meanings and word frequency rank ($f \propto i^{-\gamma}$) should follow the relationship in Equation \eqref{eq:relation-exponents}.
+
+In the case of the \firstmodel{} with $\phi=0$, power laws are found in subfigures (a), (c) and (d) of Figure \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} (random bipartite graph as initial condition) and Figure \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} (one to one graph as initial condition).
+For the random initial condition, $\alpha \approx 1.5$, $\gamma \approx 1.5$ and $\delta \approx 1$ (Table \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}). While the relationship from Equation \eqref{eq:relation-exponents} holds, it does not do so with the values of human language ($\alpha=1$, $\gamma=\delta=1/2$).
+For the one to one initial condition, $\alpha \approx 4$, $\gamma \approx 4$ and $\delta \approx 1$, the same problem as with the random initial condition but for values even farther away from human language.
+
+When $\phi=1$ is introduced to the first model, however, the power laws disappear.
+It would be expected that \cite{Ferrer2018a}
+\begin{equation*}
+  \delta = \frac{1}{\phi + 1}
+\end{equation*}
+but this is simply not the case.
+
+As for the \secondmodel{} with $\phi=0$ the relationships between degree of a word and its probability rank and also between degree of a word and its frequency do not follow power laws (Figure \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}) for a value of $\lambda$ close to 0.5.
+If using the approximations of a power law obtained from the regression, a value of $\delta \approx 0.5$ is recovered (Table \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}) however the rest of parameters continue to be far from human language.
+When the initial graph is one to one instead of random, power laws are found (Figure \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}) but $\delta \approx 1$.
+
+When adding $\phi=1$ to the \secondmodel{}, $\delta \approx 1$ for both initial conditions.
+
+In summary, while the relationship from Equation \eqref{eq:relation-exponents} holds for many of the combinations of parameters tested, values similar to those of human language ($\delta=\gamma=1/2$ and $\alpha=1$) are not found.
+Adding the parameter $\phi=1$ does not seem to help obtain values closer to human language.
+Indeed, for the \firstmodel{} it removed the power law behavior.
+
+\subsection{Age frequency law}
+\label{sec:discussion_math_age-freq}
+
+An interesting and somewhat unexpected result is that every single combination of parameters consistently shows Zipf's age frequency law.
+This is not explicitly stated as a power law and it does not appear as one in the data.
+However, it seems that the correlation always holds for these models: Under any combination of parameters more frequent words are older words.
+As seen in Chapter \ref{cha:introduction}, Zipf argued that this should be the case in his book \cite{Zipf1949a} and found empiric data in favor of this (Figure \ref{fig:zipf_word_ages}).
+
+Both models very strongly reflect this law.
+Again, it is a consistent tendency in every result obtained, Figures \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked},  \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked},  \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked},  \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}.
+
+This correlation is one of the main results of this thesis.
+
+\section{Computational results discussion}
+\label{sec:discussion_comp}
+
+At the core of this model is the minimization of a cost function.
+This cost function is used to describe the effort of speaker and hearer of the language.
+For the \firstmodel{}, this cost function has shown to be able to predict a bias in child vocabulary learning. \cite{Ferrer2017a} \cite{Carrera2021a}
+
+\subsection{Local minima}
+\label{sec:discussion_comp_minima}
+
+For some combinations of parameters it is clear that a minima has been reached.
+This is the case when the extreme states (a single link, a one to one relationship of words and meanings) are achieved in the graph.
+In other cases it is not so clear that a local minima has actually been reached.
+This includes the cases studied in Chapter \ref{cha:results} with $\lambda^*$ where linguistic laws could be recovered.
+The stronger the stop condition of the minimization algorithm, the more sure one can be that a minimum has been reached.
+However, this also means a longer time to obtain a result.
+
+\section{Future work}
+\label{sec:discussion_future-work}
+
+Much work could be further derived from the contributions presented here.
+Parameters could be tweaked and changed to observe various versions of the models and try to more closely obtain linguistic laws.
+But the more fundamental ideas presented could also be changed to improve the results and or to use different algorithms that might be more efficient and present less numerical error.
+
+\subsection{Optimization methods}
+\label{sec:discussion_future-work_optimization}
+
+The model is optimized by performing mutations on the boolean values of the $A$ adjacency matrix of the graph using a Monte Carlo Markov Chain method at zero temperature.
+
+An alternative to this is simulated annealing.
+That is, to use nonzero temperature for the Monte Carlo process, allowing for non optimal states to be chosen.
+This might help escape from states that are not local minima but that also have very few paths to other minimal states.
+This would only need to slightly modify the optimization algorithm to add the temperature parameter.
+
+Another alternative optimization method is gradient descent.
+The cost function could be optimized as a function of $A$ (with $\lambda$ being a constant) $\Omega(A)$ would then need to be derivable.
+A first step to make it derivable would mean making $A$ a matrix of reals representing weights instead of booleans representing just whether the connection exists or not.
+This would be a much more complex endeavor than simulated annealing.
+However, this would yield a method similar to what is used in AI with a much lower complexity than the models seen in AI.
+
+\subsection{Other values of $\phi$}
+\label{sec:discussion_future-work_phi}
+
+Other values of $\phi$ can be explored.
+Here only values of $\phi$ 0 or 1 are seen.
+Other interesting values that have not been studied in depth are 0.5 and 1.5.
+
+This would be a very simple thing to implement, as easy as changing a configuration file (see Appendix \ref{sec:app_code_program-parameters}).
+
+\subsection{Vocabulary learning}
+\label{sec:discussion_future-work_vocabulary-learning}
+
+The \firstmodel{} has already been used to predict vocabulary learning biases in children, both for the case $\phi=0$ \cite{Ferrer2017a} and for $\phi=1$ \cite{Carrera2021a}.
+A similar analysis could be done for the \secondmodel{}.
+Can it make these predictions? Under which conditions? This is purely mathematical work, without any computational aspects to it.
+
+\subsection{Numerical error}
+\label{sec:discussion_future-work_numerical-error}
+
+A great effort to find ways to reduce numerical error due to floating point arithmetic has been done as part of this thesis.
+However this can continue to be a problem, specially for higher values of $n$ and $m$ where a greater number of additions and subtractions take place.
+It is possible that some dynamic calculations can be done statically without sacrificing efficiency.
+Indeed, some variables are already calculated statically in the dynamic algorithm, as they have similar complexity in either case but involve many more additions and subtractions in the dynamic algorithm.
+A similar effort could be done for other sections of the dynamic computations.
 
 %%% Local Variables:
 %%% mode: latex
