@@ -1,7 +1,7 @@
 \chapter{Methods}
 \label{cha:methods}
 
-\redtxt{TODO: parlar sobre stop early en el algoritme de optimization}
+\redtxt{Pendent: parlar sobre theil sen ???}
 
 This chapter centers on the implementation of the models defined in Chapter \ref{cha:model} and the optimization method outlined in Section \ref{sec:introduction_model_optimization}.
 Section \ref{sec:methods_model-implementation} focuses on the implementation of the models in a \CC{} program, including a class hierarchy diagram, several important algorithms, various methods used to avoid floating point error and the different distributions of $\pi$ (see Section \ref{sec:model_math_second-model}) that were implemented.
@@ -126,7 +126,7 @@ The cost function is evaluated with a parameter $\lambda$.
 If it is found to have improved, the model is recalculated statically (to avoid floating point error, see Section \ref{sec:methods_model-implementation}).
 If it is found to not have improved, the changes are reverted.
 The optimization stops after a number of failures to improve the cost function.
-The optimization stops early if the global minimum for the cost function is reached.
+The optimization stops early if the lower bound of the cost function is reached (See Equation \eqref{eq:lower-bound-Omega}).
 
 The parameter $\lambda$ is given as a parameter.
 It controls the weight of the two forces that contribute to the cost function.

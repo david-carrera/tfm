@@ -547,6 +547,27 @@ For verification purposes (see Section \ref{sec:methods_verification}), the valu
 \item $0 \leq H(S,R) \leq H_\pi(R) + \log n$
 \end{itemize}
 
+\subsection{Lower bound of the cost function}
+
+Upper and lower bounds for the cost function $\Omega$ can be derived from the definition of Omega (Equation \eqref{eq:definition-Omega}) and the bound \cite{Cover1999}
+\begin{equation*}
+  0 \leq I(S,R) \leq \min(H(S),H(R)),
+\end{equation*}
+obtaining
+\begin{align*}
+  \Omega(\lambda) &\geq -\lambda \min(H(S),H(R)) + (1-\lambda) H(S) \\
+                  &\geq (1-2\lambda)H(S)
+\end{align*}
+Knowing the bounds for $H(S)$ (Section \ref{sec:model_math_first-model_invariants}) we reach that, in general
+\begin{equation}
+  \label{eq:lower-bound-Omega}
+  \Omega(\lambda) \geq
+  \begin{cases}
+    0                           & \text{if}~\lambda \leq 1/2 \\
+    (1-2\lambda) \log \min(n,m) & \text{if}~\lambda \geq 1/2.
+  \end{cases}
+\end{equation}
+
 \section{Computational aspect}
 \label{sec:model_compute}
 

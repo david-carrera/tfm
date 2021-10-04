@@ -103,23 +103,21 @@ The two models are further fleshed out in following sections.
 \begin{table}
   \centering
   \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{p{2.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
+    \begin{tabular}{m{11.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em}}
       \toprule
-                               & Random Typing & Simon's Model        & \Firstmodel{} ($\phi=0$) & \Secondmodel{} ($\phi=0$) & \Firstmodel{} ($\phi\neq 0$) & \Secondmodel{} ($\phi\neq 0$) \\
+      & Random Typing & Simon's Model & \Firstmodel{} ($\phi=0$) & \Secondmodel{} ($\phi=0$) & \Firstmodel{} ($\phi\neq 0$) & \Secondmodel{} ($\phi\neq 0$) \\
       \midrule
-      Rank-frequency law       &      Yes      &      Yes             &             Yes          &           Yes             &           Yes                &           Yes                 \\
-      \addlinespace
-      Meaning distribution law &      No       &      No              &             No           &           No              &           No                 &           No                  \\
-      \addlinespace
-      Age-frequency law        &      No       &      Yes             &             Yes          &           Yes             &           Yes                &           Yes                 \\
-      \addlinespace
-      Vocabulary learning bias &      No       &      No              &  Yes \cite{Ferrer2017a}  &         Unknown           &  Yes \cite{Carrera2021a}     &         Unknown               \\
+      \vspace{.75em} Rank-frequency law \vspace{.75em} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightRed} No & \cellcolor{TableLightGreen} Yes \\
+      \addlinespace[.25em]
+      \vspace{.75em} Meaning distribution law \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} \\
+      \addlinespace[.25em]
+      \vspace{.75em} Age-frequency law \vspace{.75em} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} \\
+      \addlinespace[.25em]
+      \vspace{.75em} Vocabulary learning bias \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \cite{Ferrer2017a} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} & Yes \cite{Carrera2021a} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} \\
       \bottomrule
     \end{tabular}
   \end{adjustbox}
   \caption{
-    \redtxt{TODO: Finish up this table once results section is finished}
-    \redtxt{TODO: Simon's model find a source for age frequency law?}
     A summary table comparing various models of human language.
     Columns show various models of human language: Random Typing and Simon's model.
     Then the two models studied in this thesis: \firstm{} and \secondmodel{}.
@@ -457,7 +455,7 @@ The results of this thesis should be completely open and easily reproducible.
 
 Several hypothesis are stated here.
 
-As seen in section \ref{sec:introduction_background} and in \cite{Ferrer2018a}, there is a relationship between the exponents of the Zipf's word-frequency and meaning-frequency laws.
+As seen in Chapter \ref{cha:introduction} and in \cite{Ferrer2018a}, there is a relationship between the exponents of the Zipf's word-frequency and meaning-frequency laws.
 See Equation \eqref{eq:relation-exponents}.
 
 The main hypothesis of the thesis is that linguistic laws appear due to an optimization process in the association of words and meanings.
@@ -482,7 +480,7 @@ For the dynamic version a distinction is made between the general case and the c
 Again, the complexity is shown for both the \firstm{} and \secondmodel{}.
 Table \ref{tab:summary-computational} summarizes the complexity for the various methods of calculating the cost function in both models.
 
-Chapter \ref{cha:model} goes into the more tangible details of the implementation of the model beyond just mathematics: the implementation decisions and various algorithms, a diagram of the class hierarchy of the implementation (Figure \ref{fig:class-diagram}), the algorithms for the generation of the initial random graphs, the strategies used to deal with numerical error from floating point arithmetic are all outlined and the methods used to obtain several probability distributions for $\phi$ are all shown.
+Chapter \ref{cha:methods} goes into the more tangible details of the implementation of the model beyond just mathematics: the implementation decisions and various algorithms, a diagram of the class hierarchy of the implementation (Figure \ref{fig:class-diagram}), the algorithms for the generation of the initial random graphs, the strategies used to deal with numerical error from floating point arithmetic are all outlined and the methods used to obtain several probability distributions for $\phi$ are all shown.
 The optimization algorithm is covered in more detail including the choices for a stop condition.
 The choices regarding parallelization of the algorithms and why it was decided to not make the algorithms parallel.
 Details about the verification of the model are given, including all the strategies used to ensure that the dynamic and static implementations were equivalent.
@@ -491,9 +489,19 @@ The chapter closes with the problems encountered and how they were dealt with, b
 Chapter \ref{cha:results} presents the results obtained.
 Results from previously published papers \cite{Ferrer2005a} \cite{Ferrer2003a} are replicated.
 This both deals with the reproducibility issues in those works and serves as a benchmark to verify that the model is consistent with previous results.
-New data\redtxt{\ldots TODO: omplir quan estigui la part acabada}
+New data obtained for $\phi=1$ and both models is presented.
+This data includes the evolution of the values of the information theoretic measures of the optimal graphs for values of $\lambda$ ranging from 0 to 1.
+Certain statistical measures are shown for select values of $\lambda$, including several of the relationships between frequency, frequency rank, degree (number of meanings of a word) and degree rank.
+Values of the exponents and factors of the observed power laws are obtained with a Theil-Sen estimator.
 
-Chapter \ref{cha:discussion}\redtxt{\ldots TODO: omplir quan estigui la part acabada}
+Chapter \ref{cha:discussion} discusses the results obtained and introduces some possible future work.
+Quantitative linguistics subjects are discussed, previously introduced word laws are compared with the data and it is argued whether the presented models can reproduce them and to what degree.
+These laws include the word frequency law, the meaning frequency and meaning distribution laws and the age frequency law.
+The computational results are also discussed, specifically regarding local minima of the cost function.
+The section closes with a review of future work.
+Alternative optimization methods are commented on, simulated annealing and gradient descent.
+Other possible predictions of the \secondmodel{}, such as the vocabulary learning already studied for the \firstmodel{} \cite{Ferrer2017a} \cite{Carrera2021a}.
+Possible further improvements to the numerical error problems are also commented.
 
 %%% Local Variables:
 %%% mode: latex
