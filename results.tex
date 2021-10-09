@@ -33,7 +33,7 @@ Section \ref{sec:results_verification_second} replicates the results from \cite{
     The mutual information $I(S,R)$ is in the $y$ axis and the $\lambda$ parameter on the $x$ axis.
     Graphs of different sizes are shown, $n=m=100$, $n=m=200$, $n=m=300$, $n=m=400$.
     Averages over 30 realizations.
-    $\phi=0$, the initial graph is $G_{n,m,1/n}$, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.\\
+    $\phi=0$, the initial graph is \randgraph{n}{m}{\frac{1}{n}}, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.\\
     Subfigure a corresponds with Figure 2 from \cite{Ferrer2005a}.\\
     Subfigure b is the recreation of that same figure.
   }
@@ -50,7 +50,7 @@ Section \ref{sec:results_verification_second} replicates the results from \cite{
     When $\lambda=\lambda^*$, $\alpha^* = 1.54$ for $n=m=100$, $\alpha^* = 1.51$ for $n=m=200$, $\alpha^* = 1.5$ for $n=m=300$ and $\alpha^* = 1.49$ for $n=m=400$.
     It was chosen that $\lambda^* = 0.4986$ for $n=m=100$, $\lambda^* = 0.4987$ for $n=m=200$, $\lambda^* = 0.4987$ for $n=m=300$, and $\lambda^* = 0.4986$ for $n=m=400$.
     Averages over 30 realizations.
-    $\phi=0$, the initial graph is $G_{n,m,1/n}$, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.\\
+    $\phi=0$, the initial graph is \randgraph{n}{m}{\frac{1}{n}}, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.\\
     Subfigure a corresponds with Figure 3 from \cite{Ferrer2005a}.\\
     Subfigure b is the recreation of that same figure.
   }
@@ -60,7 +60,7 @@ Section \ref{sec:results_verification_second} replicates the results from \cite{
 Figure \ref{fig:fig2_2005} shows both the original Figure 2 from \cite{Ferrer2005a} and a recreation of this figure using the new tool.
 Figure \ref{fig:fig3_2005} shows both the original Figure 3 from \cite{Ferrer2005a} and a recreation of this figure, also generated using the new tool.
 
-The initial graph was not specified in \cite{Ferrer2005a} and a $G_{n,m,1/n}$ ($n=m$) graph is used in the replication.
+The initial graph was not specified in \cite{Ferrer2005a} and a \randgraph{n}{m}{\frac{1}{n}} ($n=m$) graph is used in the replication.
 The paper also does not specify how to stop the optimization process and so the weak stop condition (Section \ref{sec:methods_optimization}) is used.
 
 Subfigures a and b from Figure \ref{fig:fig2_2005} are nearly identical.
@@ -90,9 +90,9 @@ Although some of the points can be seen to be not quite in the same place.
   \addjankysubfigure{b)}{\includegraphics[width=\textwidth]{figure3_article_PNAS_2003_binom1.75}}
   \caption{
     Normalized signal frequency $P(k)$ versus rank $k$.
-    The dashed lines show the distribution obtained when from a $G_{n,m,e^*}$ graph where $e^*$ is the number of connections in these optimal configurations.
+    The dashed lines show the distribution obtained when from a \randgraph{n}{m}{e^*} graph where $e^*$ is the number of connections in these optimal configurations.
     In both cases the distribution of B is still consistent with human language, $\alpha=1$.
-    Averages over 30 replicas, $n=m=150$, the initial graph is $G_{n,m,10/n}$, the number of mutations on each iteration follows a binomial distribution with average 1.75, the optimization stops after $2nm$ mutations that do not improve the cost function.\\
+    Averages over 30 replicas, $n=m=150$, the initial graph is \randgraph{n}{m}{\frac{10}{n}}, the number of mutations on each iteration follows a binomial distribution with average 1.75, the optimization stops after $2nm$ mutations that do not improve the cost function.\\
     Above: Figure 3 from \cite{Ferrer2003a}\\
     Below: Recreation of that same figure using the open source tool created for this thesis.
   }
@@ -102,7 +102,7 @@ Although some of the points can be seen to be not quite in the same place.
 Figure \ref{fig:fig2_2003} shows both the original Figure 2 from \cite{Ferrer2003a} and the recreation of this figure using the new tool.
 Figure \ref{fig:fig3_2003} shows the original Figure 3 from \cite{Ferrer2003a} and a recreation using the new tool.
 
-The initial graph was specified as a $G_{n,m,\rho}$ but the value of $\rho$ was not given in the paper, a $G_{n,m,10/n}$ graph was used (that is, a value of $\rho=\frac{10}{n}$).
+The initial graph was specified as a \randgraph{n}{m}{\rho} but the value of $\rho$ was not given in the paper, a \randgraph{n}{m}{\frac{10}{n}} graph was used (that is, a value of $\rho=\frac{10}{n}$).
 It is specified that the number of mutations done on each iteration of the optimization algorithm follows a binomial distribution.
 However it was later found that, due to a bug in the generator of binomial numbers, the number of mutations must have been lower.
 Several values were tried for the average number of binomial mutations, with 1.75 giving the results most similar to the previous model's.
@@ -241,7 +241,7 @@ There is a change in the behavior before the point where the phase changes in bo
   \includegraphics[height=0.7\textheight]{informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{
     Information theoretic measures for the optimized graph.
-    The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph $G_{n,m,3/n/m}$. Disconnected meanings are allowed.
+    The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph \randgraph{n}{m}{\frac{3}{nm}}. Disconnected meanings are allowed.
     On the $x$ axis of each subfigure is the parameter $\lambda$ of the optimization process, ranging from 0 to 1.
     On the $y$ of the subfigures is: the mutual information between words and meanings (a), the joint entropy between words and meanings (b), the entropy of words (c), the entropy of meanings (d), the conditional entropy of words given the meanings (e), the conditional entropy of the meanings given the words (f), the number of referentially useless words (g) and the proportion of the largest connected component of the graph (h).
     A word $s_i$ is referentially useless if it is connected to at least one meaning and for each meaning $r_j$ it is connected to, $p(s_i,r_j) \leq p(s_i) \cdot p(r_j)$.
@@ -274,7 +274,7 @@ The single link initial condition is not plotted for select values of $\lambda$ 
   \includegraphics[height=0.7\textheight]{insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{
     Statistical measures of the optimized graph for select values of $\lambda$.
-    The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph $G_{n,m,3/n/m}$. Disconnected meanings are allowed.
+    The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph \randgraph{n}{m}{\frac{3}{nm}}. Disconnected meanings are allowed.
     The green line corresponds to $\lambda=0.49$, the blue line to $\lambda=0.5$ and the red line to $\lambda=\lambda^*$.
     The value of $\lambda^*$ is chosen qualitatively and in this case $\lambda^*=0.4989$.
     Figure (a) shows the probability (or frequency) of a word as a function of its probability rank.
@@ -302,7 +302,7 @@ The single link initial condition is not plotted for select values of $\lambda$ 
   \includegraphics[height=0.65\textheight]{fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{
     Statistical measures of the optimized graph for a select value of $\lambda=\lambda^*$.
-    The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph $G_{n,m,3/n/m}$. Disconnected meanings are allowed.
+    The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph \randgraph{n}{m}{\frac{3}{nm}}. Disconnected meanings are allowed.
     $\lambda^*=0.4989$.
     The black line indicates the values predicted by the Theil-Sen liniear regression.
     The red line indicates the actual values in the graph.
