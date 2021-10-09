@@ -116,21 +116,29 @@ However, the slope of the curve is also 1.0 as indicated by the solid line.
 \section{Results for current models}
 \label{sec:results_new}
 
-Here new results obtained from the model are presented.
+Here aspects of these models that had not been considered before are investigated, such as untested linguistic laws or regions of their parameter space.
+All results presented here come from the minimization of the cost function (Equation \eqref{eq:definition-Omega}).
 Firstly, and as a way to for an intuition of the kinds of graphs that these models generate, Section \ref{sec:results_new_graph} presents the optimal graphs for different initial conditions for both models.
 Section \ref{sec:results_new_other} shows the rest of the obtained results.
 This section focuses first on plots of the values obtained for the information theoretical measures of the optimal graphs for various value of $\lambda$ in the cost function.
 As a reminder, $\lambda$ controls the weight of either the entropy or the mutual information in the cost function.
 Statistical measures for select values of $\lambda$ are then shown.
-These measures show how various linguistic laws appear in the results.
+These measures show how various linguistic laws are recovered in the results.
 Several kinds of initial graphs are shown throughout this section.
+\begin{redenv}
+  For each of the four models (\firstmodel{} with $\phi=0$ and $\phi\neq 0$, \secondmodel with $\phi=0$ and $\phi\neq 0$) studied, several initial conditions are shown.
+  The aim is to investigate how these particular initial conditions can influence the development of the model.
+\end{redenv}
 
-\begin{itemize}
-\item Random: The initial graph is a $G_{n,m,3/n/m}$ random graph.
-\item Single link: The initial graph contains a single link between a word and a meaning.
-\item One-to-one: The initial graph is a bijection connecting words and meanings one to one
-\item Complete: The initial graph is a complete bipartite graph where every word connects to every meaning and every meaning to every word.
-\end{itemize}
+\begin{redenv}
+  \begin{itemize}
+  \item Random: The initial graph is a \randgraph{n}{m}{\frac{3}{nm}} random graph.
+  \item Single link: The initial graph contains a single link between a word and a meaning. \redtxt{This initial condition is also a global minimum of the cost function for $\lambda \leq \frac{1}{2}$ (See Section \ref{TODO})}
+  \item One-to-one: The initial graph is a bijection connecting words and meanings one to one,
+    \redtxt{which is a minimum of the cost function when $\lambda \geq \frac{1}{2}$ (Section \ref{TODO})}
+  \item Complete: The initial graph is a complete bipartite graph where every word connects to every meaning and every meaning to every word. \redtxt{This is a maximum of the cost function.}
+  \end{itemize}
+\end{redenv}
 
 All results in this section perform two mutations on each iteration of the optimization algorithm, which stops with the \emph{weak} stop condition.
 See Section \ref{sec:methods_optimization} for more information on the optimization process.
@@ -139,28 +147,53 @@ See Section \ref{sec:methods_optimization} for more information on the optimizat
 \label{sec:results_new_graph}
 
 Here various graphs are plotted.
-These plots all correspond to graphs of size $n=m=60$ and $\phi=1$.
+They correspond to graphs of size $n=m=60$ and $\phi=1$.
+\begin{redenv}
+  The graph is initialized with some initial condition and then the optimization process is executed.
+  The presented graph is the result of this optimization process.
+\end{redenv}
 Unlinked meanings are also allowed in all graphs.
 It is interesting to see the different shapes the graph takes for different values of $\lambda$.
 
 For the first model, four graphs are shown.
 
-\begin{itemize}
-\item Random initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked}.
-\item Single link initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}.
-\item One-to-one initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}.
-\item Complete initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}.
-\end{itemize}
+\begin{redenv}
+  \begin{itemize}
+  \item Random initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked}.
+    For lower values of $\lambda$ a single word dominates, becoming linked to almost every meaning.
+    For greater values of $\lambda$ more words appear linked to other meanings.
+    This persists for $\lambda \leq 0.5$ is reached.
+    For $\lambda=1$ the graphs are composed of long chains of connected words and meanings.
+  \item Single link initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}.
+    A single link is maintained for $\lambda \leq 0.5$.
+    After that point, the graph evolves into an almost one-to-one configuration of links between words and meanings (some words or meanings may remain unlinked).
+  \item One-to-one initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}.
+    The graph evolves to a configuration where a single word dominates for $\lambda < 0.5$.
+    However, after $\lambda=0.5$ is reached, the graphs remain in a one-to-one configuration of links between words and meanings, which in this case becomes difficult to see as every word and every meaning are linked.
+  \item Complete initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}.
+    Behaves similarly to the random initial graph, with most meanings converging on one word while all other words and meanings remain unconnected for $\lambda \leq 0.5$.
+    Also for $\lambda=1$ it can be seen that the graphs are composed of long chains of connected words and meanings.
+  \end{itemize}
+\end{redenv}
 
 For the second model, the \emph{a priori} probability $\pi$ follows a uniform distribution.
 Four additional graphs are shown.
 
-\begin{itemize}
-\item Random initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}
-\item Single link initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}
-\item One-to-one initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}
-\item Complete initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}
-\end{itemize}
+\begin{redenv}
+  \begin{itemize}
+  \item Random initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}.
+    For $\lambda < 0.5$, a single word dominates and becomes connected to most meanings.
+    For $\lambda \geq 0.5$ less meanings are attached to the word.
+    When $\lambda$ has reached 1, it seems that a single meaning begins to dominate words, with most other words linked in a one-to-one configuration with the rest of meanings.
+  \item Single link initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}.
+    Similarly to the \firstmodel{}, the single link does not evolve and is maintained for $\lambda \leq 1$.
+    When $\lambda$ has reached 1 we see the same one-to-one configuration with one dominating meaning as in the random initial condition.
+  \item One-to-one initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}.
+    For $\lambda < 0.5$ a single word dominates, while for $\lambda \geq 0.5$ the initial condition fails to evolve into another configuration.
+  \item Complete initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}.
+    Presents almost the same behavior as the random initial graph, with a single dominating word at the start which weakens and, by the time $\lambda$ has reached 1, a single meaning seems to dominate instead.
+  \end{itemize}
+\end{redenv}
 
 \begin{figure}
   \centering
