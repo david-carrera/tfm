@@ -15,6 +15,7 @@
 \usepackage{booktabs}
 \usepackage{tcolorbox}
 \usepackage{adjustbox}
+\usepackage{datetime}
 
 \tcbuselibrary{theorems}
 
@@ -28,6 +29,10 @@
 \definecolor{TableLightRed}{HTML}{ffd9d9}
 
 \newcolumntype{C}[1]{ >{\centering\arraybackslash} m{#1} }
+
+\newdateformat{coverdatefmt}{%
+  \shortdayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR} \ordinaldate{\THEDAY} \monthname[\THEMONTH] \THEYEAR
+}
 
 \input{macros}
 
