@@ -1,8 +1,6 @@
 \chapter{Methods}
 \label{cha:methods}
 
-\redtxt{Pendent: parlar sobre theil sen ???}
-
 This chapter centers on the implementation of the models defined in Chapter \ref{cha:model} and the optimization method outlined in Section \ref{sec:introduction_model_optimization}.
 Section \ref{sec:methods_model-implementation} focuses on the implementation of the models in a \CC{} program, including a class hierarchy diagram, several important algorithms, various methods used to avoid floating point error and the different distributions of $\pi$ (see Section \ref{sec:model_math_second-model}) that were implemented.
 Section \ref{sec:methods_optimization} deals with the optimization algorithm, how it changes for the static or dynamic cases and several optimizations that allow for faster runtime and more precise results.
@@ -185,6 +183,33 @@ Other functionality less related with the implementation of the model is also te
 
 The last test is running the program for relatively small values of $n$ and $m$ and all combinations of parameters, and exhaustively checking that both static and dynamic versions give identical output for the same seed.
 This test is used to ensure the correctness of the dynamic version.
+
+\section{\redtxt{Power law fitting (NOU)}}
+
+The data resulting from simulations has been fitted to a power law in order to compare it with various linguistic laws that also follow power laws.
+Several methods were considered for fitting the curve.
+
+One option is non linear regression.
+Simply fitting the data to the curve
+\begin{equation}
+  \label{eq:power-law-curve}
+  y=kx^a
+\end{equation}
+using any non linear regression method would give correct results.
+
+Another option is to notice that a power law is linear in the log-log scale.
+Starting from Equation \eqref{eq:power-law-curve} one can apply a logarithm to both sides, obtaining
+\begin{equation*}
+  \log y = k + a \log x.
+\end{equation*}
+Now $k$ and $a$ can be obtained with any linear regression method.
+
+A common method for linear regression is least squares.
+While this gives good results, in some cases outliers can skew the resulting line significantly.
+
+The method chosen to fit the data to a power law is the Theil-Sen estimator. \cite{Theil1950a}\cite{Sen1968a}
+This method determines the slope of the fitted line from the median of the slopes of every pair of sample points.
+This regression method is considered to be particularly robust \cite{Leroy1987a}, which was considered useful given the outliers in the data.
 
 \section{Numerical precision problems}
 \label{sec:methods_num-prec-probs}

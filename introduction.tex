@@ -103,19 +103,27 @@ The two models are further fleshed out in following sections.
 \begin{table}
   \centering
   \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{m{11.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em}}
-      \toprule
-      & Random Typing & Simon's Model & \Firstmodel{} ($\phi=0$) & \Secondmodel{} ($\phi=0$) & \Firstmodel{} ($\phi\neq 0$) & \Secondmodel{} ($\phi\neq 0$) \\
-      \midrule
-      \vspace{.75em} Rank-frequency law \vspace{.75em} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightRed} No & \cellcolor{TableLightGreen} Yes \\
-      \addlinespace[.25em]
-      \vspace{.75em} Meaning distribution law \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} \\
-      \addlinespace[.25em]
-      \vspace{.75em} Age-frequency law \vspace{.75em} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} \\
-      \addlinespace[.25em]
-      \vspace{.75em} Vocabulary learning bias \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \cite{Ferrer2017a} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} & Yes \cite{Carrera2021a} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} \\
-      \bottomrule
-    \end{tabular}
+    \begin{threeparttable}
+      \begin{tabular}{m{11.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em}}
+        \toprule
+        & Random Typing & Simon's Model & \Firstmodel{} ($\phi=0$) & \Secondmodel{} ($\phi=0$) & \Firstmodel{} ($\phi\neq 0$) & \Secondmodel{} ($\phi\neq 0$) \\
+        \midrule
+        \vspace{.75em} Rank-frequency law \vspace{.75em} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightRed} No & \cellcolor{TableLightGreen} Yes \\
+        \addlinespace[.25em]
+        \vspace{.75em} Meaning distribution law \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \tnote{1} \cellcolor{TableLightYellow} & Yes \tnote{2} \cellcolor{TableLightGreen} & No \cellcolor{TableLightRed} & Yes \tnote{1} \cellcolor{TableLightYellow} \\
+        \addlinespace[.25em]
+        \vspace{.75em} Age-frequency law \vspace{.75em} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} \\
+        \addlinespace[.25em]
+        \vspace{.75em} Vocabulary learning bias \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \tnote{3} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} & Yes \tnote{4} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} \\
+        \bottomrule
+      \end{tabular}
+      \begin{tablenotes}
+        \item [1] Only based on the correlation sign.
+        \item [2] See also \cite{Ferrer2016b} for mathematical reasoning.
+        \item [3] As shown in previous work. \cite{Ferrer2017a}
+        \item [4] As shown in an article \cite{Carrera2021a} derived from the work presented here.
+      \end{tablenotes}
+    \end{threeparttable}
   \end{adjustbox}
   \caption{
     A summary table comparing various models of human language.
