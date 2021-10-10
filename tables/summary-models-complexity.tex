@@ -1,0 +1,31 @@
+\begin{table}
+  \centering
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{lcc}
+      \toprule
+                             & \Firstmodel{} & \Secondmodel{} \\
+      \midrule
+      Static                 & $\bigO{M}$                    & $\bigO{M}$                   \\
+      Dynamic ($\phi\neq 0$) & $\bigO{\max(\mu_i,\omega_j)}$ & $\bigO{\max(\mu_i,|B_{i,j}|)}$ \\
+      Dynamic ($\phi=0$)     & $\bigO{1}$                   & $\bigO{\mu_i}$                \\
+      \bottomrule
+    \end{tabular}
+  \end{adjustbox}
+    \caption{
+      Summary table of the computational cost of each model and for particular cases.
+      The columns indicate which of the two models and the rows the specific case for that model (static, dynamic general case for any value of $\phi$ and dynamic for the specific case of $\phi=0$ where simplifications are possible).
+      The \firstmodel{} with $\phi=0$ originates from \cite{Ferrer2005a}.
+      The \secondmodel{} with $\phi=0$ from \cite{Ferrer2003a}.
+      The generalization where $\phi \neq 0$ for the family of models was introduced in \cite{Ferrer2018a} but without any simulation results.
+      Each cell shows the computational complexity of updating the value of the cost function after mutating $a_{ij}$ (that is, the word $s_i$ and the meaning $r_j$ become connected from being disconnected or become disconnected from being connected).
+      $M$ is the number of connections in the model.
+      $\mu_i$ is the number of neighbors of the word ($s_i$) and $\omega_j$ the number of neighbors of the meaning ($r_j$).
+      $|B_{i,j}|$ is the number of words that have at least one neighbor in common with $s_i$ including $r_j$.
+    }
+  \label{tab:summary-computational}
+\end{table}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../tfm"
+%%% End:

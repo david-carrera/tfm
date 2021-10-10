@@ -17,6 +17,7 @@
 \usepackage{adjustbox}
 \usepackage{datetime}
 \usepackage{threeparttable}
+\usepackage{siunitx}
 
 \tcbuselibrary{theorems}
 
@@ -34,6 +35,12 @@
 
 \newdateformat{coverdatefmt}{%
   \shortdayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR} \ordinaldate{\THEDAY} \monthname[\THEMONTH] \THEYEAR
+}
+
+\sisetup{
+  scientific-notation=engineering,
+  round-precision=4,
+  round-mode=figures
 }
 
 \input{macros}

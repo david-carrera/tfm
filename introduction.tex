@@ -100,41 +100,7 @@ However, Simon's model cannot explain the meaning distribution law as it does no
 Table \ref{tab:comparison_models} shows a comparison between the two models seen here (random typing and Simon's model) and the two models that this thesis presents.
 The two models are further fleshed out in following sections.
 
-\begin{table}
-  \centering
-  \begin{adjustbox}{max width=\textwidth}
-    \begin{threeparttable}
-      \begin{tabular}{m{11.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em} @{\hskip 1.5em} C{4em}}
-        \toprule
-        & Random Typing & Simon's Model & \Firstmodel{} ($\phi=0$) & \Secondmodel{} ($\phi=0$) & \Firstmodel{} ($\phi\neq 0$) & \Secondmodel{} ($\phi\neq 0$) \\
-        \midrule
-        \vspace{.75em} Rank-frequency law \vspace{.75em} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightGreen} Yes & \cellcolor{TableLightRed} No & \cellcolor{TableLightGreen} Yes \\
-        \addlinespace[.25em]
-        \vspace{.75em} Meaning distribution law \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \tnote{1} \cellcolor{TableLightYellow} & Yes \tnote{2} \cellcolor{TableLightGreen} & No \cellcolor{TableLightRed} & Yes \tnote{1} \cellcolor{TableLightYellow} \\
-        \addlinespace[.25em]
-        \vspace{.75em} Age-frequency law \vspace{.75em} & No \cellcolor{TableLightRed} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} & Yes \cellcolor{TableLightGreen} \\
-        \addlinespace[.25em]
-        \vspace{.75em} Vocabulary learning bias \vspace{.75em} & No \cellcolor{TableLightRed} & No \cellcolor{TableLightRed} & Yes \tnote{3} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} & Yes \tnote{4} \cellcolor{TableLightGreen} & Unknown \cellcolor{TableLightBlue} \\
-        \bottomrule
-      \end{tabular}
-      \begin{tablenotes}
-        \item [1] Only based on the correlation sign.
-        \item [2] See also \cite{Ferrer2016b} for mathematical reasoning.
-        \item [3] As shown in previous work. \cite{Ferrer2017a}
-        \item [4] As shown in an article \cite{Carrera2021a} derived from the work presented here.
-      \end{tablenotes}
-    \end{threeparttable}
-  \end{adjustbox}
-  \caption{
-    A summary table comparing various models of human language.
-    Columns show various models of human language: Random Typing and Simon's model.
-    Then the two models studied in this thesis: \firstm{} and \secondmodel{}.
-    The value of $\phi$ indicates whether it is the older version of the model (equivalent of the general model with $\phi=0$) or the more general version with $\phi \neq 0$.
-    Rows show various predictions that these models could or could not do.
-    The vocabulary learning bias was shown to be predicted with the \firstmodel{} and more recently with the more generic version of the model ($\phi \neq 0$)
-  }
-  \label{tab:comparison_models}
-\end{table}
+\input{tables/summary-models-laws}
 
 % models and optimization
 
@@ -386,32 +352,7 @@ Section \ref{sec:introduction_goals} goes over this in more detail while Section
 Table \ref{tab:summary-computational} shows the computational costs of the two models for specific cases that are implemented in the \CC{} open source program.
 The justification can be found in Section \ref{sec:model_compute}.
 
-\begin{table}
-  \centering
-  \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{lcc}
-      \toprule
-                             & \Firstmodel{} & \Secondmodel{} \\
-      \midrule
-      Static                 & $\bigO{M}$                    & $\bigO{M}$                   \\
-      Dynamic ($\phi\neq 0$) & $\bigO{\max(\mu_i,\omega_j)}$ & $\bigO{\max(\mu_i,|B_{i,j}|)}$ \\
-      Dynamic ($\phi=0$)     & $\bigO{1}$                   & $\bigO{\mu_i}$                \\
-      \bottomrule
-    \end{tabular}
-  \end{adjustbox}
-    \caption{
-      Summary table of the computational cost of each model and for particular cases.
-      The columns indicate which of the two models and the rows the specific case for that model (static, dynamic general case for any value of $\phi$ and dynamic for the specific case of $\phi=0$ where simplifications are possible).
-      The \firstmodel{} with $\phi=0$ originates from \cite{Ferrer2005a}.
-      The \secondmodel{} with $\phi=0$ from \cite{Ferrer2003a}.
-      The generalization where $\phi \neq 0$ for the family of models was introduced in \cite{Ferrer2018a} but without any simulation results.
-      Each cell shows the computational complexity of updating the value of the cost function after mutating $a_{ij}$ (that is, the word $s_i$ and the meaning $r_j$ become connected from being disconnected or become disconnected from being connected).
-      $M$ is the number of connections in the model.
-      $\mu_i$ is the number of neighbors of the word ($s_i$) and $\omega_j$ the number of neighbors of the meaning ($r_j$).
-      $|B_{i,j}|$ is the number of words that have at least one neighbor in common with $s_i$ including $r_j$.
-    }
-  \label{tab:summary-computational}
-\end{table}
+\input{tables/summary-models-complexity}
 
 \section{Goals}
 \label{sec:introduction_goals}
@@ -461,20 +402,35 @@ The results of this thesis should be completely open and easily reproducible.
 \section{Hypothesis}
 \label{sec:introduction_hypothesis}
 
-Several hypothesis are stated here.
-
-As seen in Chapter \ref{cha:introduction} and in \cite{Ferrer2018a}, there is a relationship between the exponents of the Zipf's word-frequency and meaning-frequency laws.
+As seen at the start of this chapter and in \cite{Ferrer2018a}, there is a relationship between the exponents of the Zipf's word-frequency and meaning-frequency laws.
 See Equation \eqref{eq:relation-exponents}.
 
 The main hypothesis of the thesis is that linguistic laws appear due to an optimization process in the association of words and meanings.
 In the model any effects of social interaction are neglected, which are the basis of other approaches to investigating human language such as the naming game. \cite{Baronchelli2006}
 
-One of the questions that we seek to answer is whether local minima exist, as argued in \cite{Ferrer2017a}.
+\redtxt{It is hypothesized that the initial condition of the optimization process plays an important role in determining the outcome.
+  We use several configurations that are known to be maxima or minima of the cost function in order to explore the effect that the initial condition of the graph has in the final outcome.}
 
-It is also hypothesized that when $\phi=1$ the models should be able to reproduce Zipf's meaning-frequency law, as seen in \cite{Ferrer2018a}.
+\redtxt{Linguistic laws have been previously recovered in the transition between a referentially useless system and an indexical reference system. \cite{Ferrer2003a}
+  A referentially useless system is one where referentially useless words dominate.
+  We define a word $s_i$ as referentially useless if it is connected to at least one meaning and for each meaning $r_j$ it is connected to,
+  \begin{equation}
+    \label{eq:referentially-useless-word}
+    p(s_i,r_j) \leq p(s_i) \cdot p(r_j).
+  \end{equation}
+  We hypothezise that referentially useless words are common during the referentially useless phase ($\lambda < 0.5$) and disappear for greater values of $\lambda$.
+}
 
-\redtxt{It is hypothesized that the initial condition of the optimization process plays an important role in determining the outcome of the optimization process.
-We use several configurations that are known to be maximums or minimums of the cost function in order to explore the effect that the initial condition of the graph has in the final outcomes.}
+\redtxt{Another interesting metric is the largest connected component of the graph.
+Almost connectedness of the word-meaning graph has been hypothesized to be the mathematical condition necessary for the appearance of syntax and symbolic reference. \cite{Ferrer2005b} \cite{Ferrer2006a}
+We hypothesize that a large proportion of the nodes of the graph will belong to the same connected component when language laws can be recovered.}
+
+The reason for introducing the $\phi$ parameter is that when $\phi=1$ the models should be able to reproduce Zipf's meaning-frequency law according to \cite{Ferrer2018a}.
+We expect to see that the meaning frequency law will appear then.
+
+Another of the questions that we seek to answer is whether local minima exist, as argued in previous papers \cite{Ferrer2017a}.
+The optimal graphs that show interesting results compatible with linguistic laws are not the global minima of the cost function.
+We hypothesize that we're arriving at some other local minima of the cost function where language laws can be recovered.
 
 \section{Outline of the thesis}
 \label{sec:introduction_outline}
