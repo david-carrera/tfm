@@ -1,0 +1,39 @@
+\begin{table}
+  \centering
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{r c @{\hskip 1.5em} c @{\hskip 1.5em} c}
+      \toprule
+      Metric & Single link & Complete & One to one \\
+      \midrule
+      $M$               & minimum \cellcolor{TableLightMarine} & maximum \cellcolor{TableLightRed} & \\
+      \addlinespace[.25em]
+      \multirow{2}*{$\Omega(\lambda)$} & minimum \cellcolor{TableLightMarine} & \cellcolor{TableLightRed} & minimum \cellcolor{TableLightMarine} \\
+                        & {\scriptsize(\lambdaZeroToHalf{})} \cellcolor{TableLightMarine} & \multirow{-2}*{maximum \cellcolor{TableLightRed}} & {\scriptsize(\lambdaHalfToOne{})} \cellcolor{TableLightMarine} \\
+      \addlinespace[.25em]
+      $H(S)$            & minimum \cellcolor{TableLightMarine} & maximum \cellcolor{TableLightRed} & maximum \cellcolor{TableLightRed} \\
+      \addlinespace[.25em]
+      $H(R)$            & minimum \cellcolor{TableLightMarine} & maximum \cellcolor{TableLightRed} & maximum \cellcolor{TableLightRed} \\
+      \addlinespace[.25em]
+      $I(S,R)$          & minimum \cellcolor{TableLightMarine} & minimum \cellcolor{TableLightMarine} & maximum \cellcolor{TableLightRed} \\
+      \bottomrule
+    \end{tabular}
+  \end{adjustbox}
+  \caption{
+    Values of several graph measures for the three extreme initial conditions studied.
+    $M$ is the number of links in the graph.
+    $\Omega(\lambda)$ is the value of the cost function.
+    $H(S)$ is the entropy of words.
+    $H(R)$ is the entropy of meanings.
+    $I(S,R)$ is the mutual information between words and meanings.
+    The reasoning behind the information theoretic measures is basic knowledge of information theory.
+    \cite{Cover1999}
+    The reasoning behind the values of $M$ is obvious.
+    The reasoning behind the value of the cost function is explained in Section \ref{sec:model_math_min-max-cost-fun}.
+  }
+  \label{tab:summary-initial-condition}
+\end{table}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../tfm"
+%%% End:

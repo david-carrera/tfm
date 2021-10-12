@@ -1,20 +1,24 @@
 \begin{table}
   \centering
   \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{llSS}
+    \begin{tabular}{llSS[scientific-notation=true]}
       \toprule
       plot & law & $a$ & $k$ \\ 
       \midrule
-      a & word frequency & 2.5318774 & 0.5389468 \\ 
-      b & \redtxt{word frequency (cumulative)} & 0.3865160 & 0.0022479 \\ 
-      c & meaning distribution & 0.4151170 & 4.7225143 \\ 
-      d & meaning frequency & -0.4419160 & 166.3791217 \\ 
-      f & \redtxt{meaning distribution} & 0.4151170 & 4.7225143 \\ 
-      g & \redtxt{meaning distribution (cumulative)} & 2.1132828 & 0.2250000 \\ 
+      a & word frequency ($\alpha$) & 2.5318774 & 0.5389468 \\ 
+      %b & \redtxt{word frequency (cumulative)} & 0.3865160 & 0.0022479 \\ 
+      b & meaning distribution ($\gamma$) & 0.4151170 & 4.7225143 \\ 
+      c & meaning frequency ($\delta$) & -0.4419160 & 166.3791217 \\ 
+      %f & \redtxt{meaning distribution} & 0.4151170 & 4.7225143 \\ 
+      %g & \redtxt{meaning distribution (cumulative)} & 2.1132828 & 0.2250000 \\ 
       \bottomrule
     \end{tabular}
   \end{adjustbox}
-  \caption{\redtxt{en vermell: cal mostrar?} captionTable showing the exponent and factor of the power laws fitted in Figure \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked}} 
+  \caption{Table showing the exponent and factor of the power laws fitted for the \secondmodel{} with $\phi=1$, disallowed unlinked meanings and a random bipartite graph as the initial condition (Figure \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked})
+    In this table, $\alpha \approx 2.5$, $\delta \approx 0.44$ and $\gamma \approx 0.4$.
+    The relationship between these values (Equation \eqref{eq:relation-exponents}) does not hold.
+    The exponent for $\alpha$ are not exactly the one expected, however both $\gamma$ and $\delta$ are very close to the expected $1/2$.
+  } 
   \label{tab:fitting_insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_disallowUnlinked}
 \end{table}
 

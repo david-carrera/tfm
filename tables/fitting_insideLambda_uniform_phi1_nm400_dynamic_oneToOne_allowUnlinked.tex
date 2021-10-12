@@ -1,20 +1,23 @@
 \begin{table}
   \centering
   \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{llSS}
+    \begin{tabular}{llSS[scientific-notation=true]}
       \toprule
       plot & law & $a$ & $k$ \\ 
       \midrule
-      a & word frequency & 3.8860954 & 2.27097983 \\ 
-      b & \redtxt{word frequency (cumulative)} & 0.2671876 & 0.00303420 \\ 
-      c & meaning distribution & 3.8007579 & 632.05935245 \\ 
-      d & meaning frequency & -0.9804221 & 293.30509675 \\ 
-      f & \redtxt{meaning distribution} & 3.8007579 & 632.05935245 \\ 
-      g & \redtxt{meaning distribution (cumulative)} & 0.2924813 & 0.01500000 \\ 
+      a & word frequency ($\alpha$) & 3.8860954 & 2.27097983 \\ 
+      %b & \redtxt{word frequency (cumulative)} & 0.2671876 & 0.00303420 \\ 
+      b & meaning distribution ($\gamma$) & 3.8007579 & 632.05935245 \\ 
+      c & meaning frequency ($\delta$) & -0.9804221 & 293.30509675 \\ 
+      %f & \redtxt{meaning distribution} & 3.8007579 & 632.05935245 \\ 
+      %g & \redtxt{meaning distribution (cumulative)} & 0.2924813 & 0.01500000 \\ 
       \bottomrule
     \end{tabular}
   \end{adjustbox}
-  \caption{\redtxt{en vermell: cal mostrar?} Table showing the exponent and factor of the power laws fitted in Figure \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}} 
+  \caption{Table showing the exponent and factor of the power laws fitted for the \secondmodel{} with $\phi=1$ and a one to one configuration as the initial condition (Figure \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked})
+    In this table, $\alpha \approx 3.9$, $\delta \approx 1$ and $\gamma \approx 3.9$.
+    The relationship between these values (Equation \eqref{eq:relation-exponents}) holds but the exponents are not exactly the ones expected.
+  } 
   \label{tab:fitting_insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
 \end{table}
 

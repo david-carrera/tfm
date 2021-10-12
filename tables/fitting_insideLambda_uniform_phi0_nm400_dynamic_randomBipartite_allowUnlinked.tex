@@ -1,20 +1,24 @@
 \begin{table}
   \centering
   \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{llSS}
+    \begin{tabular}{llSS[scientific-notation=true]}
       \toprule
       plot & law & $a$ & $k$ \\ 
       \midrule
-      a & word frequency & 2.6176507 & 0.6341345 \\ 
-      b & \redtxt{word frequency (cumulative)} & 0.3812498 & 0.0021506 \\ 
-      c & meaning distribution & 1.1623482 & 37.4616016 \\ 
-      d & meaning frequency & -0.5600378 & 158.5629462 \\ 
-      f & \redtxt{meaning distribution} & 1.1623482 & 37.4616016 \\ 
-      g & \redtxt{meaning distribution (cumulative)} & 0.3954554 & 0.0250000 \\ 
+      a & word frequency ($\alpha$) & 2.6176507 & 0.6341345 \\ 
+      %b & \redtxt{word frequency (cumulative)} & 0.3812498 & 0.0021506 \\ 
+      b & meaning distribution ($\gamma$) & 1.1623482 & 37.4616016 \\ 
+      c & meaning frequency ($\delta$) & -0.5600378 & 158.5629462 \\ 
+      %f & \redtxt{meaning distribution} & 1.1623482 & 37.4616016 \\ 
+      %g & \redtxt{meaning distribution (cumulative)} & 0.3954554 & 0.0250000 \\ 
       \bottomrule
     \end{tabular}
   \end{adjustbox}    
-  \caption{\redtxt{en vermell: cal mostrar?} Table showing the exponent and factor of the power laws fitted in Figure \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}} 
+  \caption{Table showing the exponent and factor of the power laws fitted for the \secondmodel{} with $\phi=0$ and a random bipartite graph as the initial condition (Figure \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked})
+    In this table, $\alpha \approx 2.6$, $\delta \approx 0.56$ and $\gamma \approx 1.2$.
+    The relationship between these values (Equation \eqref{eq:relation-exponents}) holds approximately.
+    The exponents for $\alpha$ and $\gamma$ are not exactly the ones expected but the exponent for $\delta$ is very close.
+  } 
   \label{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{table}
 

@@ -7,11 +7,11 @@ Human languages obey many regularities which have been studied and formalized in
 One of the most well known such laws is Zipf's law, which states that
 \begin{equation}
   \label{eq:zipf_law}
-  p(i) \sim i^{-\alpha}
+  f \propto i^{-\alpha}
 \end{equation}
-where $i$ is a word's rank.
+where $f$ is a word's frequency, and $i$ its rank.
 Generally, $\alpha \approx 1$. \cite{Zipf1949a}
-This is the case not only for English but for every tested human language. \cite{Mehri2017}
+This is the case not only for English but for every tested human language. \cite{Mehri2017a}
 Figure \ref{fig:zipf_languages_wiki} shows this relationship for the first 10 million words of Wikipedia dumps in 30 different languages.
 This relationship also holds for artifical languages like Esperanto.
 There have been many efforts to understand why this and other empiric laws occur consistently in human language.
@@ -41,7 +41,7 @@ As an example, if elephants are rare but dogs are plentiful, the meaning ``eleph
 % other language laws and models that explain them
 
 In previous work \cite{Ferrer2003a} \cite{Ferrer2005a} Zipf's law of word frequencies has been predicted by the two models that are the focus of this thesis.
-Just a few paragraphs ago this document opened with its formulation in Equation \eqref{eq:zipf_law}, the relationship between a word's frequency and frequency rank follows a power law.
+Its formulation is Equation \eqref{eq:zipf_law}, the relationship between a word's frequency and frequency rank follows a power law.
 But there exist other models that can explain language laws.
 A popular explanation for Zipf's law of word frequencies is the random typing model.\cite{Miller1963a}
 As a short summary, this model states that if characters are typed in sequence with a random chance of typing in a word separator then Zipf's law is reproduced.
@@ -51,13 +51,15 @@ Random typing is often offered as a null hypothesis to the theory that Zipf's la
 But Zipf's law for word frequencies is not the only linguistic law.
 Zipf's meaning frequency law is not as popular as the word frequency law.
 It states that the relationship between the number of meanings of a word, $\mu$, and its frequency, $f$, is \cite{Zipf1949a}
-\begin{equation*}
+\begin{equation}
+  \label{eq:meaning-frequency-law}
   \mu \propto f^\delta.
-\end{equation*}
+\end{equation}
 Zipf derived the meaning-frequency law from his law of word-frequency, Equation \eqref{eq:zipf_law} and from his law of meaning distribution,
-\begin{equation*}
+\begin{equation}
+  \label{eq:meaning-distribution-law}
   \mu \propto i^{-\gamma}
-\end{equation*}
+\end{equation}
 where $i$ is the rank of the word.
 
 As with the constant $\alpha$, $\delta$ and $\gamma$ can be estimated using a regression method from data.
@@ -66,7 +68,7 @@ Zipf inferred $\delta \approx 1/2$ from $\gamma \approx 1/2$ and $\alpha = 1$.
 Later on, others \cite{Ferrer2016a} have shown the relationship
 \begin{equation}
   \label{eq:relation-exponents}
-  \delta = \frac{\gamma}{\alpha}.
+  \delta = \frac{\gamma}{\alpha}
 \end{equation}
 between these exponents.
 
@@ -84,7 +86,7 @@ This was tested empirically, as seen in Figure \ref{fig:zipf_word_ages}.
   \caption{
     Age of a word as a function of its frequency from Zipf's famous book. \cite{Zipf1949a}
     The right side of the $y$ axis indicates the historical period or century when a word was introduced and the left side the percentage of words.
-    Each of the colors and patterns of the columns in the graph correspond with a time period.
+    Each of the patterns of the columns in the graph correspond with a time period.
     As indicated in the $x$ axis, the first five columns refer to the most common words by rank, while the next columns refer to the words with the specified frequency of occurrence.
   }
   \label{fig:zipf_word_ages}
@@ -208,9 +210,10 @@ where $p(x,y)$ is the joint probability of the elements $x$ and $y$.
 
 Any other information theoretic measures concerning two sets can be obtained from $H(X)$, $H(Y)$ and $H(X,Y)$.
 Mutual information
-\begin{equation*}
+\begin{equation}
+  \label{eq:definition-mutual-information}
   I(X,Y) = H(X) + H(Y) - H(X,Y),
-\end{equation*}
+\end{equation}
 and conditional entropies
 \begin{equation*}
   H(X|Y) = H(X,Y) - H(X)
@@ -411,6 +414,12 @@ In the model any effects of social interaction are neglected, which are the basi
 \redtxt{It is hypothesized that the initial condition of the optimization process plays an important role in determining the outcome.
   We use several configurations that are known to be maxima or minima of the cost function in order to explore the effect that the initial condition of the graph has in the final outcome.}
 
+\redtxt{The four initial conditions explored are a random bipartite graph, a single link between one word and one meaning, a one to one bijection between words and meanings and a complete bipartite graph.
+They have been chosen since they result in extreme values of some interesting metrics of the graph.
+The four initial conditions used are summarized in Table \ref{tab:summary-initial-condition} as well as their relationship to some important metrics of the graph.}
+
+\input{tables/summary-initial-condition}
+
 \redtxt{Linguistic laws have been previously recovered in the transition between a referentially useless system and an indexical reference system. \cite{Ferrer2003a}
   A referentially useless system is one where referentially useless words dominate.
   We define a word $s_i$ as referentially useless if it is connected to at least one meaning and for each meaning $r_j$ it is connected to,
@@ -418,7 +427,7 @@ In the model any effects of social interaction are neglected, which are the basi
     \label{eq:referentially-useless-word}
     p(s_i,r_j) \leq p(s_i) \cdot p(r_j).
   \end{equation}
-  We hypothezise that referentially useless words are common during the referentially useless phase ($\lambda < 0.5$) and disappear for greater values of $\lambda$.
+  We hypothezise that referentially useless words are common during the referentially useless phase (\lambdaZeroToHalf{}) and disappear for greater values of $\lambda$.
 }
 
 \redtxt{Another interesting metric is the largest connected component of the graph.

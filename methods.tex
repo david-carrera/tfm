@@ -6,7 +6,8 @@ Section \ref{sec:methods_model-implementation} focuses on the implementation of 
 Section \ref{sec:methods_optimization} deals with the optimization algorithm, how it changes for the static or dynamic cases and several optimizations that allow for faster runtime and more precise results.
 On Section \ref{sec:methods_parallelization} the approach taken to parallelization is outlined and justified.
 Section \ref{sec:methods_verification} deals with the verification of the code.
-Finally, Section \ref{sec:methods_num-prec-probs} explains the main challenges related to numerical precision while Section \ref{sec:methods_other-probs} covers other problems related to the implementation.
+Section \ref{sec:methods_fitting} enters into detail about the method used to fit the power laws seen in the results.
+Section \ref{sec:methods_num-prec-probs} explains the main challenges related to numerical precision while Section \ref{sec:methods_other-probs} covers other problems related to the implementation.
 
 \section{Model implementation}
 \label{sec:methods_model-implementation}
@@ -24,7 +25,10 @@ The diagram in Figure \ref{fig:class-diagram} shows the classes implementing the
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{class_diagram}
-  \caption{Diagram showing the hierarchy of the classes implementing the two models in their dynamic and static variants in the \CC{} program.}
+  \caption{
+    Diagram showing the hierarchy of the classes implementing the two models in their dynamic and static variants in the \CC{} program.
+    The \texttt{FirstModel} refers to the \firstmodel{} while the \texttt{SecondModel} refers to the \secondmodel{}.
+  }
   \label{fig:class-diagram}
 \end{figure}
 
@@ -185,6 +189,7 @@ The last test is running the program for relatively small values of $n$ and $m$ 
 This test is used to ensure the correctness of the dynamic version.
 
 \section{\redtxt{Power law fitting (NOU)}}
+\label{sec:methods_fitting}
 
 The data resulting from simulations has been fitted to a power law in order to compare it with various linguistic laws that also follow power laws.
 Several methods were considered for fitting the curve.
@@ -200,9 +205,9 @@ using any non linear regression method would give correct results.
 Another option is to notice that a power law is linear in the log-log scale.
 Starting from Equation \eqref{eq:power-law-curve} one can apply a logarithm to both sides, obtaining
 \begin{equation*}
-  \log y = k + a \log x.
+  \log y = \log k  + a \log x .
 \end{equation*}
-Now $k$ and $a$ can be obtained with any linear regression method.
+Now $\log k$ and $a$ can be obtained with any linear regression method, $k$ easily recovered with $k=e^{\log k}$
 
 A common method for linear regression is least squares.
 While this gives good results, in some cases outliers can skew the resulting line significantly.

@@ -1,8 +1,6 @@
 \chapter{Model}
 \label{cha:model}
 
-\redtxt{TODO: reasoning of global optimum that is used to stop early}
-
 This chapter covers the details about the two models previously introduced in Chapter \ref{cha:introduction}, where a high level introduction to both the \firstmodel{} and the \secondmodel{} was given.
 It follows a top down approach.
 General concepts from both types of model are outlined first and the specific details from each model are given afterwards.
@@ -535,7 +533,7 @@ For verification purposes (see Section \ref{sec:methods_verification}), the valu
 \begin{itemize}
 \item For a single edge, $H(S), H(R), H(S,R) = 0$.
 \item For a complete graph, $H(S) = \log n, H(R) = H_\pi(R), H(S,R) = H_\pi(R) + \log n$
-\item For a one-to-one mapping of signals into meanings with $n=m$, $H(S), H(R), H(S,R) = H_\pi(R)$
+\item For a one-to-one mapping of signals into meanings with $n=m$,\\$H(S) = H(R) = H(S,R) = H_\pi(R)$
 \end{itemize}
 
 \paragraph{Invariants} These invariants follow from basic information theory.
@@ -547,28 +545,69 @@ For verification purposes (see Section \ref{sec:methods_verification}), the valu
 \item $0 \leq H(S,R) \leq H_\pi(R) + \log n$
 \end{itemize}
 
-\subsection{Lower bound of the cost function}
+\subsection{Upper and lower bounds of the cost function}
+\label{sec:model_math_lower-bound-cost-fun}
 
-Upper and lower bounds for the cost function $\Omega$ can be derived from the definition of Omega (Equation \eqref{eq:definition-Omega}) and the bound \cite{Cover1999}
-\begin{equation*}
+Upper and lower bounds for the cost function $\Omega$ can be derived from the definition of $\Omega$ (Equation \eqref{eq:definition-Omega}) and the bound \cite{Cover1999}
+\begin{equation}
+  \label{eq:bounds-mutual-information}
   0 \leq I(S,R) \leq \min(H(S),H(R)),
-\end{equation*}
+\end{equation}
 obtaining
 \begin{align*}
   \Omega(\lambda) &\geq -\lambda \min(H(S),H(R)) + (1-\lambda) H(S) \\
-                  &\geq (1-2\lambda)H(S)
+                  &\geq (1-2\lambda)H(S) \\
+  \Omega(\lambda) &\leq (1-\lambda)H(S)
 \end{align*}
 Knowing the bounds for $H(S)$ (Section \ref{sec:model_math_first-model_invariants}) we reach that, in general
 \begin{equation}
   \label{eq:lower-bound-Omega}
   \Omega(\lambda) \geq
   \begin{cases}
-    0                           & \text{if}~\lambda \leq 1/2 \\
-    (1-2\lambda) \log \min(n,m) & \text{if}~\lambda \geq 1/2.
+    0                           & \text{if}~0 \leq \lambda \leq 1/2 \\
+    (1-2\lambda) \log \min(n,m) & \text{if}~1/2 \leq \lambda \leq 1.
   \end{cases}
 \end{equation}
+and
+\begin{equation}
+  \label{eq:upper-bound-Omega}
+  \Omega(\lambda) \geq (1 - \lambda) \log n
+\end{equation}
 
-\redtxt{TODO: afegir el analisis que hi hagi de single link, complete i one to one initial conditions}
+\subsection{\redtxt{Extreme values of the cost function (NOU)}}
+\label{sec:model_math_min-max-cost-fun}
+
+There are several configurations of the bipartite graph that lead to extreme values of the cost function: either minimal or maximal values.
+A single link configuration where one particular word is connected to one particular meaning without any other connections results in a minimum value for the cost function when \lambdaZeroToHalf{}.
+A one to one configuration where the graph is a bijection of words and meanings (if $n \neq m$ then only the first $\min(n,m)$ pairs are connected) also results in a minimal value for the cost function in this case when \lambdaHalfToOne{}.
+A complete bipartite graph, where every word is linked to every meaning and every meaning to every word results in a maximal value of the cost function.
+Table \ref{tab:summary-initial-condition} summarizes theses three configurations and their various values for interesting measures of the graph.
+These three cases are now shown in more detail.
+
+\subsubsection{Single link configuration}
+
+A single link configuration is a minimum of the cost function when \lambdaZeroToHalf{}.
+
+In the case of a single link configuration, $H(S)=0$ \cite{Cover1999} and $I(S,R)=0$ (Equation \eqref{eq:bounds-mutual-information}).
+Recalling the definition of the cost function $\Omega$ (Equation \eqref{eq:definition-Omega}) it's clear that $\Omega(\lambda)=0$ which is its lower bound when \lambdaZeroToHalf{} (Equation \eqref{eq:lower-bound-Omega}).
+
+\subsubsection{One to one configuration}
+
+A one to one configuration is a minimum of the cost function when \lambdaZeroToHalf{}, with only the first $\min(n,m)$ nodes connected.
+
+In the case of a one to one configuration, $H(S)=H(R)=I(S,R)=\log\min(n,m)$ \cite{Cover1999}.
+Applying the definition of $\Omega$ (Equation \eqref{eq:definition-Omega}) it is obtained that $\Omega=(1-2\lambda) \log \min(n,m)$, which is its lower bound when \lambdaHalfToOne{} (Equation \eqref{eq:lower-bound-Omega}).
+
+\subsubsection{Complete graph configuration}
+
+A complete bipartite graph is a maximum of the cost function.
+
+In the case of a complete bipartite graph, $H(S)=H(S|R)=\log n$ \cite{Cover1999} and,
+\begin{equation*}
+  I(S,R) = H(S) - H(S|R) = 0,
+\end{equation*}
+an equality also found in \cite{Cover1999}.
+Applying the definition of $\Omega$ (Equation \eqref{eq:definition-Omega}) it is obtained that $\Omega=(1-\lambda) \log n$, which is its upper bound as seen in Equation \eqref{eq:upper-bound-Omega}.
 
 \section{Computational aspect}
 \label{sec:model_compute}

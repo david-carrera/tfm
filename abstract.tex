@@ -6,21 +6,23 @@
   As part of the scientific method, this theory should be able to make novel predictions.
   This thesis is based on a family of models of human language (\cite{Ferrer2007a} and generalized in \cite{Ferrer2018a}).
   These models have shown to reproduce language laws, such as Zipf's law.
-  They have also been used to make predictions, such as predicting the biases present in child word learning.
+  They have also been used to make predictions, such as the biases present in child word learning.
   This family of models is based on the minimization of a cost function.
   The cost function is defined using a combination of information theoretic measures on a bipartite graph of associations between words (or, more generally, forms) and meanings (more generally, counterparts).
   It balances between the entropy of words and the mutual information of words and meanings.
   Entropy is a measure of surprisal, the cost of the speaker, and should be minimized.
   Mutual information is the amount of information obtained from a meaning while observing a word, the cost of the listener, and it should be maximized.
   The model is then optimized with a Markov Chain Monte Carlo method at zero temperature.
-  This thesis is centered on two models belonging to this family, the \firstmodel{} and the \secondmodel{}.
+  This thesis is centered on two models belonging to this family, the ``\firstmodel{}'' and the ``\secondmodel{}''.
   This thesis makes several contributions in relation to these models.
   The mathematical equations defining them are derived, including dynamic equations which reduce the computational complexity of the optimization process.
   In addition, several techniques are introduced which aim to reduce the significant problem of numerical error due to floating point arithmetic without compromising efficiency.
   Another contribution is the replication of results obtained by previous models based on this family which had been published originally with replicability issues.
-  The models are simulated and the linguistic laws they can predict and to which degree are examined.
+  The models go through an optimization process.
+  After this process the linguistic laws they can predict are examined, as well as to which degree they can be predicted.
   A key contribution is that these models are able predict the relationship between the age of a word and its frequency.
   This prediction is robust and appears in all cases with any combinations of parameters.
+  The effects of several initial conditions in the optimization process is also studied.
   Finally, a tool has been developed and released as open source with the aim that others can easily replicate these results and investigate other properties of this family of models.
 \end{abstract}
 

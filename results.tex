@@ -27,15 +27,15 @@ Section \ref{sec:results_verification_second} replicates the results from \cite{
 \label{sec:results_verification_first}
 
 \begin{figure}
-  \addjankysubfigure{a)}{\includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{fig2_2005_old}}
-  \addjankysubfigure{b)}{\includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{figure2_article_EPJ_B_2005}}
+  \addjankysubfigure{(a)}{\includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{fig2_2005_old}}
+  \addjankysubfigure{(b)}{\includegraphics[width=\textwidth,height=.35\textheight,keepaspectratio]{figure2_article_EPJ_B_2005}}
   \caption{
     The mutual information $I(S,R)$ is in the $y$ axis and the $\lambda$ parameter on the $x$ axis.
     Graphs of different sizes are shown, $n=m=100$, $n=m=200$, $n=m=300$, $n=m=400$.
     Averages over 30 realizations.
     $\phi=0$, the initial graph is \randgraph{n}{m}{\frac{1}{n}}, each iteration of the optimization algorithm performs 2 mutations on the graph, the weak stop condition is used to stop the optimization process, unlinked objects are allowed.\\
-    Subfigure a corresponds with Figure 2 from \cite{Ferrer2005a}.\\
-    Subfigure b is the recreation of that same figure.
+    Subfigure (a) corresponds with Figure 2 from \cite{Ferrer2005a}.\\
+    Subfigure (b) is the recreation of that same figure.
   }
   \label{fig:fig2_2005}
 \end{figure}
@@ -45,7 +45,7 @@ Section \ref{sec:results_verification_second} replicates the results from \cite{
   \addjankysubfigure{b)}{\includegraphics[width=\textwidth,height=.3\textheight,keepaspectratio]{figure3_article_EPJ_B_2005}}
   \caption{
     $P(i)$, the probability of the $i$th most frequent signal, obtained from minimum energy configurations for systems of sizes $n=m=100$ (A), $n=m=200$ (B), $n=m=300$ (C), $n=m=400$ (D).
-    Four series are shown in each plot, $\lambda=0.49$ (circles), $\lambda=\lambda^*$ (squares) and $\lambda=0.5$ (diamonds) and the ideal curve for $\alpha^*$.
+    Four series are shown in each plot, $\lambda=0.49$ (circles), $\lambda=\lambda^*$ (squares) and $\lambda=1/2$ (diamonds) and the ideal curve for $\alpha^*$.
     Averages over 30 realizations.
     When $\lambda=\lambda^*$, $\alpha^* = 1.54$ for $n=m=100$, $\alpha^* = 1.51$ for $n=m=200$, $\alpha^* = 1.5$ for $n=m=300$ and $\alpha^* = 1.49$ for $n=m=400$.
     It was chosen that $\lambda^* = 0.4986$ for $n=m=100$, $\lambda^* = 0.4987$ for $n=m=200$, $\lambda^* = 0.4987$ for $n=m=300$, and $\lambda^* = 0.4986$ for $n=m=400$.
@@ -133,9 +133,9 @@ Several kinds of initial graphs are shown throughout this section.
 \begin{redenv}
   \begin{itemize}
   \item Random: The initial graph is a \randgraph{n}{m}{\frac{3}{nm}} random graph.
-  \item Single link: The initial graph contains a single link between a word and a meaning. \redtxt{This initial condition is also a global minimum of the cost function for $\lambda \leq \frac{1}{2}$ (See Section \ref{TODO})}
+  \item Single link: The initial graph contains a single link between a word and a meaning. \redtxt{This initial condition is also a minimum of the cost function for $\lambda \leq 1/2$ (See Section \ref{sec:model_math_min-max-cost-fun})}
   \item One-to-one: The initial graph is a bijection connecting words and meanings one to one,
-    \redtxt{which is a minimum of the cost function when $\lambda \geq \frac{1}{2}$ (Section \ref{TODO})}
+    \redtxt{which is a minimum of the cost function when $\lambda \geq \frac{1}{2}$ (Section \ref{sec:model_math_min-max-cost-fun})}
   \item Complete: The initial graph is a complete bipartite graph where every word connects to every meaning and every meaning to every word. \redtxt{This is a maximum of the cost function.}
   \end{itemize}
 \end{redenv}
@@ -162,16 +162,16 @@ For the first model, four graphs are shown.
   \item Random initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked}.
     For lower values of $\lambda$ a single word dominates, becoming linked to almost every meaning.
     For greater values of $\lambda$ more words appear linked to other meanings.
-    This persists for $\lambda \leq 0.5$ is reached.
+    This persists for \lambdaZeroToHalf{} is reached.
     For $\lambda=1$ the graphs are composed of long chains of connected words and meanings.
   \item Single link initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}.
-    A single link is maintained for $\lambda \leq 0.5$.
+    A single link is maintained for \lambdaZeroToHalf{}.
     After that point, the graph evolves into an almost one-to-one configuration of links between words and meanings (some words or meanings may remain unlinked).
   \item One-to-one initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}.
-    The graph evolves to a configuration where a single word dominates for $\lambda < 0.5$.
-    However, after $\lambda=0.5$ is reached, the graphs remain in a one-to-one configuration of links between words and meanings, which in this case becomes difficult to see as every word and every meaning are linked.
+    The graph evolves to a configuration where a single word dominates for $0 \leq \lambda < 1/2$.
+    However, after $\lambda=1/2$ is reached, the graphs remain in a one-to-one configuration of links between words and meanings, which in this case becomes difficult to see as every word and every meaning are linked.
   \item Complete initial graph, Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}.
-    Behaves similarly to the random initial graph, with most meanings converging on one word while all other words and meanings remain unconnected for $\lambda \leq 0.5$.
+    Behaves similarly to the random initial graph, with most meanings converging on one word while all other words and meanings remain unconnected for \lambdaZeroToHalf{}.
     Also for $\lambda=1$ it can be seen that the graphs are composed of long chains of connected words and meanings.
   \end{itemize}
 \end{redenv}
@@ -182,14 +182,14 @@ Four additional graphs are shown.
 \begin{redenv}
   \begin{itemize}
   \item Random initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}.
-    For $\lambda < 0.5$, a single word dominates and becomes connected to most meanings.
-    For $\lambda \geq 0.5$ less meanings are attached to the word.
+    For \lambdaZeroToHalf{}, a single word dominates and becomes connected to most meanings.
+    For \lambdaHalfToOne{} less meanings are attached to the word.
     When $\lambda$ has reached 1, it seems that a single meaning begins to dominate words, with most other words linked in a one-to-one configuration with the rest of meanings.
   \item Single link initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}.
     Similarly to the \firstmodel{}, the single link does not evolve and is maintained for $\lambda \leq 1$.
     When $\lambda$ has reached 1 we see the same one-to-one configuration with one dominating meaning as in the random initial condition.
   \item One-to-one initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}.
-    For $\lambda < 0.5$ a single word dominates, while for $\lambda \geq 0.5$ the initial condition fails to evolve into another configuration.
+    For \lambdaZeroToHalf{} a single word dominates, while for \lambdaHalfToOne{} the initial condition fails to evolve into another configuration.
   \item Complete initial graph, Figure \ref{fig:graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}.
     Presents almost the same behavior as the random initial graph, with a single dominating word at the start which weakens and, by the time $\lambda$ has reached 1, a single meaning seems to dominate instead.
   \end{itemize}
@@ -197,10 +197,10 @@ Four additional graphs are shown.
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked}
   \caption{
     Samples of optimized graphs for various values of $\lambda$.
-    The graphs correspond to $\lambda=0$ (a, b), $\lambda=0.49$ (c,d), $\lambda=0.5$ (e,f) and $\lambda=1$ (g,h).
+    The graphs correspond to $\lambda=0$ (a, b), $\lambda=0.49$ (c, d), $\lambda=1/2$ (e, f) and $\lambda=1$ (g, h).
     The white circles represent words while the black ones represent meanings.
     These graphs follow the \firstmodel{} with $\phi=1$.
     The initial condition is a random graph.
@@ -210,49 +210,49 @@ Four additional graphs are shown.
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}
   \caption{Same as Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked} but the initial condition is a single link.}
   \label{fig:graphVisualization_firstModel_phi1_nm60_static_singleLink_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}
   \caption{Same as Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked} but the initial condition is a one to one configuration.}
   \label{fig:graphVisualization_firstModel_phi1_nm60_static_oneToOne_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}
   \caption{Same as Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked} but the initial condition is a complete bipartite graph.}
   \label{fig:graphVisualization_firstModel_phi1_nm60_static_complete_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}
   \caption{Same as Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked} but it follows the \secondmodel{}.}
   \label{fig:graphVisualization_uniform_phi1_nm60_static_randomBipartite_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}
   \caption{Same as Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked} but it follows the \secondmodel{} and the initial condition is a single link.}
   \label{fig:graphVisualization_uniform_phi1_nm60_static_singleLink_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}
   \caption{Same as Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked} but it follows the \secondmodel{} and the initial condition is a one to one configuration.}
   \label{fig:graphVisualization_uniform_phi1_nm60_static_oneToOne_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}
+  \includegraphics[height=0.9\textheight,width=\textwidth,keepaspectratio]{graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}
   \caption{Same as Figure \ref{fig:graphVisualization_firstModel_phi1_nm60_static_randomBipartite_allowUnlinked} but it follows the \secondmodel{} and the initial condition is a complete bipartite graph.}
   \label{fig:graphVisualization_uniform_phi1_nm60_static_complete_allowUnlinked}
 \end{figure}
@@ -268,12 +268,26 @@ Most experiments consist of 100 realizations.
 Some had to be reduced to 20 realizations due to the total running time and are marked as such.
 Results for $\phi=0$ and $\phi=1$ are shown.
 Three different initial conditions are tested: random bipartite graph, single link and one-to-one.
+The complete bipartite graph is not tested as the algorithm runs much slower for that initial condition.
 For the \secondmodel{} only results for $\pi$ following a uniform probability distribution are shown.
 The chosen $\lambda$ value for which curves are fitted is the one that's qualitatively closer to a power law.
 
+The statistical measures for the single link initial condition are never shown, as it fails to evolve for \lambdaZeroToHalf{}.
+In Section \ref{sec:model_math_min-max-cost-fun} it is shown that the single link configuration is a minimum of the cost function.
+This indicates that it is also a fixed point of the simulation for \lambdaZeroToHalf{}.
+Additionally, it is easy to see from both the figures presented here and those in Section \ref{sec:results_new_graph} that the one to one configuration is also a fixed point of the simulation for \lambdaHalfToOne{}.
+In Section \ref{sec:model_math_min-max-cost-fun} it was shown how the one to one configuration was also a minimum of the cost function in that range of $\lambda$.
+
 For the \firstmodel{} with $\phi=0$, Figures \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}, \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
 They correspond to several distinct initial conditions.
-\redtxt{TODO: descriure figures, phase transition at 0.5, disturbances just before 0.5}
+A phase transition can be seen at $\lambda \approx 1/2$ for all measures.
+The area before this transition clearly minimizes $I(S,R)$, $H(S,R)$, $H(S)$, $H(R)$ and $H(S|R)$, and maximizes $H(R|S)$.
+The area after the transition reverses this, maximizing $I(S,R)$, $H(S,R)$, $H(S)$, $H(R)$ and $H(S|R)$ and minimizing $H(R|S)$.
+The proportion of the largest connected component behaves differently depending on the initial condition.
+The proportion of referentially useless words remains at 0 for all except the single link initial condition.
+The values of $\lambda$ closer to 0 are closer to a single link configuration, while the ones closer to 1 are closer to a one to one configuration.
+There is an area near the transition where $\lambda$ approaches $1/2$ from the left where most measures begin to show a disturbance.
+Notably, this area does not appear in the graph with the single link initial condition, which then fails to show any value of $\lambda$ where linguistic laws can be recovered.
 
 \begin{figure}
   \centering
@@ -283,6 +297,7 @@ They correspond to several distinct initial conditions.
     The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph \randgraph{n}{m}{\frac{3}{nm}}. Disconnected meanings are allowed.
     On the $x$ axis of each subfigure is the parameter $\lambda$ of the optimization process, ranging from 0 to 1.
     On the $y$ of the subfigures is: the mutual information between words and meanings (a), the joint entropy between words and meanings (b), the entropy of words (c), the entropy of meanings (d), the conditional entropy of words given the meanings (e), the conditional entropy of the meanings given the words (f), the number of referentially useless words (g) and the proportion of the largest connected component of the graph (h).
+    The gray dotted line indicates the value of that measure for the initial condition.
     Averages over 100 realizations.
 }
   \label{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
@@ -303,17 +318,23 @@ They correspond to several distinct initial conditions.
 \end{figure}
 
 Figures \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of selected values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} showing the fitting of the curve to a power law for a single selected value of $\lambda$.
-It can be seen that a power law (linear in log-log scale) appears in the plots.
+In the first pair of figures it can be seen that a power law (linear in log-log scale) appears in plots (a), (b) and (c).
+Plot (d) does not show a power law behavior but does show that the age of a word decreases with the probability rank consistently.
+The power laws appear at a value of $\lambda$ just before reaching $1/2$.
+Other values are plotted for comparison.
+The second pair of figures shows a power law fitted to the value corresponding to the closest value of $\lambda$.
+It can be seen, however, that the tail end of the figures deviates from the power law for subfigures (a) and (b).
+As seen previously, the single link initial condition behaves as a fixed point of the optimization process and does not evolve to the point of showing these power laws, instead transitioning immediately when \lambdaHalfToOne{}.
+The one to one initial condition is also a fixed point, but for \lambdaHalfToOne{}.
 Tables \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked} show the values of the regression exponent and factor.
-\redtxt{TODO: descriure figures, single link not plotted}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{
     Statistical measures of the optimized graph for selected values of $\lambda$.
     The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph \randgraph{n}{m}{\frac{3}{nm}}. Disconnected meanings are allowed.
-    The green line corresponds to $\lambda=0.49$, the blue line to $\lambda=0.5$ and the red line to $\lambda=\lambda^*$.
+    The green line corresponds to $\lambda=0.49$, the blue line to $\lambda=1/2$ and the red line to $\lambda=\lambda^*$.
     The value of $\lambda^*$ is chosen qualitatively and in this case $\lambda^*=0.4989$.
     Figure (a) shows the probability (or frequency) of a word as a function of its probability rank.
     Figure (b) shows the cumulative proportion of the frequency of words.
@@ -330,14 +351,14 @@ Tables \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBiparti
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the initial condition is one to one connections between words and meanings. $\lambda^* = 0.4989$}
   \label{fig:insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.65\textheight]{fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.65\textheight,width=\textwidth,keepaspectratio]{fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{
     Statistical measures of the optimized graph for a selected value of $\lambda=\lambda^*$.
     The graph follows the equations of the \firstmodel{} with $\phi=0$ and the initial condition of the optimization process is a random bipartite graph \randgraph{n}{m}{\frac{3}{nm}}. Disconnected meanings are allowed.
@@ -372,45 +393,47 @@ Table \ref{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_oneToOne_allow
 
 
 The next set of figures correspond also to the \firstmodel{} but for $\phi=1$, Figures  \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked} and  \ref{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
-They correspond to several distinct initial conditions
-\redtxt{TODO: descriure figures, phase transition at 0.5, disturbances just before 0.5}.
+They correspond to several distinct initial conditions.
+They are very similar to the figures for $\phi=0$, with a phase transition at $\lambda \approx 1/2$ and also transitioning from a single link configuration to a one to one configuration, which becomes clear when comparing the values for the initial condition to the obtained values.
+It is interesting to see how the largest connected component behaves slightly differently from the case $\phi=0$.
+The area immediately before $\lambda=1/2$ is much reduced or completely gone in the case $\phi=0$, which reflects in the behaviors seen from the statistical measures.
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but with $\phi=1$.}
   \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but with $\phi=1$ and for a single link as the initial condition.}
   \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_singleLink_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but with $\phi=1$ and for one to one connections between signals and meanings as the initial condition.}
   \label{fig:informationTheoretic_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
 
 Figures \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of selected values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} showing the fitting of the curve to a power law for a single selected value of $\lambda$.
-In this case it's hard to say that the curves follow a power law.
+As expected from the plots of graph measures as a function of $\lambda$, it's hard to say that the curves observed here follow a power law, which should appear linear in a log-log scale.
+Perhaps plot (c) is the one that is closest to a power law behavior.
 Nevertheless, Tables \ref{tab:fitting_insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the values of the regression exponent and factor of the attempt at fitting them as power laws.
-\redtxt{TODO: no initial condition}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but $\phi=1$. $\lambda^* = 0.4993$}
   \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but $\phi=1$ and the initial condition is one to one connections between words and meanings. $\lambda^* = 0.4986$}
   \label{fig:insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
@@ -437,48 +460,55 @@ Table \ref{tab:fitting_insideLambda_firstModel_phi1_nm400_dynamic_oneToOne_allow
 
 The next sets of figures correspond to the \secondmodel{} with $\phi=0$.
 Figures \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked} and  \ref{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
-\redtxt{TODO: descriure figures, phase transition at 0.5, disturbances just before 0.5}
-Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
+While the overall behavior of the information theoretical measures is the same, it is interesting to see that they are quite different from the \firstmodel{}.
+$H(R)$ remains near the maximum even for \lambdaHalfToOne{} making a sudden dip at $\lambda \approx 0.5$.
+This behavior is not present for the single link initial condition and is the most pronounced for the one to one initial condition.
+$H(S|R)$, which had already shown very low values with previous parameters, is almost flat when compared to the value of the random initial condition.
+For the other two conditions where the scale allows to appreciate its value it reaches very low values.
+The referentially useless measure retains the same values as seen previously, while the connected component continues to vary with the initial condition but shows similar (when the maximum/minimum is reached) yet noticeably different (shape of the plot) behaviors for the different sets of parameters.
+For reference and comparison, Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph uses the equations of the \secondmodel{} with $\pi$ following a uniform distribution.}
   \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph uses the equations of the \secondmodel{} with $\pi$ following a uniform distribution and the initial condition is a single link}
   \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_singleLink_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph uses the equations of the \secondmodel{} with $\pi$ following a uniform distribution and the initial condition is one to one connections between signals and meanings.}
   \label{fig:informationTheoretic_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
 
-
 Figures \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of selected values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} showing the fitting of the curve to a power law for a single selected value of $\lambda$.
-A power law is appreciated in some of the plots but not all of them.
+For the random initial condition a power law can be clearly seen in plot (a), showing a very linear line in the log-log scale.
+Plots (b) and (c) show something similar to a power law.
+It is slightly curved, but similar enough, specially near the beginning.
+Plot (d) remains too far from a power law, being completely flat for a long stretch.
+The one to one initial condition has much flatter (a), (b) and (c) plots, and even (d) could remind of a power law.
+However, it contains many less words with nonzero probability.
 Tables \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked} show the values of the regression exponent and factor.
-As with others, the single link initial condition is not plotted for selected values of $\lambda$ as it fails to evolve beyond the single link state.
-\redtxt{TODO: descriure figures, no single link}
-Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
+For reference and comparison, Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph follows the equations of the \secondmodel{} with $\pi$ following a uniform distribution. $\lambda^* = 0.4942$}
   \label{fig:insideLambda_uniform_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked.pdf}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked.pdf}
   \caption{Same information as in Figure \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph follows the equations of the \secondmodel{} with $\pi$ following a uniform distribution and the initial condition is one to one connections between words and meanings. $\lambda^* = 0.4970$}
   \label{fig:insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnlinked}
 \end{figure}
@@ -505,19 +535,23 @@ Table \ref{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_allowUnl
 
 This last set of figures corresponds to the \secondmodel{} with $\phi=1$.
 Figures \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked},  \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked} and \ref{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the information theoretic measures of the optimal graph for values of $\lambda$ ranging from 0 to 1.
-\redtxt{TODO: descriure figures, phase transition at 0.5, disturbances just before 0.5}
-Appendix \ref{sec:app_figures_second-model} also shows the same figures but with disconnected meanings disallowed.
+Compared to previous figures, greater noise can be seen for \lambdaZeroToHalf{} for some figures.
+This could be an artifact of the reduced number of realizations.
+Otherwise, a behavior similar to the \firstmodel{} is observed, without most of the dips that appeared for $\phi=0$.
+The referentially useless and connected components measures retain a very similar behavior.
+While it is hard to see any disturbances before $\lambda = 1/2$, power laws do seem to appear in later plots.
+For reference and comparison, Appendix \ref{sec:app_figures_second-model} also shows the same figures but with disconnected meanings disallowed.
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph uses the equations of the \secondmodel{} with $\pi$ following a uniform distribution and with $\phi=1$. Averages over 20 realizations.}
   \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph uses the equations of the \secondmodel{} with $\pi$ following a uniform distribution with $\pi=1$.
 The initial condition is a single link. Averages over 20 realizations.}
   \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_singleLink_allowUnlinked}
@@ -525,7 +559,7 @@ The initial condition is a single link. Averages over 20 realizations.}
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:informationTheoretic_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph uses the equations of the \secondmodel{} with $\pi$ following a uniform distribution with $\pi=1$.
 The initial condition is one to one connections between signals and meanings. Averages over 20 realizations.}
   \label{fig:informationTheoretic_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
@@ -533,13 +567,15 @@ The initial condition is one to one connections between signals and meanings. Av
 
 Figures \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} show statistical measures of selected values of $\lambda$, with Figures \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{fig:fitting_insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} showing the fitting of the curve to a power law for a single selected value of $\lambda$.
 While not very exact, a behavior similar to a power law can be appreciated.
+Very few dots appear in these plots, indicating that most signals had zero probability and so were excluded from the log-log plot.
+Plots (a) and (b) from both initial conditions are slightly curved, making it hard to classify them as power laws.
+Plot (c) is a straight line.
 Tables \ref{tab:fitting_insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked} and \ref{tab:fitting_insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked} show the values of the regression exponent and factor.
-\redtxt{TODO: descriure figures, why no single link}
-Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
+For reference and comparison, Appendix \ref{sec:app_figures_second-model} shows the same figures but with disconnected meanings disallowed.
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph follows the equations of the \secondmodel{} with $\phi=1$ with $\pi$ following a uniform distribution. $\lambda^* = 0.4992$.
   Averages over 20 realizations.}
   \label{fig:insideLambda_uniform_phi1_nm400_dynamic_randomBipartite_allowUnlinked}
@@ -547,7 +583,7 @@ Appendix \ref{sec:app_figures_second-model} shows the same figures but with disc
 
 \begin{figure}
   \centering
-  \includegraphics[height=0.7\textheight]{insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
+  \includegraphics[height=0.7\textheight,width=\textwidth,keepaspectratio]{insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}
   \caption{Same information as in Figure \ref{fig:insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} but the graph follows the equations of the \secondmodel{} with $\pi$ following a uniform distribution and with $\phi=1$. The initial condition is one to one connections between words and meanings. $\lambda^* = 0.4991$.
 Averages over 20 realizations.}
   \label{fig:insideLambda_uniform_phi1_nm400_dynamic_oneToOne_allowUnlinked}

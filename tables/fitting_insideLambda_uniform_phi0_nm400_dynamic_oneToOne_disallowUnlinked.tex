@@ -1,20 +1,23 @@
 \begin{table}
   \centering
   \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{llSS}
+    \begin{tabular}{llSS[scientific-notation=true]}
       \toprule
       plot & law & $a$ & $k$ \\ 
       \midrule
-      a & word frequency & 1.6856845 & 5.9091866 \\ 
-      b & \redtxt{word frequency (cumulative)} & 0.5677904 & 0.0082092 \\ 
-      c & meaning distribution & 1.6856845 & 2363.6746229 \\ 
-      d & meaning frequency & -1.0000000 & 400.0000000 \\ 
-      f & \redtxt{meaning distribution} & 1.6856845 & 2363.6746229 \\ 
-      g & \redtxt{meaning distribution (cumulative)} & 1.3451676 & 0.4195512 \\ 
+      a & word frequency ($\alpha$) & 1.6856845 & 5.9091866 \\ 
+      %b & \redtxt{word frequency (cumulative)} & 0.5677904 & 0.0082092 \\ 
+      b & meaning distribution ($\gamma$) & 1.6856845 & 2363.6746229 \\ 
+      c & meaning frequency ($\delta$) & -1.0000000 & 400.0000000 \\ 
+      %f & \redtxt{meaning distribution} & 1.6856845 & 2363.6746229 \\ 
+      %g & \redtxt{meaning distribution (cumulative)} & 1.3451676 & 0.4195512 \\ 
       \bottomrule
     \end{tabular}
   \end{adjustbox}    
-  \caption{\redtxt{en vermell: cal mostrar?} Table showing the exponent and factor of the power laws fitted in Figure \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked}} 
+  \caption{Table showing the exponent and factor of the power laws fitted for the \secondmodel{} with $\phi=0$, disallowed unlinked meanings and a one to one configuration as the initial condition (Figure \ref{fig:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked})
+    In this table, $\alpha \approx 1.7$, $\delta = 1$ and $\gamma 1.7$.
+    The relationship between these values (Equation \eqref{eq:relation-exponents}) holds but the exponents are not exactly the ones expected.
+  } 
   \label{tab:fitting_insideLambda_uniform_phi0_nm400_dynamic_oneToOne_disallowUnlinked}
 \end{table}
 

@@ -1,22 +1,25 @@
 \begin{table}
   \centering
   \begin{adjustbox}{max width=\textwidth}
-    \begin{tabular}{llSS}
+    \begin{tabular}{llSS[scientific-notation=true]}
       \toprule
       plot & law & $a$ & $k$ \\ 
       \midrule
-      a & word frequency & 1.5131590 & 0.4415009 \\ 
-      b & \redtxt{word frequency (cumulative)} & 0.6406267 & 0.0016491 \\ 
-      c & meaning distribution & 1.4972982 & 170.7165580 \\ 
-      d & meaning frequency & -0.9992804 & 403.8279052 \\ 
-      f & \redtxt{meaning distribution} & 1.4972982 & 170.7165580 \\ 
-      g & \redtxt{meaning distribution (cumulative)} & 0.6725912 & 0.0750000 \\ 
+      a & word frequency ($\alpha$) & 1.5131590 & 0.4415009 \\ 
+      %b & \redtxt{word frequency (cumulative)} & 0.6406267 & 0.0016491 \\ 
+      b & meaning distribution ($\gamma$) & 1.4972982 & 170.7165580 \\ 
+      c & meaning frequency ($\delta$) & -0.9992804 & 403.8279052 \\ 
+      %f & \redtxt{meaning distribution} & 1.4972982 & 170.7165580 \\ 
+      %g & \redtxt{meaning distribution (cumulative)} & 0.6725912 & 0.0750000 \\ 
       \bottomrule
     \end{tabular}
   \end{adjustbox}
   \caption{
-    \redtxt{en vermell: cal mostrar?}
-    Table showing the exponent ($a$) and the factor ($k$) of the power laws fitted in Figure \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked} for each of the subfigures. The power law follows the formula $y = kx^{-a}$.
+    Table showing the exponent ($a$) and the factor ($k$) of the power laws fitted for the \firstmodel{} with $\phi=0$ and a random bipartite graph as the initial condition.
+    The power law follows the formula $y = kx^{-a}$.
+    Fitted curves in Figure \ref{fig:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}.
+    In this table, $\alpha \approx 1.5$, $\delta \approx 1$ and $\gamma \approx 1.5$.
+    The relationship between these values (Equation \eqref{eq:relation-exponents}) holds but the exponents are not exactly the ones expected.
   } 
   \label{tab:fitting_insideLambda_firstModel_phi0_nm400_dynamic_randomBipartite_allowUnlinked}
 \end{table}
